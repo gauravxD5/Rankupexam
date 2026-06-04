@@ -3,1491 +3,1141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RankUpExam – Crack Every Exam</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<title>RankUpExam — 60+10 Day SSC CGL Operating System</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --surface2: #1a1a26;
-    --border: #2a2a3e;
-    --accent: #f0b429;
-    --accent2: #e05c2e;
-    --text: #e8e8f0;
-    --muted: #7a7a9a;
-    --success: #2dd4a0;
-    --danger: #f05c5c;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    overflow-x: hidden;
-  }
-
-  /* ─── NOISE TEXTURE OVERLAY ─── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
-  }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 1000;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 5%;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
-    letter-spacing: 2px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    cursor: pointer;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    transition: color 0.2s;
-    cursor: pointer;
-  }
-
-  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-
-  .nav-cta {
-    background: var(--accent);
-    color: #0a0a0f;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 6px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.82rem;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    transition: transform 0.15s, box-shadow 0.15s;
-  }
-
-  .nav-cta:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(240,180,41,0.35);
-  }
-
-  /* ─── PAGE SYSTEM ─── */
-  .page { display: none; padding-top: 64px; min-height: 100vh; }
-  .page.active { display: block; }
-
-  /* ─── HERO ─── */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    padding: 0 5%;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(240,180,41,0.07) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(224,92,46,0.06) 0%, transparent 50%);
-  }
-
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(42,42,62,0.3) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(42,42,62,0.3) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-  }
-
-  .hero-content { position: relative; z-index: 2; max-width: 700px; }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(240,180,41,0.12);
-    border: 1px solid rgba(240,180,41,0.3);
-    border-radius: 100px;
-    padding: 6px 14px;
-    font-size: 0.78rem;
-    color: var(--accent);
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    margin-bottom: 1.5rem;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .hero-badge span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 1.5s infinite; }
-
-  h1.hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    line-height: 0.95;
-    letter-spacing: 1px;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
-
-  h1.hero-title .gold { color: var(--accent); }
-  h1.hero-title .orange { color: var(--accent2); }
-
-  .hero-sub {
-    margin-top: 1.5rem;
-    font-size: 1.05rem;
-    color: var(--muted);
-    line-height: 1.7;
-    max-width: 520px;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
-
-  .hero-btns {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #0a0a0f;
-    border: none;
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.9rem;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    transition: transform 0.15s, box-shadow 0.2s;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(240,180,41,0.4);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-  .hero-stats {
-    display: flex;
-    gap: 2.5rem;
-    margin-top: 3.5rem;
-    animation: fadeUp 0.6s 0.4s ease both;
-  }
-
-  .stat { }
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem;
-    color: var(--accent);
-    letter-spacing: 1px;
-    line-height: 1;
-  }
-  .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
-
-  /* ─── SECTION COMMON ─── */
-  .section { padding: 80px 5%; }
-  .section-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 800;
-    line-height: 1.15;
-    margin-bottom: 1rem;
-  }
-  .section-sub { color: var(--muted); font-size: 1rem; max-width: 550px; line-height: 1.7; margin-bottom: 3rem; }
-
-  /* ─── EXAM CARDS ─── */
-  .exam-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .exam-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.8rem;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-  }
-
-  .exam-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    transform: scaleX(0);
-    transition: transform 0.3s;
-    transform-origin: left;
-  }
-
-  .exam-card:hover { transform: translateY(-4px); border-color: rgba(240,180,41,0.3); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
-  .exam-card:hover::before { transform: scaleX(1); }
-
-  .exam-icon {
-    width: 48px; height: 48px;
-    background: rgba(240,180,41,0.1);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .exam-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1.15rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .exam-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.2rem; }
-
-  .exam-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .tag {
-    background: rgba(42,42,62,0.8);
-    border: 1px solid var(--border);
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-size: 0.72rem;
-    color: var(--muted);
-    font-weight: 500;
-  }
-
-  /* ─── MOCK TEST PAGE ─── */
-  .test-hero {
-    background: linear-gradient(135deg, rgba(240,180,41,0.08), rgba(224,92,46,0.06));
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 3rem;
-    margin-bottom: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .test-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .test-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .test-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
-
-  .test-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-
-  .test-badge {
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-  .test-badge.free { background: rgba(45,212,160,0.15); color: var(--success); border: 1px solid rgba(45,212,160,0.3); }
-  .test-badge.premium { background: rgba(240,180,41,0.15); color: var(--accent); border: 1px solid rgba(240,180,41,0.3); }
-
-  .test-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .test-info { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.2rem; display: flex; gap: 1rem; }
-  .test-info span { display: flex; align-items: center; gap: 4px; }
-
-  .btn-test {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 10px;
-    border-radius: 8px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
-  }
-
-  .btn-test:hover { background: var(--accent); border-color: var(--accent); color: #0a0a0f; }
-
-  /* ─── QUIZ MODAL ─── */
-  .quiz-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 5000;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-  }
-  .quiz-overlay.active { display: flex; }
-
-  .quiz-modal {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    width: 100%;
-    max-width: 720px;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 2rem;
-  }
-
-  .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-  .quiz-progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 2rem; }
-  .quiz-progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; transition: width 0.4s ease; }
-
-  .quiz-question {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-
-  .quiz-options { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
-
-  .quiz-option {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.2rem;
-    cursor: pointer;
-    font-size: 0.92rem;
-    transition: border-color 0.15s, background 0.15s;
-    text-align: left;
-    color: var(--text);
-  }
-
-  .quiz-option:hover:not(:disabled) { border-color: var(--accent); background: rgba(240,180,41,0.06); }
-  .quiz-option.correct { border-color: var(--success); background: rgba(45,212,160,0.1); color: var(--success); }
-  .quiz-option.wrong { border-color: var(--danger); background: rgba(240,92,92,0.1); color: var(--danger); }
-  .quiz-option:disabled { cursor: not-allowed; }
-
-  .quiz-explanation {
-    background: rgba(240,180,41,0.06);
-    border: 1px solid rgba(240,180,41,0.2);
-    border-radius: 10px;
-    padding: 1rem 1.2rem;
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.6;
-    display: none;
-    margin-bottom: 1rem;
-  }
-  .quiz-explanation.show { display: block; }
-
-  .quiz-footer { display: flex; justify-content: space-between; align-items: center; }
-  .quiz-score { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--accent); }
-
-  .btn-close {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: 6px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-close:hover { border-color: var(--danger); color: var(--danger); }
-
-  /* ─── PDF RESOURCES ─── */
-  .pdf-filter {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .filter-btn {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: 8px 18px;
-    border-radius: 100px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .filter-btn.active, .filter-btn:hover { background: var(--accent); border-color: var(--accent); color: #0a0a0f; }
-
-  .pdf-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.2rem;
-  }
-
-  .pdf-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .pdf-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
-
-  .pdf-icon-row { display: flex; justify-content: space-between; align-items: flex-start; }
-  .pdf-icon { font-size: 2rem; }
-  .pdf-exam-tag {
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  .pdf-exam-tag.ssc { background: rgba(240,180,41,0.15); color: var(--accent); border: 1px solid rgba(240,180,41,0.3); }
-  .pdf-exam-tag.rrb { background: rgba(45,212,160,0.12); color: var(--success); border: 1px solid rgba(45,212,160,0.25); }
-  .pdf-exam-tag.bpsc { background: rgba(224,92,46,0.15); color: var(--accent2); border: 1px solid rgba(224,92,46,0.3); }
-
-  .pdf-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; line-height: 1.4; }
-  .pdf-meta { font-size: 0.78rem; color: var(--muted); }
-  .pdf-download {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 9px;
-    border-radius: 8px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-decoration: none;
-    margin-top: auto;
-    font-family: 'Syne', sans-serif;
-  }
-  .pdf-download:hover { background: var(--accent); border-color: var(--accent); color: #0a0a0f; }
-
-  /* ─── YOUTUBE SECTION ─── */
-  .yt-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .yt-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-  }
-  .yt-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
-
-  .yt-thumb {
-    background: var(--surface2);
-    aspect-ratio: 16/9;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .yt-thumb-bg {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    opacity: 0.15;
-  }
-
-  .yt-play {
-    width: 56px; height: 56px;
-    background: rgba(255,0,0,0.85);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    position: relative;
-    z-index: 1;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .yt-card:hover .yt-play { transform: scale(1.1); box-shadow: 0 4px 20px rgba(255,0,0,0.4); }
-
-  .yt-info { padding: 1.2rem; }
-  .yt-category {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-  }
-  .yt-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; line-height: 1.4; margin-bottom: 0.5rem; }
-  .yt-meta { font-size: 0.78rem; color: var(--muted); display: flex; gap: 1rem; }
-
-  .yt-subscribe {
-    background: #ff0000;
-    color: white;
-    border: none;
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: transform 0.15s, box-shadow 0.2s;
-    margin-top: 2rem;
-  }
-  .yt-subscribe:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,0,0,0.4); }
-
-  /* ─── ABOUT SECTION ─── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-
-  @media (max-width: 768px) {
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .hero-stats { gap: 1.5rem; }
-    .nav-links { display: none; }
-  }
-
-  .about-visual {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .about-visual::before {
-    content: '';
-    position: absolute;
-    top: -50%; right: -30%;
-    width: 250px; height: 250px;
-    background: radial-gradient(circle, rgba(240,180,41,0.15), transparent 70%);
-    pointer-events: none;
-  }
-
-  .profile-ring {
-    width: 90px; height: 90px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .about-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin-bottom: 0.2rem;
-  }
-
-  .about-role { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 1rem; }
-
-  .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
-
-  .skill-pill {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    padding: 5px 12px;
-    border-radius: 100px;
-    font-size: 0.78rem;
-    color: var(--text);
-  }
-
-  .about-text { font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
-
-  /* ─── CONTACT ─── */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-  }
-
-  @media (max-width: 768px) {
-    .contact-grid { grid-template-columns: 1fr; }
-  }
-
-  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .form-field label { font-size: 0.8rem; font-weight: 600; color: var(--muted); letter-spacing: 0.5px; }
-
-  .form-field input, .form-field textarea, .form-field select {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    outline: none;
-    transition: border-color 0.2s;
-    resize: none;
-  }
-
-  .form-field input:focus, .form-field textarea:focus, .form-field select:focus { border-color: var(--accent); }
-  .form-field select option { background: var(--surface); }
-
-  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
-
-  .contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.2rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-  }
-
-  .contact-icon {
-    width: 40px; height: 40px;
-    background: rgba(240,180,41,0.1);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-
-  .contact-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 2px; }
-  .contact-val { font-weight: 600; font-size: 0.9rem; }
-
-  /* ─── FOOTER ─── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2.5rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .footer-copy { font-size: 0.8rem; color: var(--muted); }
-
-  .footer-links { display: flex; gap: 1.5rem; }
-  .footer-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; cursor: pointer; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--accent); }
-
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.2); }
-  }
-
-  /* ─── SCROLLBAR ─── */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-  /* ─── RESULT SCREEN ─── */
-  .quiz-result {
-    text-align: center;
-    padding: 2rem 0;
-  }
-  .result-score {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 6rem;
-    line-height: 1;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .result-label { font-size: 1rem; color: var(--muted); margin-bottom: 1rem; }
-  .result-msg { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 2rem; }
-
-  /* ─── ANNOUNCEMENT TICKER ─── */
-  .ticker-wrap {
-    background: rgba(240,180,41,0.08);
-    border-bottom: 1px solid rgba(240,180,41,0.2);
-    padding: 8px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .ticker {
-    display: inline-flex;
-    animation: ticker 30s linear infinite;
-    gap: 4rem;
-  }
-  .ticker-item { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
-  .ticker-sep { color: var(--accent2); }
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+:root{
+  --bg:#020408;--bg2:rgba(255,255,255,.025);--bg3:rgba(255,255,255,.04);--bg4:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.07);--bb:rgba(59,130,246,.25);--ba:rgba(251,191,36,.25);
+  --blue:#3b82f6;--blt:#60a5fa;--cyan:#22d3ee;--violet:#a78bfa;
+  --em:#34d399;--amb:#fbbf24;--red:#f87171;--org:#fb923c;--pink:#f472b6;
+  --txt:#f1f5f9;--txt2:#94a3b8;--txt3:#475569;--txt4:#1e293b;
+  --mono:'JetBrains Mono',monospace;--sans:'Sora',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--txt);overflow-x:hidden;min-height:100vh}
+
+#vfx-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.noise-overlay{position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.3}
+.vignette{position:fixed;inset:0;background:radial-gradient(ellipse at center,transparent 40%,rgba(2,4,8,.7) 100%);pointer-events:none;z-index:2}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;background:rgba(2,4,8,.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nl-logo{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:-.4px;color:var(--txt);text-decoration:none}
+.ld{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 10px var(--blue),0 0 20px rgba(59,130,246,.4);animation:breathe 3s ease-in-out infinite}
+.nav-c{display:flex;align-items:center;gap:8px}
+.soc{display:flex;align-items:center;gap:5px;padding:4px 10px;font-size:10px;font-family:var(--mono);color:var(--txt3);text-decoration:none;border:1px solid var(--border);border-radius:6px;transition:all .2s}
+.soc.yt:hover{color:#ff4444;border-color:rgba(255,68,68,.35)}
+.soc.tg:hover{color:#229ed9;border-color:rgba(34,158,217,.35)}
+
+/* XP BADGE in nav */
+.xp-badge{display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:6px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);cursor:default}
+.xp-badge-icon{font-size:11px}
+.xp-badge-val{font-size:10px;font-family:var(--mono);font-weight:700;color:var(--amb)}
+.xp-badge-streak{font-size:9px;font-family:var(--mono);color:var(--org);display:flex;align-items:center;gap:3px}
+
+.btn-nv{padding:5px 13px;font-size:11px;font-weight:700;background:var(--amb);color:#000;border:none;border-radius:7px;cursor:pointer;transition:all .2s;font-family:var(--mono)}
+.btn-nv:hover{background:#fcd34d;transform:translateY(-1px)}
+
+/* ═══ STICKY HEADER ═══ */
+.sticky-hdr{position:sticky;top:52px;z-index:400;background:rgba(2,4,8,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0;overflow-x:auto;scrollbar-width:none}.sticky-hdr::-webkit-scrollbar{display:none}
+.sh-inner{display:flex;align-items:center;gap:0;height:44px;min-width:max-content}
+.sh-brand{padding:0 16px;border-right:1px solid var(--border);display:flex;align-items:center;gap:8px;height:100%}
+.sh-brand-txt{font-size:11px;font-family:var(--mono);font-weight:700;letter-spacing:.05em;color:var(--amb)}
+.sh-prog-wrap{padding:0 12px;display:flex;align-items:center;gap:8px;border-right:1px solid var(--border);flex-shrink:0}
+.sh-prog-lbl{font-size:10px;font-family:var(--mono);color:var(--txt3);white-space:nowrap}
+.sh-prog-track{width:70px;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.sh-prog-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--amb),var(--org));transition:width 1.2s ease}
+.sh-day-count{font-size:11px;font-family:var(--mono);font-weight:700;color:var(--amb);white-space:nowrap}
+
+/* TIMER */
+.timer-pod{padding:0 12px;display:flex;align-items:center;gap:10px;height:100%}
+.tp-label{font-size:9px;font-family:var(--mono);color:var(--txt3);letter-spacing:.1em;text-transform:uppercase}
+.tp-display{font-size:16px;font-family:var(--mono);font-weight:700;letter-spacing:-1px;color:var(--cyan);min-width:60px}
+.tp-display.running{animation:glow-cyan 1.5s ease-in-out infinite}
+.tp-controls{display:flex;gap:4px}
+.tp-select{padding:3px 7px;font-size:10px;font-family:var(--mono);background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:5px;color:var(--txt2);outline:none;cursor:pointer}
+.tp-btn{width:24px;height:24px;border-radius:6px;border:1px solid var(--border);background:var(--bg4);color:var(--txt2);cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.tp-btn:hover{background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.3);color:var(--cyan)}
+.tp-btn.stop:hover{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3);color:var(--red)}
+
+/* ═══ PAGE ═══ */
+.page{position:relative;z-index:10;padding-top:112px;padding-bottom:80px;max-width:1440px;margin:0 auto;padding-left:20px;padding-right:20px}
+
+/* ═══ VIEW SWITCHER ═══ */
+.view-switcher{display:flex;gap:6px;margin-bottom:20px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:5px}
+.vs-btn{flex:1;padding:8px 12px;font-size:11px;font-family:var(--mono);font-weight:700;letter-spacing:.04em;border:none;border-radius:8px;cursor:pointer;transition:all .2s;background:transparent;color:var(--txt3);text-align:center}
+.vs-btn.active{background:rgba(251,191,36,.1);color:var(--amb);border:1px solid rgba(251,191,36,.2)}
+.vs-btn:hover:not(.active){color:var(--txt2);background:rgba(255,255,255,.04)}
+
+/* ═══ TODAY VIEW ═══ */
+.today-view{display:block}
+.roadmap-view{display:none}
+
+/* TODAY HERO */
+.today-hero{margin-bottom:20px}
+.th-greeting{font-size:11px;font-family:var(--mono);color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.th-daynum{font-size:clamp(36px,6vw,64px);font-weight:900;letter-spacing:-3px;line-height:1;color:var(--amb);display:inline;margin-right:12px}
+.th-topic{font-size:clamp(18px,2.5vw,28px);font-weight:800;letter-spacing:-.5px;line-height:1.2;color:var(--txt)}
+.th-sub{font-size:13px;font-family:var(--mono);color:var(--txt3);margin-top:6px}
+
+/* STREAK DASHBOARD */
+.streak-dash{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.sd-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;text-align:center;transition:all .2s}
+.sd-card:hover{border-color:rgba(255,255,255,.12)}
+.sd-icon{font-size:20px;margin-bottom:5px}
+.sd-val{font-size:22px;font-weight:900;font-family:var(--mono);letter-spacing:-1px;margin-bottom:2px}
+.sd-lbl{font-size:9px;font-family:var(--mono);color:var(--txt3);letter-spacing:.08em;text-transform:uppercase}
+.sd-streak .sd-val{color:var(--org)}
+.sd-xp .sd-val{color:var(--amb)}
+.sd-done .sd-val{color:var(--em)}
+.sd-rank .sd-val{color:var(--violet)}
+
+/* STREAK FIRE DISPLAY */
+.streak-fire{font-size:24px;animation:fire 0.8s ease-in-out infinite alternate}
+@keyframes fire{from{transform:scale(1)}to{transform:scale(1.15)}}
+
+/* XP BAR */
+.xp-bar-wrap{margin-bottom:20px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.xp-bar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.xp-title{font-size:11px;font-weight:700;color:var(--txt);display:flex;align-items:center;gap:6px}
+.xp-level{font-size:10px;font-family:var(--mono);font-weight:700;padding:2px 8px;border-radius:5px;background:rgba(167,139,250,.1);color:var(--violet);border:1px solid rgba(167,139,250,.2)}
+.xp-count{font-size:10px;font-family:var(--mono);color:var(--txt3)}
+.xp-bar-track{height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;position:relative}
+.xp-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--violet),var(--pink));transition:width 1s ease;position:relative}
+.xp-bar-fill::after{content:'';position:absolute;top:0;right:0;bottom:0;width:20px;background:rgba(255,255,255,.3);filter:blur(4px)}
+.xp-milestones{display:flex;justify-content:space-between;margin-top:6px}
+.xp-ms{font-size:8.5px;font-family:var(--mono);color:var(--txt3)}
+
+/* TODAY MISSION */
+.today-mission{background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(34,211,238,.03));border:1px solid rgba(59,130,246,.18);border-radius:16px;padding:20px;margin-bottom:20px}
+.tm-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.tm-title{font-size:13px;font-weight:800;color:var(--txt);display:flex;align-items:center;gap:8px}
+.tm-badge{font-size:9px;font-family:var(--mono);padding:2px 8px;border-radius:5px;background:rgba(59,130,246,.12);color:var(--blt);border:1px solid rgba(59,130,246,.2)}
+.tm-shortcut{font-size:11px;font-family:var(--mono);color:var(--cyan);background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.15);border-radius:8px;padding:8px 12px;margin-bottom:14px;line-height:1.5}
+.tm-shortcut strong{color:var(--amb)}
+.tm-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.tm-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:14px 12px;border-radius:12px;text-decoration:none;border:1px solid;transition:all .2s;cursor:pointer;position:relative;overflow:hidden}
+.tm-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(255,255,255,.03));pointer-events:none}
+.tm-btn:hover{transform:translateY(-2px)}
+.tm-btn-icon{font-size:20px}
+.tm-btn-label{font-size:10px;font-weight:700;font-family:var(--mono)}
+.tm-btn-sub{font-size:8.5px;font-family:var(--mono);opacity:.6}
+.tm-pdf{background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.25);color:var(--blt)}
+.tm-pdf:hover{background:rgba(59,130,246,.16);border-color:rgba(59,130,246,.4)}
+.tm-mock{background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.25);color:var(--em)}
+.tm-mock:hover{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.4);box-shadow:0 0 20px rgba(52,211,153,.15)}
+.tm-yt{background:rgba(255,68,68,.07);border-color:rgba(255,68,68,.22);color:#ff6b6b}
+.tm-yt:hover{background:rgba(255,68,68,.14);border-color:rgba(255,68,68,.35)}
+.tm-lock{background:transparent;border-color:var(--border);color:var(--txt3);cursor:not-allowed;opacity:.5}
+
+/* TOPIC CHECKLIST */
+.topic-checklist{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:20px}
+.tcl-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.tcl-title{font-size:11px;font-weight:700;color:var(--txt)}
+.tcl-progress{font-size:10px;font-family:var(--mono);color:var(--em)}
+.tcl-items{display:flex;flex-direction:column;gap:6px}
+.tcl-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:rgba(0,0,0,.2);cursor:pointer;transition:all .2s;user-select:none}
+.tcl-item.checked{background:rgba(52,211,153,.04);border-color:rgba(52,211,153,.18)}
+.tcl-item:hover{border-color:rgba(255,255,255,.12)}
+.tcl-check{width:16px;height:16px;border-radius:4px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;transition:all .2s}
+.tcl-item.checked .tcl-check{background:var(--em);border-color:var(--em);color:#000}
+.tcl-text{font-size:11px;font-family:var(--mono);color:var(--txt2);flex:1}
+.tcl-item.checked .tcl-text{color:var(--txt3);text-decoration:line-through}
+
+/* COMPLETE BUTTON */
+.complete-btn{width:100%;padding:14px;font-size:13px;font-weight:800;font-family:var(--mono);border:none;border-radius:12px;cursor:pointer;transition:all .25s;letter-spacing:.04em;margin-bottom:20px;position:relative;overflow:hidden}
+.complete-btn.ready{background:linear-gradient(135deg,var(--em),#059669);color:#000;box-shadow:0 0 30px rgba(52,211,153,.3)}
+.complete-btn.ready:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(52,211,153,.4)}
+.complete-btn.done{background:rgba(52,211,153,.08);color:var(--em);border:1px solid rgba(52,211,153,.2);cursor:default}
+.complete-btn.locked{background:rgba(255,255,255,.03);color:var(--txt3);border:1px solid var(--border);cursor:not-allowed}
+.complete-btn .cb-pulse{position:absolute;inset:0;background:rgba(255,255,255,.1);border-radius:inherit;animation:pulse-out .6s ease-out forwards;opacity:0}
+@keyframes pulse-out{0%{opacity:.5;transform:scale(.95)}100%{opacity:0;transform:scale(1.02)}}
+
+/* WEEK HEAT MAP */
+.week-heatmap{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:20px}
+.wh-title{font-size:11px;font-weight:700;color:var(--txt);margin-bottom:12px}
+.wh-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:8px}
+.wh-cell{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-family:var(--mono);cursor:default;transition:all .2s;border:1px solid transparent}
+.wh-cell.done{background:rgba(52,211,153,.2);border-color:rgba(52,211,153,.3);color:var(--em)}
+.wh-cell.today{background:rgba(251,191,36,.15);border-color:rgba(251,191,36,.4);color:var(--amb);animation:breathe 2s ease-in-out infinite}
+.wh-cell.open{background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.15);color:var(--blt)}
+.wh-cell.locked{background:rgba(255,255,255,.02);border-color:var(--border);color:var(--txt3)}
+.wh-week-label{font-size:8.5px;font-family:var(--mono);color:var(--txt3);margin-top:2px}
+.wh-legend{display:flex;gap:12px;flex-wrap:wrap}
+.wh-leg-item{display:flex;align-items:center;gap:4px;font-size:8.5px;font-family:var(--mono);color:var(--txt3)}
+.wh-leg-dot{width:8px;height:8px;border-radius:2px}
+
+/* QUICK STATS ROW */
+.quick-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.qs-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
+.qs-val{font-size:18px;font-weight:900;font-family:var(--mono);letter-spacing:-1px}
+.qs-lbl{font-size:9px;font-family:var(--mono);color:var(--txt3);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+
+/* TELEGRAM CTA */
+.tg-cta{background:linear-gradient(135deg,rgba(34,158,217,.08),rgba(34,211,238,.04));border:1px solid rgba(34,158,217,.2);border-radius:14px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.tg-cta-icon{font-size:28px;flex-shrink:0}
+.tg-cta-content{flex:1}
+.tg-cta-title{font-size:12px;font-weight:700;color:var(--txt);margin-bottom:3px}
+.tg-cta-sub{font-size:10px;font-family:var(--mono);color:var(--txt3);line-height:1.5}
+.tg-cta-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(34,158,217,.12);border:1px solid rgba(34,158,217,.25);border-radius:8px;color:#229ed9;font-size:10px;font-family:var(--mono);font-weight:700;text-decoration:none;white-space:nowrap;transition:all .2s;flex-shrink:0}
+.tg-cta-btn:hover{background:rgba(34,158,217,.22);transform:translateY(-1px)}
+
+/* COMPLETION OVERLAY */
+.completion-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:rgba(2,4,8,.92);backdrop-filter:blur(20px);opacity:0;pointer-events:none;transition:opacity .4s}
+.completion-overlay.show{opacity:1;pointer-events:all}
+.completion-modal{text-align:center;padding:40px;max-width:360px}
+.cm-emoji{font-size:64px;animation:bounce 0.6s ease infinite alternate;display:block;margin-bottom:16px}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+.cm-title{font-size:28px;font-weight:900;letter-spacing:-1px;color:var(--em);margin-bottom:8px}
+.cm-xp{font-size:14px;font-family:var(--mono);color:var(--amb);margin-bottom:20px}
+.cm-next{padding:12px 24px;background:linear-gradient(135deg,var(--em),#059669);color:#000;font-size:12px;font-weight:800;font-family:var(--mono);border:none;border-radius:10px;cursor:pointer;transition:all .2s}
+.cm-next:hover{transform:scale(1.05)}
+
+/* ═══ ROADMAP VIEW ═══ */
+.roadmap-view .main-layout{display:grid;grid-template-columns:1fr 340px;gap:16px;align-items:start}
+
+/* ═══ HERO (roadmap) ═══ */
+.hero{text-align:center;padding:16px 0 20px}
+.h-badge{display:inline-flex;align-items:center;gap:8px;padding:4px 14px;border-radius:100px;border:1px solid var(--ba);background:rgba(251,191,36,.06);font-size:10px;font-family:var(--mono);font-weight:700;color:var(--amb);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.h-badge-dot{width:5px;height:5px;border-radius:50%;background:var(--amb);animation:breathe 2s ease-in-out infinite}
+.h-title{font-size:clamp(22px,3.5vw,42px);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:10px}
+.h-title .d60{color:var(--amb)}
+.h-title .cgl{background:linear-gradient(135deg,var(--blt),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.h-sub{font-size:12px;color:var(--txt2);max-width:500px;margin:0 auto 16px;line-height:1.7}
+.h-pills{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.h-pill{padding:5px 14px;border-radius:8px;font-size:11px;font-weight:600;font-family:var(--mono);text-decoration:none;border:1px solid;transition:all .2s}
+.hp-yt{background:rgba(255,68,68,.08);color:#ff6b6b;border-color:rgba(255,68,68,.2)}
+.hp-yt:hover{background:rgba(255,68,68,.16)}
+.hp-tg{background:rgba(34,158,217,.08);color:#229ed9;border-color:rgba(34,158,217,.2)}
+.hp-tg:hover{background:rgba(34,158,217,.16)}
+.hp-g{background:rgba(52,211,153,.08);color:var(--em);border-color:rgba(52,211,153,.2)}
+
+/* MILESTONE BAR */
+.milestone-bar{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:16px}
+.mb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.mb-title{font-size:12px;font-weight:700;color:var(--txt)}
+.mb-meta{font-size:10px;font-family:var(--mono);color:var(--txt3)}
+.mb-track{height:5px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;margin-bottom:10px;position:relative}
+.mb-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--amb),var(--org),var(--red));transition:width 1.2s ease}
+.mb-ticks{display:flex;justify-content:space-between}
+.mbt{text-align:center;font-size:8.5px;font-family:var(--mono);color:var(--txt3);line-height:1.4}
+.mbt.done .mbd{background:var(--amb);border-color:var(--amb)}
+.mbt.curr .mbd{background:var(--blue);border-color:var(--blue);animation:breathe 1.5s ease-in-out infinite}
+.mbt.test-z .mbd{background:var(--violet);border-color:var(--violet)}
+.mbd{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid var(--border);margin:0 auto 3px}
+
+/* LEFT PANEL */
+.left-panel{}
+.week-scroll{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:thin}
+.week-scroll::-webkit-scrollbar{height:3px}
+.week-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.wt{padding:5px 13px;font-size:10px;font-family:var(--mono);font-weight:600;letter-spacing:.04em;background:var(--bg2);border:1px solid var(--border);border-radius:7px;color:var(--txt3);cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.wt:hover{border-color:var(--bb);color:var(--txt2)}
+.wt.active{background:rgba(251,191,36,.09);border-color:var(--ba);color:var(--amb)}
+.wt.test-wk{background:rgba(167,139,250,.07);border-color:rgba(167,139,250,.25);color:var(--violet)}
+
+.tbl-hdr{display:grid;grid-template-columns:44px 1fr 100px 100px 100px 80px;gap:0;padding:6px 12px;margin-bottom:6px}
+.th{font-size:8.5px;font-family:var(--mono);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3)}
+
+.days-wrap{display:flex;flex-direction:column;gap:6px}
+.dc{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s,box-shadow .2s;cursor:pointer}
+.dc:hover{border-color:rgba(59,130,246,.2)}
+.dc.today{border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.025)}
+.dc.completed{border-color:rgba(52,211,153,.18)}
+.dc.locked{opacity:.4;cursor:not-allowed}
+.dc.full-test{border-color:rgba(167,139,250,.25);background:rgba(167,139,250,.02)}
+.dc.full-test:hover{border-color:rgba(167,139,250,.4)}
+.dc.week-test{border-color:rgba(34,211,238,.2);background:rgba(34,211,238,.015)}
+.dc-row{display:grid;grid-template-columns:44px 1fr 100px 100px 100px 80px;gap:0;align-items:center;padding:12px 12px}
+.dc-num{font-size:10px;font-family:var(--mono);font-weight:700;color:var(--txt3)}
+.dc-num .dn{font-size:17px;font-weight:800;color:var(--txt);display:block;line-height:1;letter-spacing:-1px}
+.dc-info .dt{font-size:12px;font-weight:700;color:var(--txt);letter-spacing:-.2px;margin-bottom:2px}
+.dc-info .ds{font-size:10px;font-family:var(--mono);color:var(--txt3)}
+.dc-info .dtagwrap{margin-top:4px;display:flex;gap:5px;flex-wrap:wrap}
+.dtag{padding:1px 7px;border-radius:3px;font-size:8.5px;font-family:var(--mono);font-weight:700;letter-spacing:.06em}
+.tq{background:rgba(59,130,246,.1);color:var(--blt);border:1px solid rgba(59,130,246,.18)}
+.te{background:rgba(52,211,153,.1);color:var(--em);border:1px solid rgba(52,211,153,.18)}
+.tr{background:rgba(167,139,250,.1);color:var(--violet);border:1px solid rgba(167,139,250,.18)}
+.tg{background:rgba(251,191,36,.1);color:var(--amb);border:1px solid rgba(251,191,36,.18)}
+.twt{background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.18)}
+.tft{background:rgba(244,114,182,.1);color:var(--pink);border:1px solid rgba(244,114,182,.18)}
+.dc-act{display:flex;align-items:center;justify-content:center}
+.ab{display:inline-flex;align-items:center;justify-content:center;gap:4px;padding:5px 10px;font-size:9.5px;font-weight:600;font-family:var(--mono);border-radius:7px;text-decoration:none;transition:all .18s;border:1px solid;white-space:nowrap}
+.ab-pdf{background:rgba(59,130,246,.08);color:var(--blt);border-color:rgba(59,130,246,.22)}
+.ab-pdf:hover{background:rgba(59,130,246,.18);transform:translateY(-1px)}
+.ab-mock{background:rgba(52,211,153,.07);color:var(--em);border-color:rgba(52,211,153,.2)}
+.ab-mock:hover{background:rgba(52,211,153,.15);transform:translateY(-1px)}
+.ab-yt{background:rgba(255,68,68,.07);color:#ff6b6b;border-color:rgba(255,68,68,.18)}
+.ab-yt:hover{background:rgba(255,68,68,.15);transform:translateY(-1px)}
+.ab-lock{background:transparent;color:var(--txt3);border-color:var(--border);cursor:not-allowed;opacity:.6}
+.sp{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:100px;font-size:8px;font-family:var(--mono);font-weight:700;letter-spacing:.05em}
+.sp-today{background:rgba(251,191,36,.1);color:var(--amb);border:1px solid rgba(251,191,36,.28)}
+.sp-done{background:rgba(52,211,153,.08);color:var(--em);border:1px solid rgba(52,211,153,.2)}
+.sp-open{background:rgba(59,130,246,.08);color:var(--blt);border:1px solid rgba(59,130,246,.2)}
+.sp-lock{background:rgba(100,116,139,.07);color:var(--txt3);border:1px solid var(--border)}
+.sp-test{background:rgba(167,139,250,.1);color:var(--violet);border:1px solid rgba(167,139,250,.25)}
+
+.dc-expand{display:none;border-top:1px solid var(--border);padding:16px;background:rgba(0,0,0,.25);animation:fadeDown .25s ease}
+.dc-expand.open{display:block}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.exp-box{background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:9px;padding:13px}
+.eb-icon{font-size:16px;margin-bottom:7px}
+.eb-title{font-size:11px;font-weight:700;color:var(--txt);margin-bottom:3px}
+.eb-sub{font-size:10px;font-family:var(--mono);color:var(--txt3);line-height:1.5;margin-bottom:8px}
+.eb-list{margin-bottom:9px}
+.eb-li{font-size:9.5px;font-family:var(--mono);color:var(--txt2);padding:2px 0;display:flex;align-items:flex-start;gap:5px}
+.eb-li::before{content:'›';color:var(--blt);flex-shrink:0}
+.sc-box{background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.1);border-radius:6px;padding:8px 10px;font-size:9.5px;font-family:var(--mono);color:var(--txt2);line-height:1.55;margin-bottom:8px}
+.sc-box strong{color:var(--blt)}
+.eb-btn{display:flex;align-items:center;justify-content:center;gap:5px;padding:7px 10px;font-size:10px;font-weight:700;font-family:var(--mono);border-radius:8px;text-decoration:none;transition:all .2s;border:1px solid;width:100%}
+.ebb-pdf{background:rgba(59,130,246,.08);color:var(--blt);border-color:rgba(59,130,246,.25)}
+.ebb-pdf:hover{background:rgba(59,130,246,.18)}
+.ebb-mock{background:rgba(52,211,153,.07);color:var(--em);border-color:rgba(52,211,153,.22)}
+.ebb-mock:hover{background:rgba(52,211,153,.15)}
+.ebb-yt{background:rgba(255,68,68,.07);color:#ff6b6b;border-color:rgba(255,68,68,.18)}
+.ebb-yt:hover{background:rgba(255,68,68,.15)}
+.ebb-lock{background:transparent;color:var(--txt3);border-color:var(--border);cursor:not-allowed}
+
+.wk-sum{background:rgba(34,211,238,.03);border:1px solid rgba(34,211,238,.12);border-radius:11px;padding:13px 16px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.wks-t{font-size:12px;font-weight:700;color:var(--cyan)}
+.wks-s{font-size:10px;font-family:var(--mono);color:var(--txt3)}
+.wks-ps{display:flex;gap:6px;flex-wrap:wrap}
+.wksp{padding:2px 9px;border-radius:100px;font-size:8.5px;font-family:var(--mono);font-weight:700}
+
+/* RIGHT PANEL */
+.right-panel{position:sticky;top:104px}
+.rp-card{background:rgba(0,0,0,.5);border:1px solid var(--border);border-radius:16px;overflow:hidden;backdrop-filter:blur(16px)}
+.rp-hdr{padding:16px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,rgba(239,68,68,.06),rgba(251,191,36,.03))}
+.rp-hdr-badge{display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.rp-hdr-dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:breathe 1.5s ease-in-out infinite;box-shadow:0 0 8px rgba(248,113,113,.6)}
+.rp-hdr-lbl{font-size:9px;font-family:var(--mono);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.rp-hdr-title{font-size:14px;font-weight:800;letter-spacing:-.3px;color:var(--txt);margin-bottom:3px}
+.rp-hdr-sub{font-size:10px;font-family:var(--mono);color:var(--txt3);line-height:1.5}
+.rp-year-tabs{display:flex;gap:4px;padding:12px 14px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.rp-year-tabs::-webkit-scrollbar{display:none}
+.ryt{padding:4px 12px;font-size:10px;font-family:var(--mono);font-weight:700;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--txt3);cursor:pointer;transition:all .2s;flex-shrink:0}
+.ryt:hover{border-color:rgba(248,113,113,.3);color:var(--red)}
+.ryt.active{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3);color:var(--red)}
+.rp-shifts{padding:10px 14px;display:flex;flex-direction:column;gap:6px;max-height:420px;overflow-y:auto}
+.rp-shifts::-webkit-scrollbar{width:3px}
+.rp-shifts::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.shift-card{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:9px;padding:10px 13px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.shift-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--red);opacity:.4;transition:opacity .2s}
+.shift-card:hover{border-color:rgba(248,113,113,.25);background:rgba(248,113,113,.03)}
+.shift-card:hover::before{opacity:1}
+.shift-card.hard-1::before{background:var(--red)}
+.shift-card.hard-2::before{background:var(--org)}
+.shift-card.hard-3::before{background:var(--amb)}
+.sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.sc-name{font-size:11px;font-weight:700;color:var(--txt);letter-spacing:-.1px}
+.sc-rank{font-size:8.5px;font-family:var(--mono);padding:2px 7px;border-radius:4px}
+.r1{background:rgba(248,113,113,.12);color:var(--red);border:1px solid rgba(248,113,113,.22)}
+.r2{background:rgba(251,191,36,.1);color:var(--amb);border:1px solid rgba(251,191,36,.2)}
+.r3{background:rgba(52,211,153,.08);color:var(--em);border:1px solid rgba(52,211,153,.18)}
+.sc-meta{font-size:9.5px;font-family:var(--mono);color:var(--txt3)}
+.sc-actions{display:flex;gap:6px;margin-top:8px}
+.sca{flex:1;padding:5px 8px;font-size:9px;font-family:var(--mono);font-weight:600;border-radius:6px;text-decoration:none;text-align:center;transition:all .2s;border:1px solid}
+.sca-try{background:rgba(248,113,113,.08);color:#ff6b6b;border-color:rgba(248,113,113,.2)}
+.sca-try:hover{background:rgba(248,113,113,.18)}
+.sca-yt{background:rgba(59,130,246,.07);color:var(--blt);border-color:rgba(59,130,246,.2)}
+.sca-yt:hover{background:rgba(59,130,246,.15)}
+.rp-footer{padding:12px 14px;border-top:1px solid var(--border);background:rgba(0,0,0,.2)}
+.rpf-stat{display:flex;justify-content:space-between;align-items:center}
+.rpf-l{font-size:10px;font-family:var(--mono);color:var(--txt3)}
+.rpf-v{font-size:11px;font-family:var(--mono);font-weight:700;color:var(--red)}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes breathe{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes glow-cyan{0%,100%{text-shadow:0 0 8px rgba(34,211,238,.3)}50%{text-shadow:0 0 16px rgba(34,211,238,.7),0 0 30px rgba(34,211,238,.4)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+
+@media(max-width:1100px){.roadmap-view .main-layout{grid-template-columns:1fr}.right-panel{position:static}.rp-shifts{max-height:300px}}
+@media(max-width:700px){
+  .nav-c .soc span{display:none}.nav-c .soc{padding:4px 7px}
+  .exp-grid{grid-template-columns:1fr}
+  .tbl-hdr{display:none}
+  .dc-row{grid-template-columns:40px 1fr 80px}
+  .dc-act:not(:first-of-type){display:none}
+  .page{padding-left:12px;padding-right:12px;padding-top:108px}
+  .tp-label{display:none}
+  .sh-brand-txt{font-size:10px}
+  .streak-dash{grid-template-columns:repeat(2,1fr)}
+  .tm-actions{grid-template-columns:1fr 1fr 1fr}
+  .quick-stats{grid-template-columns:repeat(3,1fr)}
+  .tg-cta{flex-direction:column;text-align:center}
+  .xp-badge-streak{display:none}
+  .today-view .main-layout{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
-<!-- ANNOUNCEMENT TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker">
-    <span class="ticker-item">📢 SSC CGL 2025 Paper Analysis Live</span>
-    <span class="ticker-sep">★</span>
-    <span class="ticker-item">🆓 RRB JE GK Master Sheet – Free Download</span>
-    <span class="ticker-sep">★</span>
-    <span class="ticker-item">📝 BPSC AEDO Full Mock Test Available</span>
-    <span class="ticker-sep">★</span>
-    <span class="ticker-item">🎯 New HTML Mock Test – 100 Questions</span>
-    <span class="ticker-sep">★</span>
-    <span class="ticker-item">📢 SSC CGL 2025 Paper Analysis Live</span>
-    <span class="ticker-sep">★</span>
-    <span class="ticker-item">🆓 RRB JE GK Master Sheet – Free Download</span>
-    <span class="ticker-sep">★</span>
-    <span class="ticker-item">📝 BPSC AEDO Full Mock Test Available</span>
-    <span class="ticker-sep">★</span>
-    <span class="ticker-item">🎯 New HTML Mock Test – 100 Questions</span>
+<canvas id="vfx-canvas"></canvas>
+<div class="noise-overlay"></div>
+<div class="vignette"></div>
+
+<!-- COMPLETION OVERLAY -->
+<div class="completion-overlay" id="completionOverlay">
+  <div class="completion-modal">
+    <span class="cm-emoji" id="cmEmoji">🎉</span>
+    <div class="cm-title" id="cmTitle">Day Complete!</div>
+    <div class="cm-xp" id="cmXp">+50 XP earned · Streak continues! 🔥</div>
+    <button class="cm-next" onclick="closeCompletion()">Continue Preparation →</button>
   </div>
 </div>
 
 <!-- NAV -->
-<nav>
-  <div class="nav-logo" onclick="showPage('home')">RankUpExam</div>
-  <ul class="nav-links">
-    <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
-    <li><a onclick="showPage('mock')" id="nav-mock">Mock Tests</a></li>
-    <li><a onclick="showPage('pdf')" id="nav-pdf">PDF Resources</a></li>
-    <li><a onclick="showPage('youtube')" id="nav-youtube">YouTube</a></li>
-    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
-  </ul>
-  <button class="nav-cta" onclick="showPage('mock')">Start Practice →</button>
+<nav class="nav">
+  <a href="#" class="nl-logo"><div class="ld"></div>RankUpExam</a>
+  <div class="nav-c">
+    <a href="https://youtube.com/@rankupexam" target="_blank" class="soc yt">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      <span>YouTube</span>
+    </a>
+    <a href="https://t.me/rankupexam" target="_blank" class="soc tg">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.03 9.57c-.15.68-.55.84-1.11.52l-3-2.21-1.45 1.4c-.16.16-.3.3-.61.3l.21-3.02 5.52-4.99c.24-.21-.05-.33-.37-.12L6.93 14.4l-2.96-.92c-.64-.2-.65-.64.14-.95l11.56-4.46c.54-.19 1.01.13.27.12z"/></svg>
+      <span>Telegram</span>
+    </a>
+    <div class="xp-badge" title="Your Progress">
+      <span class="xp-badge-icon">⚡</span>
+      <span class="xp-badge-val" id="navXP">0 XP</span>
+      <span class="xp-badge-streak" id="navStreak">🔥 0</span>
+    </div>
+    <button class="btn-nv" onclick="switchView('today')">▶ Start Day 8</button>
+  </div>
 </nav>
 
-<!-- ═══════════ HOME PAGE ═══════════ -->
-<div id="page-home" class="page active">
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-content">
-      <div class="hero-badge"><span></span> India's Sharpest Exam Prep Platform</div>
-      <h1 class="hero-title">
-        CRACK<br>
-        EVERY<br>
-        <span class="gold">EXAM.</span>
-      </h1>
-      <p class="hero-sub">SSC CGL · RRB JE · BPSC AEDO — Free mock tests, deep paper analysis, PDF notes & strategy videos. Exam se daro mat.</p>
-      <div class="hero-btns">
-        <button class="btn-primary" onclick="showPage('mock')">Start Free Mock Test</button>
-        <button class="btn-outline" onclick="showPage('pdf')">Download PDFs →</button>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><div class="stat-num">50K+</div><div class="stat-label">Students Helped</div></div>
-        <div class="stat"><div class="stat-num">1000+</div><div class="stat-label">Practice Questions</div></div>
-        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Free Content</div></div>
+<!-- STICKY HEADER -->
+<div class="sticky-hdr">
+  <div class="sh-inner">
+    <div class="sh-brand">
+      <div class="ld" style="width:6px;height:6px"></div>
+      <span class="sh-brand-txt">60+10 CGL PLAN</span>
+    </div>
+    <div class="sh-prog-wrap">
+      <span class="sh-prog-lbl">Progress</span>
+      <div class="sh-prog-track"><div class="sh-prog-fill" id="shFill" style="width:11.4%"></div></div>
+      <span class="sh-day-count" id="shDay">Day 8 / 70</span>
+    </div>
+    <div class="timer-pod">
+      <span class="tp-label">Study Timer</span>
+      <div class="tp-display" id="timerDisp">00:00:00</div>
+      <div class="tp-controls">
+        <select class="tp-select" id="timerHrs">
+          <option value="0">0h</option><option value="1">1h</option><option value="2">2h</option>
+          <option value="3">3h</option><option value="4">4h</option><option value="5">5h</option>
+        </select>
+        <select class="tp-select" id="timerMins">
+          <option value="0">0m</option><option value="15">15m</option><option value="30">30m</option>
+          <option value="45">45m</option>
+        </select>
+        <button class="tp-btn" id="timerStartBtn" onclick="timerToggle()" title="Start/Pause">▶</button>
+        <button class="tp-btn stop" onclick="timerReset()" title="Reset">■</button>
       </div>
     </div>
-  </section>
-
-  <!-- EXAMS WE COVER -->
-  <section class="section">
-    <div class="section-label">Exams We Cover</div>
-    <div class="section-title">Jis bhi exam ki tayyari karo</div>
-    <p class="section-sub">Sabse zyada asked topics, shortcuts, PYQ analysis — sab ek jagah.</p>
-    <div class="exam-grid">
-      <div class="exam-card" onclick="showPage('mock')">
-        <div class="exam-icon">🏆</div>
-        <div class="exam-name">SSC CGL</div>
-        <div class="exam-desc">Combined Graduate Level — India's most competitive exam. Quant, English, GK, Reasoning deep coverage.</div>
-        <div class="exam-tags"><span class="tag">Tier 1 & 2</span><span class="tag">Paper Analysis</span><span class="tag">Mock Tests</span></div>
-      </div>
-      <div class="exam-card" onclick="showPage('mock')">
-        <div class="exam-icon">🔧</div>
-        <div class="exam-name">RRB JE</div>
-        <div class="exam-desc">Railway Junior Engineer — Technical + General Awareness. EE/ECE/Civil specialization resources.</div>
-        <div class="exam-tags"><span class="tag">Technical</span><span class="tag">GA Master Sheet</span><span class="tag">PYQ PDFs</span></div>
-      </div>
-      <div class="exam-card" onclick="showPage('mock')">
-        <div class="exam-icon">⚡</div>
-        <div class="exam-name">BPSC AEDO</div>
-        <div class="exam-desc">Bihar Public Service Commission — Assistant Executive Engineer posts. Complete syllabus mock tests.</div>
-        <div class="exam-tags"><span class="tag">Full Syllabus</span><span class="tag">Hindi Medium</span><span class="tag">Combat Quiz</span></div>
-      </div>
-      <div class="exam-card" onclick="showPage('mock')">
-        <div class="exam-icon">📋</div>
-        <div class="exam-name">SSC Selection Post</div>
-        <div class="exam-desc">Phase-wise selection posts for graduates. Category-wise eligibility, reasoning & GK focus.</div>
-        <div class="exam-tags"><span class="tag">Phase XIV</span><span class="tag">OBC Category</span><span class="tag">GK Focus</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="section" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <div class="section-label">Why RankUpExam?</div>
-    <div class="section-title">Sirf notes nahi — strategy bhi</div>
-    <div style="display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:1.5rem; margin-top:2rem;">
-      <div style="padding:1.5rem; background:var(--bg); border:1px solid var(--border); border-radius:14px;">
-        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🧠</div>
-        <div style="font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.4rem;">Examiner Psychology</div>
-        <div style="font-size:0.85rem; color:var(--muted); line-height:1.6;">Trap options aur distractor analysis ke saath har question ka deep breakdown.</div>
-      </div>
-      <div style="padding:1.5rem; background:var(--bg); border:1px solid var(--border); border-radius:14px;">
-        <div style="font-size:1.8rem; margin-bottom:0.8rem;">📊</div>
-        <div style="font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.4rem;">Paper Analysis</div>
-        <div style="font-size:0.85rem; color:var(--muted); line-height:1.6;">Topic-wise question count, difficulty distribution aur scoring patterns.</div>
-      </div>
-      <div style="padding:1.5rem; background:var(--bg); border:1px solid var(--border); border-radius:14px;">
-        <div style="font-size:1.8rem; margin-bottom:0.8rem;">⚡</div>
-        <div style="font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.4rem;">Speed Techniques</div>
-        <div style="font-size:0.85rem; color:var(--muted); line-height:1.6;">Topic-wise shortcuts jo time bachate hain aur accuracy badhate hain.</div>
-      </div>
-      <div style="padding:1.5rem; background:var(--bg); border:1px solid var(--border); border-radius:14px;">
-        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🆓</div>
-        <div style="font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.4rem;">100% Free</div>
-        <div style="font-size:0.85rem; color:var(--muted); line-height:1.6;">Koi paywall nahi. Sab content free — PDFs, mocks, videos, notes.</div>
-      </div>
-    </div>
-  </section>
-
+  </div>
 </div>
 
-<!-- ═══════════ MOCK TEST PAGE ═══════════ -->
-<div id="page-mock" class="page">
-  <section class="section">
-    <div class="test-hero">
-      <div>
-        <div class="section-label">Mock Tests</div>
-        <div class="section-title" style="margin-bottom:0.5rem;">Practice. Analyse. Rank Up.</div>
-        <p style="color:var(--muted); font-size:0.9rem;">Real exam pattern. Instant feedback. Explanation ke saath.</p>
+<!-- PAGE -->
+<div class="page">
+
+  <!-- VIEW SWITCHER -->
+  <div class="view-switcher">
+    <button class="vs-btn active" id="vsToday" onclick="switchView('today')">🎯 Today's Mission</button>
+    <button class="vs-btn" id="vsRoadmap" onclick="switchView('roadmap')">📅 Full Roadmap</button>
+    <button class="vs-btn" id="vsShifts" onclick="switchView('shifts')">⚡ Hard Shifts</button>
+  </div>
+
+  <!-- ═══ TODAY VIEW ═══ -->
+  <div class="today-view" id="todayView">
+
+    <!-- TODAY HERO -->
+    <div class="today-hero">
+      <div class="th-greeting">📅 TODAY — DAY 8 OF 70</div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px">
+        <span class="th-daynum">08</span>
+        <span class="th-topic" id="todayTopicName">Ratio &amp; Proportion</span>
       </div>
-      <div style="display:flex; gap:2rem; flex-wrap:wrap;">
-        <div style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent);">12</div><div style="font-size:0.78rem; color:var(--muted);">Test Sets</div></div>
-        <div style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent);">1000+</div><div style="font-size:0.78rem; color:var(--muted);">Questions</div></div>
-        <div style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent);">4</div><div style="font-size:0.78rem; color:var(--muted);">Exam Types</div></div>
+      <div class="th-sub" id="todayTopicSub">K-method, Partnership, Alligation — 25 Questions · 15 Minutes</div>
+    </div>
+
+    <!-- STREAK DASHBOARD -->
+    <div class="streak-dash">
+      <div class="sd-card sd-streak">
+        <div class="sd-icon"><span class="streak-fire" id="streakFire">🔥</span></div>
+        <div class="sd-val" id="streakVal">0</div>
+        <div class="sd-lbl">Day Streak</div>
+      </div>
+      <div class="sd-card sd-xp">
+        <div class="sd-icon">⚡</div>
+        <div class="sd-val" id="xpVal">0</div>
+        <div class="sd-lbl">Total XP</div>
+      </div>
+      <div class="sd-card sd-done">
+        <div class="sd-icon">✅</div>
+        <div class="sd-val" id="daysCompleted">7</div>
+        <div class="sd-lbl">Days Done</div>
+      </div>
+      <div class="sd-card sd-rank">
+        <div class="sd-icon">🏆</div>
+        <div class="sd-val" id="rankBadge">—</div>
+        <div class="sd-lbl">Rank Badge</div>
       </div>
     </div>
 
-    <div class="test-cards">
-      <div class="test-card">
-        <div class="test-meta">
-          <span class="test-badge free">FREE</span>
-          <span style="font-size:0.78rem; color:var(--muted);">SSC CGL</span>
-        </div>
-        <div class="test-title">SSC CGL Tier-1 Full Mock — Set 1</div>
-        <div class="test-info">
-          <span>⏱ 60 min</span><span>📝 100 Qs</span><span>⭐ Hard</span>
-        </div>
-        <button class="btn-test" onclick="startQuiz('ssc-cgl-1')">Start Test →</button>
+    <!-- XP BAR -->
+    <div class="xp-bar-wrap">
+      <div class="xp-bar-top">
+        <div class="xp-title">⚡ XP Progress <span class="xp-level" id="xpLevelBadge">Beginner</span></div>
+        <div class="xp-count" id="xpCountDisplay">0 / 500 XP to next level</div>
       </div>
-      <div class="test-card">
-        <div class="test-meta">
-          <span class="test-badge free">FREE</span>
-          <span style="font-size:0.78rem; color:var(--muted);">RRB JE</span>
-        </div>
-        <div class="test-title">RRB JE General Awareness — 50 Questions</div>
-        <div class="test-info">
-          <span>⏱ 30 min</span><span>📝 50 Qs</span><span>⭐ Medium</span>
-        </div>
-        <button class="btn-test" onclick="startQuiz('rrb-ga-1')">Start Test →</button>
+      <div class="xp-bar-track">
+        <div class="xp-bar-fill" id="xpBarFill" style="width:0%"></div>
       </div>
-      <div class="test-card">
-        <div class="test-meta">
-          <span class="test-badge free">FREE</span>
-          <span style="font-size:0.78rem; color:var(--muted);">BPSC AEDO</span>
-        </div>
-        <div class="test-title">BPSC AEDO Full Syllabus Mock — Set 1</div>
-        <div class="test-info">
-          <span>⏱ 45 min</span><span>📝 100 Qs</span><span>⭐ Medium</span>
-        </div>
-        <button class="btn-test" onclick="startQuiz('bpsc-1')">Start Test →</button>
-      </div>
-      <div class="test-card">
-        <div class="test-meta">
-          <span class="test-badge premium">COMING SOON</span>
-          <span style="font-size:0.78rem; color:var(--muted);">SSC CGL</span>
-        </div>
-        <div class="test-title">SSC CGL Quant Speed Test — Mixed Concepts</div>
-        <div class="test-info">
-          <span>⏱ 25 min</span><span>📝 50 Qs</span><span>⭐ Very Hard</span>
-        </div>
-        <button class="btn-test" disabled style="opacity:0.5;cursor:not-allowed;">Coming Soon</button>
-      </div>
-      <div class="test-card">
-        <div class="test-meta">
-          <span class="test-badge free">FREE</span>
-          <span style="font-size:0.78rem; color:var(--muted);">SSC CGL</span>
-        </div>
-        <div class="test-title">SSC CGL GK Quick Fire — 20 Questions</div>
-        <div class="test-info">
-          <span>⏱ 10 min</span><span>📝 20 Qs</span><span>⭐ Easy-Med</span>
-        </div>
-        <button class="btn-test" onclick="startQuiz('ssc-gk-quick')">Start Test →</button>
-      </div>
-      <div class="test-card">
-        <div class="test-meta">
-          <span class="test-badge free">FREE</span>
-          <span style="font-size:0.78rem; color:var(--muted);">RRB JE</span>
-        </div>
-        <div class="test-title">RRB JE Electrical Engineering — Technical Set</div>
-        <div class="test-info">
-          <span>⏱ 30 min</span><span>📝 50 Qs</span><span>⭐ Hard</span>
-        </div>
-        <button class="btn-test" onclick="startQuiz('rrb-tech-1')">Start Test →</button>
+      <div class="xp-milestones">
+        <span class="xp-ms">0</span>
+        <span class="xp-ms">Intermediate (500)</span>
+        <span class="xp-ms">Expert (1500)</span>
+        <span class="xp-ms">Master (3000)</span>
       </div>
     </div>
-  </section>
-</div>
 
-<!-- ═══════════ PDF RESOURCES PAGE ═══════════ -->
-<div id="page-pdf" class="page">
-  <section class="section">
-    <div class="section-label">PDF Resources</div>
-    <div class="section-title">Free Download Karo. Study Karo.</div>
-    <p class="section-sub">High-quality notes, question banks, answer keys aur master sheets — sab free.</p>
-    <div class="pdf-filter">
-      <button class="filter-btn active" onclick="filterPDF('all', this)">All</button>
-      <button class="filter-btn" onclick="filterPDF('ssc', this)">SSC CGL</button>
-      <button class="filter-btn" onclick="filterPDF('rrb', this)">RRB JE</button>
-      <button class="filter-btn" onclick="filterPDF('bpsc', this)">BPSC AEDO</button>
-    </div>
-    <div class="pdf-grid" id="pdf-grid">
-      <div class="pdf-card" data-exam="ssc">
-        <div class="pdf-icon-row"><span class="pdf-icon">📘</span><span class="pdf-exam-tag ssc">SSC CGL</span></div>
-        <div class="pdf-title">150 Hard Questions — Topic-wise Shortcuts PDF</div>
-        <div class="pdf-meta">Sept 2025 Shifts · 150 Questions · 45 Pages</div>
-        <a href="#" class="pdf-download" onclick="return false;">⬇ Download Free</a>
+    <!-- TODAY MISSION -->
+    <div class="today-mission">
+      <div class="tm-header">
+        <div class="tm-title">🎯 Today's Mission <span class="tm-badge">Day 8</span></div>
+        <div style="font-size:9px;font-family:var(--mono);color:var(--txt3)">Complete all 3 → +150 XP</div>
       </div>
-      <div class="pdf-card" data-exam="rrb">
-        <div class="pdf-icon-row"><span class="pdf-icon">📗</span><span class="pdf-exam-tag rrb">RRB JE</span></div>
-        <div class="pdf-title">General Awareness Master Sheet — 308 Questions Hinglish</div>
-        <div class="pdf-meta">Full GA Coverage · Key Facts · Tier-2 Follow-ups</div>
-        <a href="#" class="pdf-download" onclick="return false;">⬇ Download Free</a>
+      <div class="tm-shortcut" id="todayShortcut">
+        <strong>⚡ Shortcut:</strong> K-method: a:b:c = ak:bk:ck. Alligation cross method = fastest approach!
       </div>
-      <div class="pdf-card" data-exam="bpsc">
-        <div class="pdf-icon-row"><span class="pdf-icon">📙</span><span class="pdf-exam-tag bpsc">BPSC AEDO</span></div>
-        <div class="pdf-title">BPSC AEDO Daily 50-Question Mock PDFs (Set 1-10)</div>
-        <div class="pdf-meta">10 Sets · 500 Questions · Hindi Medium</div>
-        <a href="#" class="pdf-download" onclick="return false;">⬇ Download Free</a>
-      </div>
-      <div class="pdf-card" data-exam="ssc">
-        <div class="pdf-icon-row"><span class="pdf-icon">📕</span><span class="pdf-exam-tag ssc">SSC CGL</span></div>
-        <div class="pdf-title">1000 Questions Math Bank — 10 Parts Topic-wise</div>
-        <div class="pdf-meta">Complete Quant Coverage · Tricks Included · Part 1-10</div>
-        <a href="#" class="pdf-download" onclick="return false;">⬇ Download Free</a>
-      </div>
-      <div class="pdf-card" data-exam="rrb">
-        <div class="pdf-icon-row"><span class="pdf-icon">📗</span><span class="pdf-exam-tag rrb">RRB JE</span></div>
-        <div class="pdf-title">RRB JE Clean Question Paper — GA Section</div>
-        <div class="pdf-meta">Original Format · All 308 Questions · Answer Key Inside</div>
-        <a href="#" class="pdf-download" onclick="return false;">⬇ Download Free</a>
-      </div>
-      <div class="pdf-card" data-exam="bpsc">
-        <div class="pdf-icon-row"><span class="pdf-icon">📙</span><span class="pdf-exam-tag bpsc">BPSC AEDO</span></div>
-        <div class="pdf-title">BPSC AEDO 20-Day Study Planner</div>
-        <div class="pdf-meta">Last-minute Prep Strategy · Topic-wise Schedule</div>
-        <a href="#" class="pdf-download" onclick="return false;">⬇ Download Free</a>
-      </div>
-      <div class="pdf-card" data-exam="ssc">
-        <div class="pdf-icon-row"><span class="pdf-icon">📘</span><span class="pdf-exam-tag ssc">SSC CGL</span></div>
-        <div class="pdf-title">SSC CGL Paper Analysis — Examiner Psychology Guide</div>
-        <div class="pdf-meta">Trap Identification · Difficulty Mapping · Scoring Tips</div>
-        <a href="#" class="pdf-download" onclick="return false;">⬇ Download Free</a>
-      </div>
-      <div class="pdf-card" data-exam="rrb">
-        <div class="pdf-icon-row"><span class="pdf-icon">📗</span><span class="pdf-exam-tag rrb">RRB JE</span></div>
-        <div class="pdf-title">RRB JE Electrical Engineering — Core Topics Summary</div>
-        <div class="pdf-meta">B.Tech EE Based · Formula Sheet · Quick Revision</div>
-        <a href="#" class="pdf-download" onclick="return false;">⬇ Download Free</a>
+      <div class="tm-actions">
+        <a href="https://drive.google.com/" target="_blank" class="tm-btn tm-pdf" onclick="logAction('pdf')">
+          <span class="tm-btn-icon">📄</span>
+          <span class="tm-btn-label">PDF Notes</span>
+          <span class="tm-btn-sub">+25 XP</span>
+        </a>
+        <a href="#" class="tm-btn tm-mock" onclick="logAction('mock')">
+          <span class="tm-btn-icon">🧪</span>
+          <span class="tm-btn-label">Attempt Mock</span>
+          <span class="tm-btn-sub">25Q · 15Min · +75 XP</span>
+        </a>
+        <a href="https://youtube.com/@rankupexam" target="_blank" class="tm-btn tm-yt" onclick="logAction('yt')">
+          <span class="tm-btn-icon">▶</span>
+          <span class="tm-btn-label">Watch Video</span>
+          <span class="tm-btn-sub">+25 XP</span>
+        </a>
       </div>
     </div>
-  </section>
-</div>
 
-<!-- ═══════════ YOUTUBE PAGE ═══════════ -->
-<div id="page-youtube" class="page">
-  <section class="section">
-    <div class="section-label">YouTube Channel</div>
-    <div class="section-title">RankUpExam — Official Channel</div>
-    <p class="section-sub">Paper analysis, mock test walkthroughs, strategy videos aur study tips — India ke government exam aspirants ke liye.</p>
+    <!-- TOPIC CHECKLIST -->
+    <div class="topic-checklist">
+      <div class="tcl-header">
+        <div class="tcl-title">📚 Today's Topics</div>
+        <div class="tcl-progress" id="checkProgress">0 / 4 done</div>
+      </div>
+      <div class="tcl-items" id="checklistItems">
+        <div class="tcl-item" onclick="toggleCheck(this,0)">
+          <div class="tcl-check" id="chk0">›</div>
+          <div class="tcl-text">Ratio basics &amp; K-method</div>
+        </div>
+        <div class="tcl-item" onclick="toggleCheck(this,1)">
+          <div class="tcl-check" id="chk1">›</div>
+          <div class="tcl-text">Partnership problems</div>
+        </div>
+        <div class="tcl-item" onclick="toggleCheck(this,2)">
+          <div class="tcl-check" id="chk2">›</div>
+          <div class="tcl-text">Mixture &amp; alligation cross method</div>
+        </div>
+        <div class="tcl-item" onclick="toggleCheck(this,3)">
+          <div class="tcl-check" id="chk3">›</div>
+          <div class="tcl-text">SSC CGL 2023–24 PYQs</div>
+        </div>
+      </div>
+    </div>
 
-    <button class="yt-subscribe" onclick="window.open('https://youtube.com/@RankUpExam','_blank')">
-      ▶ Subscribe to RankUpExam
+    <!-- COMPLETE DAY BUTTON -->
+    <button class="complete-btn locked" id="completeDayBtn" onclick="completeDay()">
+      🔒 Complete all topics to unlock Day Complete
     </button>
 
-    <div class="yt-grid" style="margin-top:2.5rem;">
-      <div class="yt-card">
-        <div class="yt-thumb">
-          <div class="yt-thumb-bg">📊</div>
-          <div class="yt-play">▶</div>
-        </div>
-        <div class="yt-info">
-          <div class="yt-category">Paper Analysis</div>
-          <div class="yt-title">SSC CGL 2025 Tier-1 Complete Paper Analysis — All Shifts</div>
-          <div class="yt-meta"><span>👁 24K views</span><span>📅 2 weeks ago</span></div>
-        </div>
-      </div>
-      <div class="yt-card">
-        <div class="yt-thumb">
-          <div class="yt-thumb-bg">⚡</div>
-          <div class="yt-play">▶</div>
-        </div>
-        <div class="yt-info">
-          <div class="yt-category">Strategy</div>
-          <div class="yt-title">RRB JE GA — 308 Questions Ko 3 Ghante Mein Revise Karo</div>
-          <div class="yt-meta"><span>👁 18K views</span><span>📅 1 month ago</span></div>
-        </div>
-      </div>
-      <div class="yt-card">
-        <div class="yt-thumb">
-          <div class="yt-thumb-bg">🧠</div>
-          <div class="yt-play">▶</div>
-        </div>
-        <div class="yt-info">
-          <div class="yt-category">Mock Test</div>
-          <div class="yt-title">BPSC AEDO Full Mock Test — Live Solve with Explanation</div>
-          <div class="yt-meta"><span>👁 12K views</span><span>📅 3 weeks ago</span></div>
-        </div>
-      </div>
-      <div class="yt-card">
-        <div class="yt-thumb">
-          <div class="yt-thumb-bg">🏆</div>
-          <div class="yt-play">▶</div>
-        </div>
-        <div class="yt-info">
-          <div class="yt-category">Tips & Tricks</div>
-          <div class="yt-title">SSC CGL Quant — 15 Shortcuts Jo Topper Use Karte Hain</div>
-          <div class="yt-meta"><span>👁 31K views</span><span>📅 1 month ago</span></div>
-        </div>
-      </div>
-      <div class="yt-card">
-        <div class="yt-thumb">
-          <div class="yt-thumb-bg">📋</div>
-          <div class="yt-play">▶</div>
-        </div>
-        <div class="yt-info">
-          <div class="yt-category">Paper Analysis</div>
-          <div class="yt-title">RRB JE 2024 Paper Analysis — Kaun Sa Topic Sabse Zyada Aya?</div>
-          <div class="yt-meta"><span>👁 9K views</span><span>📅 6 weeks ago</span></div>
-        </div>
-      </div>
-      <div class="yt-card">
-        <div class="yt-thumb">
-          <div class="yt-thumb-bg">🔥</div>
-          <div class="yt-play">▶</div>
-        </div>
-        <div class="yt-info">
-          <div class="yt-category">Error Log</div>
-          <div class="yt-title">Galtiyon Se Seekho — SSC CGL Error Analysis Deep Dive</div>
-          <div class="yt-meta"><span>👁 7K views</span><span>📅 2 months ago</span></div>
-        </div>
+    <!-- WEEK HEATMAP -->
+    <div class="week-heatmap">
+      <div class="wh-title">📊 Your 70-Day Journey</div>
+      <div class="wh-grid" id="heatmapGrid"></div>
+      <div class="wh-legend">
+        <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(52,211,153,.25)"></div>Completed</div>
+        <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(251,191,36,.2)"></div>Today</div>
+        <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(59,130,246,.12)"></div>Available</div>
+        <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(255,255,255,.04)"></div>Locked</div>
       </div>
     </div>
-  </section>
-</div>
 
-<!-- ═══════════ ABOUT PAGE ═══════════ -->
-<div id="page-about" class="page">
-  <section class="section">
-    <div class="about-grid">
-      <div>
-        <div class="section-label">About</div>
-        <div class="section-title">RankUpExam ka Mission</div>
-        <p class="about-text">RankUpExam ek free educational platform hai jo government exam aspirants ke liye banaya gaya hai. Yahan sirf notes nahi milte — milti hai real strategy, examiner psychology aur paper analysis jo aapko competition mein aage rakhti hai.</p>
-        <p class="about-text">Hum SSC CGL, RRB JE aur BPSC AEDO ke liye specially designed content banate hain — interactive mock tests, PDF resources, video analysis aur Hinglish mein explanation — taaki language barrier exam ki tayyari ke beech na aaye.</p>
-        <p class="about-text">B.Tech EE background ke saath, ek fellow aspirant ki tarah samajhte hain aap kya face karte hain — aur usi hisaab se content dete hain.</p>
-        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem;">
-          <button class="btn-primary" onclick="showPage('mock')">Start Practicing</button>
-          <button class="btn-outline" onclick="showPage('youtube')">Watch on YouTube</button>
-        </div>
+    <!-- QUICK STATS -->
+    <div class="quick-stats" style="margin-bottom:20px">
+      <div class="qs-card">
+        <div class="qs-val" style="color:var(--amb)" id="qs1">62</div>
+        <div class="qs-lbl">Days Left</div>
       </div>
-      <div>
-        <div class="about-visual">
-          <div class="profile-ring">🎯</div>
-          <div class="about-name">RankUpExam</div>
-          <div class="about-role">Exam Prep Content Creator & Educator</div>
-          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">B.Tech Electrical Engineering · UP Based · OBC Category · SSC CGL & RRB JE Aspirant & Educator</p>
-          <div class="about-tags">
-            <span class="skill-pill">SSC CGL</span>
-            <span class="skill-pill">RRB JE</span>
-            <span class="skill-pill">BPSC AEDO</span>
-            <span class="skill-pill">Paper Analysis</span>
-            <span class="skill-pill">Electrical Engg</span>
-            <span class="skill-pill">Hinglish Teaching</span>
-          </div>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
-          <div style="padding:1.2rem; background:var(--surface); border:1px solid var(--border); border-radius:12px; text-align:center;">
-            <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent);">50K+</div>
-            <div style="font-size:0.78rem; color:var(--muted);">Students Helped</div>
-          </div>
-          <div style="padding:1.2rem; background:var(--surface); border:1px solid var(--border); border-radius:12px; text-align:center;">
-            <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent);">1000+</div>
-            <div style="font-size:0.78rem; color:var(--muted);">Questions Created</div>
-          </div>
-        </div>
+      <div class="qs-card">
+        <div class="qs-val" style="color:var(--em)" id="qs2">11%</div>
+        <div class="qs-lbl">Completed</div>
+      </div>
+      <div class="qs-card">
+        <div class="qs-val" style="color:var(--cyan)" id="qs3">W2</div>
+        <div class="qs-lbl">Current Week</div>
       </div>
     </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section class="section" style="border-top:1px solid var(--border);">
-    <div class="section-label">Contact</div>
-    <div class="section-title">Baat Karo. Query Bhejo.</div>
-    <p class="section-sub">Koi specific exam, topic ya collaboration ke liye reach out karo.</p>
-    <div class="contact-grid">
-      <div class="contact-form">
-        <div class="form-field">
-          <label>FULL NAME</label>
-          <input type="text" placeholder="Tumhara naam">
-        </div>
-        <div class="form-field">
-          <label>EMAIL</label>
-          <input type="email" placeholder="email@example.com">
-        </div>
-        <div class="form-field">
-          <label>EXAM</label>
-          <select>
-            <option>Select Exam</option>
-            <option>SSC CGL</option>
-            <option>RRB JE</option>
-            <option>BPSC AEDO</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label>MESSAGE</label>
-          <textarea rows="4" placeholder="Query, feedback ya collaboration ke baare mein likho..."></textarea>
-        </div>
-        <button class="btn-primary" style="align-self:flex-start;" onclick="alert('Message bhej diya! Jald jawab milega. 🎯')">Send Message →</button>
+    <!-- TELEGRAM CTA -->
+    <div class="tg-cta">
+      <div class="tg-cta-icon">📢</div>
+      <div class="tg-cta-content">
+        <div class="tg-cta-title">Daily Tricks on Telegram — RankUpExam</div>
+        <div class="tg-cta-sub">Roz ek shortcut trick, PYQ analysis, aur motivation. 1000+ aspirants already joined!</div>
       </div>
-      <div class="contact-info">
-        <div class="contact-item">
-          <div class="contact-icon">📺</div>
-          <div>
-            <div class="contact-label">YOUTUBE CHANNEL</div>
-            <div class="contact-val">@RankUpExam</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">📍</div>
-          <div>
-            <div class="contact-label">LOCATION</div>
-            <div class="contact-val">Uttar Pradesh, India</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">🎯</div>
-          <div>
-            <div class="contact-label">EXAMS COVERED</div>
-            <div class="contact-val">SSC CGL · RRB JE · BPSC AEDO</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">⚡</div>
-          <div>
-            <div class="contact-label">RESPONSE TIME</div>
-            <div class="contact-val">24-48 Hours</div>
-          </div>
-        </div>
-      </div>
+      <a href="https://t.me/rankupexam" target="_blank" class="tg-cta-btn">Join Now →</a>
     </div>
-  </section>
-</div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">RankUpExam</div>
-  <div class="footer-copy">© 2025 RankUpExam · Sab kuch free hai. Hamesha.</div>
-  <div class="footer-links">
-    <a onclick="showPage('mock')">Mock Tests</a>
-    <a onclick="showPage('pdf')">PDFs</a>
-    <a onclick="showPage('youtube')">YouTube</a>
-    <a onclick="showPage('about')">Contact</a>
   </div>
-</footer>
 
-<!-- ═══════════ QUIZ MODAL ═══════════ -->
-<div class="quiz-overlay" id="quiz-overlay">
-  <div class="quiz-modal">
-    <div class="quiz-header">
-      <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:0.9rem;" id="quiz-title">SSC CGL Quick Test</div>
-      <button class="btn-close" onclick="closeQuiz()">✕ Close</button>
+  <!-- ═══ ROADMAP VIEW ═══ -->
+  <div class="roadmap-view" id="roadmapView">
+    <div class="hero">
+      <div class="h-badge"><div class="h-badge-dot"></div>SSC CGL 2025 — Master Preparation Plan</div>
+      <h1 class="h-title"><span class="d60">60+10</span> Days<br><span class="cgl">SSC CGL Complete System</span></h1>
+      <p class="h-sub">60 din mein poora syllabus + weekly mix tests. Last 10 din — sirf Full Length Tests. Roz PDF notes, 15-min mock (25 Qs), aur YouTube video solution.</p>
+      <div class="h-pills">
+        <a href="https://youtube.com/@rankupexam" target="_blank" class="h-pill hp-yt">▶ @rankupexam YouTube</a>
+        <a href="https://t.me/rankupexam" target="_blank" class="h-pill hp-tg">📢 t.me/rankupexam</a>
+        <span class="h-pill hp-g">📄 Daily PDF + 🧪 Mock + ▶ Video</span>
+      </div>
     </div>
-    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quiz-progress" style="width:0%"></div></div>
-    <div id="quiz-body"></div>
+    <div class="milestone-bar">
+      <div class="mb-top">
+        <div class="mb-title">📊 70-Day Master Timeline</div>
+        <div class="mb-meta" id="mbMeta">Day 8 of 70 · 62 days remaining</div>
+      </div>
+      <div class="mb-track"><div class="mb-fill" id="mbFill" style="width:11.4%"></div></div>
+      <div class="mb-ticks">
+        <div class="mbt done"><div class="mbd"></div>D1<br>Start</div>
+        <div class="mbt done"><div class="mbd"></div>D10<br>Quant-1</div>
+        <div class="mbt curr"><div class="mbd"></div>D20<br>Quant-2</div>
+        <div class="mbt"><div class="mbd"></div>D30<br>Eng+Rea</div>
+        <div class="mbt"><div class="mbd"></div>D40<br>GA+Mix</div>
+        <div class="mbt"><div class="mbd"></div>D50<br>Revision</div>
+        <div class="mbt"><div class="mbd"></div>D60<br>Syllabus✓</div>
+        <div class="mbt test-z"><div class="mbd"></div>D61-70<br>FLT Zone</div>
+      </div>
+    </div>
+    <div class="main-layout">
+      <div class="left-panel">
+        <div class="week-scroll" id="weekTabs">
+          <button class="wt active" onclick="fw(0,this)">All (70)</button>
+          <button class="wt" onclick="fw(1,this)">W1: D1–7</button>
+          <button class="wt" onclick="fw(2,this)">W2: D8–14</button>
+          <button class="wt" onclick="fw(3,this)">W3: D15–21</button>
+          <button class="wt" onclick="fw(4,this)">W4: D22–28</button>
+          <button class="wt" onclick="fw(5,this)">W5: D29–35</button>
+          <button class="wt" onclick="fw(6,this)">W6: D36–42</button>
+          <button class="wt" onclick="fw(7,this)">W7: D43–49</button>
+          <button class="wt" onclick="fw(8,this)">W8: D50–56</button>
+          <button class="wt" onclick="fw(9,this)">W9: D57–60</button>
+          <button class="wt test-wk" onclick="fw(10,this)">🏆 D61–70 FLT</button>
+        </div>
+        <div class="tbl-hdr">
+          <div class="th">Day</div>
+          <div class="th">Topic</div>
+          <div class="th" style="text-align:center">📄 PDF</div>
+          <div class="th" style="text-align:center">🧪 Mock</div>
+          <div class="th" style="text-align:center">▶ YT</div>
+          <div class="th" style="text-align:center">Status</div>
+        </div>
+        <div class="days-wrap" id="daysList"></div>
+      </div>
+      <div class="right-panel" id="rightPanelRoadmap">
+        <div class="rp-card">
+          <div class="rp-hdr">
+            <div class="rp-hdr-badge"><div class="rp-hdr-dot"></div><span class="rp-hdr-lbl">⚡ Hard Shift Series</span></div>
+            <div class="rp-hdr-title">30 Hardest CGL Shifts</div>
+            <div class="rp-hdr-sub">2021–2025 ke Top Hard Shifts. Crack kiya toh real exam easy lagega!</div>
+          </div>
+          <div class="rp-year-tabs">
+            <button class="ryt active" onclick="setYear('all',this)">All</button>
+            <button class="ryt" onclick="setYear('2021',this)">CGL 2021</button>
+            <button class="ryt" onclick="setYear('2022',this)">CGL 2022</button>
+            <button class="ryt" onclick="setYear('2023',this)">CGL 2023</button>
+            <button class="ryt" onclick="setYear('2024',this)">CGL 2024</button>
+            <button class="ryt" onclick="setYear('2025',this)">CGL 2025</button>
+          </div>
+          <div class="rp-shifts" id="shiftList"></div>
+          <div class="rp-footer">
+            <div class="rpf-stat">
+              <span class="rpf-l">Total Hard Shifts</span>
+              <span class="rpf-v" id="shiftCount">30 Shifts</span>
+            </div>
+            <div style="margin-top:8px">
+              <a href="https://youtube.com/@rankupexam" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;background:rgba(255,68,68,.07);border:1px solid rgba(255,68,68,.18);border-radius:8px;color:#ff6b6b;font-size:10px;font-family:var(--mono);text-decoration:none;font-weight:700">▶ Solutions on @rankupexam YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+
+  <!-- ═══ HARD SHIFTS VIEW ═══ -->
+  <div id="shiftsView" style="display:none">
+    <div class="today-hero" style="margin-bottom:16px">
+      <div class="th-greeting">⚡ CHALLENGE MODE</div>
+      <div class="th-topic" style="font-size:clamp(20px,3vw,32px)">30 Hardest CGL Shifts</div>
+      <div class="th-sub">2021–2025 · Crack kiya toh real exam easy lagega!</div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="shiftYearTabs">
+      <button class="ryt active" onclick="setYearS('all',this)">All Shifts</button>
+      <button class="ryt" onclick="setYearS('2021',this)">CGL 2021</button>
+      <button class="ryt" onclick="setYearS('2022',this)">CGL 2022</button>
+      <button class="ryt" onclick="setYearS('2023',this)">CGL 2023</button>
+      <button class="ryt" onclick="setYearS('2024',this)">CGL 2024</button>
+      <button class="ryt" onclick="setYearS('2025',this)">CGL 2025</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px" id="shiftListFull"></div>
+  </div>
+
+</div><!-- /page -->
 
 <script>
-  // ─── NAVIGATION ───
-  function showPage(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-' + id).classList.add('active');
-    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    const navEl = document.getElementById('nav-' + id);
-    if (navEl) navEl.classList.add('active');
-    window.scrollTo(0, 0);
-  }
+// ═══════════════════════════
+// VFX BACKGROUND
+// ═══════════════════════════
+const canvas = document.getElementById('vfx-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+const NPARTICLES = 60;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+class Particle{
+  constructor(){this.reset()}
+  reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.6+.3;this.alpha=Math.random()*.4+.1;this.color=Math.random()>.65?[59,130,246]:Math.random()>.5?[34,211,238]:[167,139,250]}
+  update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset()}
+  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(${this.color.join(',')},${this.alpha})`;ctx.fill()}
+}
+for(let i=0;i<NPARTICLES;i++)particles.push(new Particle());
+const ORBS=[{x:.15,y:.25,r:180,c:'59,130,246',a:.04},{x:.85,y:.75,r:140,c:'167,139,250',a:.03},{x:.5,y:.5,r:100,c:'34,211,238',a:.025}];
+let frame=0;
+function animate(){
+  ctx.clearRect(0,0,W,H);
+  ORBS.forEach(o=>{const gx=o.x*W+Math.sin(frame*.0005+o.r)*20,gy=o.y*H+Math.cos(frame*.0004+o.r)*15,g=ctx.createRadialGradient(gx,gy,0,gx,gy,o.r);g.addColorStop(0,`rgba(${o.c},${o.a})`);g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(0,0,W,H)});
+  particles.forEach(p=>{p.update();p.draw()});
+  frame++;requestAnimationFrame(animate);
+}
+animate();
 
-  // ─── PDF FILTER ───
-  function filterPDF(exam, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.pdf-card').forEach(card => {
-      card.style.display = (exam === 'all' || card.dataset.exam === exam) ? '' : 'none';
-    });
-  }
+// ═══════════════════════════
+// TIMER
+// ═══════════════════════════
+let timerTotal=0,timerLeft=0,timerRunning=false,timerInterval=null;
+function timerToggle(){
+  if(!timerRunning){
+    const h=parseInt(document.getElementById('timerHrs').value)||0,m=parseInt(document.getElementById('timerMins').value)||0;
+    if(!timerLeft){timerTotal=(h*3600+m*60);timerLeft=timerTotal}
+    if(!timerLeft)return;
+    timerRunning=true;document.getElementById('timerStartBtn').textContent='⏸';document.getElementById('timerDisp').classList.add('running');
+    timerInterval=setInterval(()=>{if(timerLeft<=0){timerDone();return}timerLeft--;updateTimerDisplay()},1000);
+  }else{timerRunning=false;clearInterval(timerInterval);document.getElementById('timerStartBtn').textContent='▶';document.getElementById('timerDisp').classList.remove('running')}
+}
+function timerReset(){timerRunning=false;timerLeft=0;clearInterval(timerInterval);document.getElementById('timerStartBtn').textContent='▶';document.getElementById('timerDisp').textContent='00:00:00';document.getElementById('timerDisp').classList.remove('running')}
+function timerDone(){timerRunning=false;clearInterval(timerInterval);document.getElementById('timerDisp').textContent='DONE! ✓';document.getElementById('timerDisp').style.color='var(--em)';setTimeout(()=>{document.getElementById('timerDisp').style.color='var(--cyan)';timerLeft=0;updateTimerDisplay()},3000)}
+function updateTimerDisplay(){const h=Math.floor(timerLeft/3600),m=Math.floor((timerLeft%3600)/60),s=timerLeft%60;document.getElementById('timerDisp').textContent=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`}
 
-  // ─── QUIZ DATA ───
-  const quizData = {
-    'ssc-cgl-1': {
-      title: 'SSC CGL Tier-1 Mock — Set 1',
-      questions: [
-        { q: 'Agar A ki age B se 5 saal zyada hai aur unki ages ka ratio 3:2 hai, to A ki age kitni hai?', opts: ['10','15','12','20'], ans: 1, exp: 'Let B = 2x, A = 3x. 3x - 2x = 5, so x = 5. A = 15. ✅' },
-        { q: 'India ka pehla satellite kaun sa tha?', opts: ['Bhaskara','Aryabhata','INSAT-1A','Rohini'], ans: 1, exp: 'Aryabhata — launched in 1975 — India ka pehla satellite tha. ✅' },
-        { q: 'Ek train 60 km/h ki speed se chal rahi hai. 5 minute mein kitni duri cover karegi?', opts: ['4 km','5 km','6 km','3 km'], ans: 1, exp: '60 km/h = 1 km/min. 5 min × 1 = 5 km. ✅' },
-        { q: '"Satyamev Jayate" kahan se liya gaya hai?', opts: ['Rigveda','Mundaka Upanishad','Bhagavad Gita','Atharva Veda'], ans: 1, exp: 'Mundaka Upanishad se liya gaya hai. National motto. ✅' },
-        { q: 'FIND THE ODD ONE OUT: 3, 5, 7, 9, 11', opts: ['3','7','9','11'], ans: 2, exp: '9 composite number hai (3×3), baaki sab prime hain. ✅' },
-      ]
-    },
-    'ssc-gk-quick': {
-      title: 'SSC CGL GK Quick Fire',
-      questions: [
-        { q: 'Bharat ke Prime Minister ka official residence kahan hai?', opts: ['Rashtrapati Bhavan','7 Lok Kalyan Marg','South Block','Teen Murti Bhavan'], ans: 1, exp: '7 Lok Kalyan Marg (pehle 7 Race Course Road) PM ka official residence hai. ✅' },
-        { q: 'Nobel Peace Prize 2023 kise mila?', opts: ['Malala Yousafzai','Narges Mohammadi','ICAN','IPCC'], ans: 1, exp: 'Narges Mohammadi ko Iran mein women rights ke liye 2023 Nobel Peace Prize mila. ✅' },
-        { q: 'India ka largest river island kaun sa hai?', opts: ['Sriharikota','Majuli','Elephanta','Divar'], ans: 1, exp: 'Majuli — Assam mein Brahmaputra river par — India ka largest river island hai. ✅' },
-        { q: 'Photosynthesis ke liye kaunsa pigment responsible hai?', opts: ['Haemoglobin','Chlorophyll','Melanin','Carotene'], ans: 1, exp: 'Chlorophyll sunlight absorb karta hai aur photosynthesis enable karta hai. ✅' },
-      ]
-    },
-    'rrb-ga-1': {
-      title: 'RRB JE General Awareness',
-      questions: [
-        { q: 'Railway Budget India mein General Budget ke saath kab merge hua?', opts: ['2014','2016','2017','2019'], ans: 2, exp: '2017 mein — 92 saal baad — Railway Budget ko General Budget mein merge kiya gaya. ✅' },
-        { q: 'Indian Railways ka "Project Raftaar" kya hai?', opts: ['High-speed rail','Freight acceleration project','Station renovation','Electric locomotive drive'], ans: 1, exp: 'Project Raftaar freight train speed badhane ke liye launch hua tha. ✅' },
-        { q: 'Konkan Railway kaunse states se guzarti hai?', opts: ['Goa only','Maharashtra-Goa','Maharashtra-Goa-Karnataka-Kerala','Gujarat-Maharashtra'], ans: 2, exp: 'Konkan Railway Maharashtra, Goa, Karnataka aur Kerala se guzarti hai. ✅' },
-        { q: 'Indian Railway ka gauge width "Broad Gauge" kitna hota hai?', opts: ['1000 mm','1435 mm','1676 mm','762 mm'], ans: 2, exp: 'Broad Gauge = 1676 mm (5 ft 6 in) — India mein sabse common. ✅' },
-        { q: 'National Rail Museum kahan sthit hai?', opts: ['Mumbai','Chennai','Kolkata','New Delhi'], ans: 3, exp: 'National Rail Museum New Delhi mein Chanakyapuri area mein hai. ✅' },
-      ]
-    },
-    'bpsc-1': {
-      title: 'BPSC AEDO Mock — Set 1',
-      questions: [
-        { q: 'Bihar mein pehla hydroelectric power station kahan bana tha?', opts: ['Barauni','Muzaffarpur','Mokama','Katiyar'], ans: 0, exp: 'Barauni area Bihar mein early power infrastructure ke liye important tha. ✅' },
-        { q: 'Electrical engineering mein Power Factor kya hota hai?', opts: ['Active/Apparent power ratio','Voltage × Current','Reactive/Active ratio','Impedance ratio'], ans: 0, exp: 'Power Factor = Active Power (W) / Apparent Power (VA). Unity PF ideal hota hai. ✅' },
-        { q: 'Bihar State Electricity Board (BSEB) ab kya hai?', opts: ['Dissolved','BSPHCL aur BSEDCL mein vibhajit','Privatized','Union mein merge'], ans: 1, exp: 'BSEB ko BSPHCL (generation/transmission) aur BSEDCL (distribution) mein vibhajit kiya gaya. ✅' },
-        { q: 'Ek transformer ki efficiency badhaane ke liye kya karte hain?', opts: ['Core losses badhaao','Copper losses badhaao','Dono losses kam karo','Flux density badhaao'], ans: 2, exp: 'Transformer efficiency = Output/Input. Core (iron) aur copper (I²R) losses minimize karne se efficiency badhti hai. ✅' },
-      ]
-    },
-    'rrb-tech-1': {
-      title: 'RRB JE Electrical Technical Set',
-      questions: [
-        { q: 'Thevenin\'s theorem ke according, koi bhi linear circuit equivalent hai?', opts: ['Current source + parallel resistance','Voltage source + series resistance','Two voltage sources','Ideal transformer'], ans: 1, exp: 'Thevenin equivalent = Vth (open circuit voltage) + Rth (Thevenin resistance) in series. ✅' },
-        { q: '3-phase induction motor mein synchronous speed kya hoti hai?', opts: ['Ns = 120P/f','Ns = 120f/P','Ns = 60f/P','Ns = fP/120'], ans: 1, exp: 'Ns = 120f/P, jahan f = frequency (Hz), P = number of poles. ✅' },
-        { q: 'Fleming\'s Left Hand Rule kis device ke liye use hota hai?', opts: ['Generator','Transformer','Motor','Alternator'], ans: 2, exp: 'Left Hand Rule → Motor (force direction). Right Hand Rule → Generator (EMF direction). ✅' },
-        { q: 'Ek capacitor ko DC supply se connect karne par?', opts: ['Continuously current flow karega','Steady state mein current zero ho jaegi','Capacitor burn hoga','Frequency dependent current flow karega'], ans: 1, exp: 'Capacitor DC block karta hai. Initially charge karta hai, phir steady state mein current = 0. ✅' },
-        { q: 'ACSR conductor full form kya hai?', opts: ['Aluminium Copper Steel Reinforced','Aluminium Conductor Steel Reinforced','Aluminium Core Steel Rail','Advanced Conductor Steel Reinforced'], ans: 1, exp: 'ACSR = Aluminium Conductor Steel Reinforced — transmission lines mein widely used. ✅' },
-      ]
+// ═══════════════════════════
+// LOCALSTORAGE PERSISTENCE
+// ═══════════════════════════
+const STORAGE_KEY = 'rankupexam_v3';
+function loadState(){
+  try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch{return{}}
+}
+function saveState(state){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch{}
+}
+let STATE = loadState();
+if(!STATE.completedDays) STATE.completedDays = [];
+if(!STATE.xp) STATE.xp = 0;
+if(!STATE.streak) STATE.streak = 0;
+if(!STATE.lastCompleted) STATE.lastCompleted = null;
+if(!STATE.checks) STATE.checks = {};
+if(!STATE.todayChecks) STATE.todayChecks = [false,false,false,false];
+if(!STATE.actions) STATE.actions = {};
+
+// ═══════════════════════════
+// XP & STREAK SYSTEM
+// ═══════════════════════════
+const XP_LEVELS=[
+  {name:'Beginner',min:0,max:500},
+  {name:'Intermediate',min:500,max:1500},
+  {name:'Expert',min:1500,max:3000},
+  {name:'Master',min:3000,max:6000},
+  {name:'Elite',min:6000,max:99999}
+];
+function getLevel(xp){return XP_LEVELS.find(l=>xp>=l.min&&xp<l.max)||XP_LEVELS[0]}
+function getRankBadge(streak){
+  if(streak>=30)return'🥇';
+  if(streak>=14)return'🥈';
+  if(streak>=7)return'🥉';
+  if(streak>=3)return'⭐';
+  return'—';
+}
+function updateXPUI(){
+  const xp=STATE.xp,streak=STATE.streak;
+  const level=getLevel(xp);
+  const pct=Math.min(100,((xp-level.min)/(level.max-level.min))*100);
+  document.getElementById('xpVal').textContent=xp;
+  document.getElementById('streakVal').textContent=streak;
+  document.getElementById('daysCompleted').textContent=STATE.completedDays.length;
+  document.getElementById('rankBadge').textContent=getRankBadge(streak);
+  document.getElementById('xpBarFill').style.width=pct+'%';
+  document.getElementById('xpLevelBadge').textContent=level.name;
+  document.getElementById('xpCountDisplay').textContent=xp+' / '+level.max+' XP to next level';
+  document.getElementById('navXP').textContent=xp+' XP';
+  document.getElementById('navStreak').textContent='🔥 '+streak;
+  document.getElementById('streakFire').textContent=streak>=3?'🔥':'⭐';
+}
+function addXP(amount){
+  STATE.xp=(STATE.xp||0)+amount;
+  saveState(STATE);
+  updateXPUI();
+}
+
+// ═══════════════════════════
+// TOPIC CHECKLIST
+// ═══════════════════════════
+let checksDone=0;
+function toggleCheck(el,idx){
+  el.classList.toggle('checked');
+  const chk=document.getElementById('chk'+idx);
+  if(el.classList.contains('checked')){
+    chk.textContent='✓';
+    checksDone++;
+    if(!STATE.todayChecks[idx]){STATE.todayChecks[idx]=true;addXP(5)}
+  }else{
+    chk.textContent='›';
+    checksDone=Math.max(0,checksDone-1);
+    STATE.todayChecks[idx]=false;
+  }
+  saveState(STATE);
+  updateCheckProgress();
+}
+function updateCheckProgress(){
+  const total=4;
+  document.getElementById('checkProgress').textContent=checksDone+' / '+total+' done';
+  const btn=document.getElementById('completeDayBtn');
+  if(checksDone>=total){
+    btn.className='complete-btn ready';
+    btn.textContent='✅ Mark Day 8 as Complete (+100 XP)';
+  }else if(STATE.completedDays.includes(8)){
+    btn.className='complete-btn done';
+    btn.textContent='🎉 Day 8 Complete!';
+  }else{
+    btn.className='complete-btn locked';
+    btn.textContent='🔒 Complete all topics to unlock Day Complete ('+checksDone+'/'+total+')';
+  }
+}
+function logAction(type){
+  if(!STATE.actions) STATE.actions={};
+  if(!STATE.actions[type]){
+    STATE.actions[type]=true;
+    const xpMap={pdf:25,mock:75,yt:25};
+    addXP(xpMap[type]||10);
+    saveState(STATE);
+  }
+}
+
+// ═══════════════════════════
+// DAY COMPLETE
+// ═══════════════════════════
+const TODAY_DAY=8;
+function completeDay(){
+  if(checksDone<4)return;
+  if(STATE.completedDays.includes(TODAY_DAY))return;
+  STATE.completedDays.push(TODAY_DAY);
+  STATE.xp=(STATE.xp||0)+100;
+  // Streak logic
+  const today=new Date().toDateString();
+  if(STATE.lastCompleted){
+    const last=new Date(STATE.lastCompleted);
+    const diff=(new Date()-last)/(1000*60*60*24);
+    if(diff<1.5)STATE.streak=(STATE.streak||0)+1;
+    else if(diff>1.5)STATE.streak=1;
+  }else{STATE.streak=1}
+  STATE.lastCompleted=today;
+  saveState(STATE);
+  updateXPUI();
+  showCompletion();
+  updateCheckProgress();
+  renderHeatmap();
+}
+function showCompletion(){
+  const streak=STATE.streak;
+  document.getElementById('cmEmoji').textContent=streak>=7?'🏆':streak>=3?'🔥':'🎉';
+  document.getElementById('cmTitle').textContent='Day '+TODAY_DAY+' Complete!';
+  document.getElementById('cmXp').textContent='+100 XP earned · Streak: '+streak+' days 🔥';
+  document.getElementById('completionOverlay').classList.add('show');
+}
+function closeCompletion(){document.getElementById('completionOverlay').classList.remove('show')}
+
+// ═══════════════════════════
+// HEATMAP
+// ═══════════════════════════
+function renderHeatmap(){
+  const grid=document.getElementById('heatmapGrid');grid.innerHTML='';
+  for(let d=1;d<=70;d++){
+    const cell=document.createElement('div');
+    cell.className='wh-cell';
+    cell.title='Day '+d;
+    if(STATE.completedDays.includes(d)||d<TODAY_DAY){cell.classList.add('done');cell.textContent=d}
+    else if(d===TODAY_DAY){cell.classList.add('today');cell.textContent=d}
+    else if(d<=TODAY_DAY+3){cell.classList.add('open');cell.textContent=d}
+    else{cell.classList.add('locked');cell.textContent=d}
+    grid.appendChild(cell);
+  }
+}
+
+// ═══════════════════════════
+// VIEW SWITCHER
+// ═══════════════════════════
+function switchView(view){
+  document.getElementById('todayView').style.display='none';
+  document.getElementById('roadmapView').style.display='none';
+  document.getElementById('shiftsView').style.display='none';
+  document.getElementById('vsToday').classList.remove('active');
+  document.getElementById('vsRoadmap').classList.remove('active');
+  document.getElementById('vsShifts').classList.remove('active');
+  if(view==='today'){document.getElementById('todayView').style.display='block';document.getElementById('vsToday').classList.add('active')}
+  else if(view==='roadmap'){document.getElementById('roadmapView').style.display='block';document.getElementById('vsRoadmap').classList.add('active');renderDays(0)}
+  else if(view==='shifts'){document.getElementById('shiftsView').style.display='block';document.getElementById('vsShifts').classList.add('active');renderShiftsFull('all')}
+}
+
+// ═══════════════════════════
+// DAY DATA
+// ═══════════════════════════
+const TODAY=8;
+const DAYS=[
+{d:1,topic:"Number System",sub:"Types, Divisibility Rules, Factors",subj:"quant",type:"normal",shortcut:"Digital Sum method se divisibility check fastest!",topics:["Prime & Composite Numbers","Divisibility 2–13","LCM & HCF shortcuts","Unit digit tricks"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:2,topic:"HCF & LCM",sub:"Shortcut tricks, Word problems",subj:"quant",type:"normal",shortcut:"HCF × LCM = Product of two numbers!",topics:["Prime factorization method","Division method shortcut","Word problems","PYQs 2019–2024"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:3,topic:"Simplification & BODMAS",sub:"Fractions, Surds, Indices",subj:"quant",type:"normal",shortcut:"BODMAS strictly — Bracket→Of→Div→Mul→Add→Sub",topics:["BODMAS rule","Fractions & Decimals","Square root tricks","Cube root shortcuts"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:4,topic:"Percentage",sub:"Basic to Advanced, SSC Pattern",subj:"quant",type:"normal",shortcut:"x% of y = y% of x — swap trick se 3x fast!",topics:["% basics & change","Successive % change","Population/depreciation","SSC CGL 2024 PYQs"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:5,topic:"Profit & Loss",sub:"CP/SP, Discount, Dishonest trader",subj:"quant",type:"normal",shortcut:"Profit% = (SP-CP)/CP × 100",topics:["Basic P&L","Marked price & discount","Successive discount","Dishonest seller tricks"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:6,topic:"Simple & Compound Interest",sub:"SI vs CI, Half-yearly",subj:"quant",type:"normal",shortcut:"2yr CI = SI + SI²/100 — fastest for 2-year problems!",topics:["SI formula","CI formula","Half-yearly compounding","Population growth"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:7,topic:"⚡ Week 1 Mix Test",sub:"25 Qs · 15 Min · Topics D1–D6",subj:"mix",type:"weekly-test",shortcut:"Speed target: 36 seconds per question!",topics:["Number System 5 Qs","HCF/LCM 4 Qs","Simplification 4 Qs","Percentage + P&L + SI/CI 12 Qs"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:8,topic:"Ratio & Proportion",sub:"K-method, Partnership, Alligation",subj:"quant",type:"normal",shortcut:"K-method: a:b:c = ak:bk:ck. Alligation cross = fastest!",topics:["Ratio basics & K-method","Partnership problems","Mixture & alligation","SSC PYQs 2023-24"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:9,topic:"Average",sub:"Weighted avg, Age problems",subj:"quant",type:"normal",shortcut:"ΔAvg = ΔSum/n. Replacement trick saves 80% time!",topics:["Average basics","Weighted average","Age-based problems","Train average speed trap"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:10,topic:"Time & Work",sub:"LCM method, Efficiency tricks",subj:"quant",type:"normal",shortcut:"LCM method: Total work = LCM. Efficiency = Work/Day",topics:["Basic T&W","LCM shortcut","Pipes & cisterns","Work & wages"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:11,topic:"Speed, Distance & Time",sub:"Relative speed, Trains, Boats",subj:"quant",type:"normal",shortcut:"Same dir: |S1-S2|. Opp dir: S1+S2. Boat: B=(D+U)/2",topics:["Basic SDT","Relative speed","Train crossing","Boat & stream"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:12,topic:"Algebra Part 1",sub:"Identities, Linear equations",subj:"quant",type:"normal",shortcut:"(a+b)²=a²+2ab+b², (a+b)(a-b)=a²-b² — yaad karo!",topics:["Algebraic identities","Linear eq solving","Two-variable system","SSC identity PYQs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:13,topic:"Algebra Part 2 + Number Series",sub:"Quadratic, Series patterns",subj:"quant",type:"normal",shortcut:"Sum of roots=-b/a, Product=c/a. Series: check +,×,² first!",topics:["Quadratic equations","Nature of roots","AP/GP series","Mixed pattern series"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:14,topic:"⚡ Week 2 Mix Test",sub:"25 Qs · 15 Min · Topics D8–D13",subj:"mix",type:"weekly-test",shortcut:"Ratio+Average+T&W+SDT+Algebra — 36 sec per question!",topics:["Ratio & Proportion 5 Qs","Average + T&W 5 Qs","SDT + Boats 5 Qs","Algebra + Series 10 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:15,topic:"Mensuration 2D Part 1",sub:"Triangle, Rectangle, Circle",subj:"quant",type:"normal",shortcut:"Triangle: ½×b×h. Circle: πr². These 2 come in every exam!",topics:["Triangle types & area","Rectangle & square","Circle formulas","Sector & segment area"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:16,topic:"Mensuration 2D Part 2",sub:"Trapezium, Rhombus, Polygon",subj:"quant",type:"normal",shortcut:"Trapezium = ½×(sum of parallel sides)×h. Always draw figure!",topics:["Trapezium & parallelogram","Rhombus area tricks","Regular polygon","Combined shapes"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:17,topic:"Mensuration 3D Part 1",sub:"Cube, Cuboid, Cylinder",subj:"quant",type:"normal",shortcut:"Cylinder: V=πr²h, LSA=2πrh, TSA=2πr(r+h). Most common!",topics:["Cube & cuboid formulas","Cylinder complete","Water-in-tank problems","Unit conversion tricks"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:18,topic:"Mensuration 3D Part 2",sub:"Cone, Sphere, Frustum",subj:"quant",type:"normal",shortcut:"Cone: l=√(r²+h²). Sphere: V=4/3πr³.",topics:["Cone formulas complete","Sphere & hemisphere","Frustum of cone","Melting/recasting problems"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:19,topic:"Geometry — Lines, Angles, Triangles",sub:"Parallel lines, Similarity, Centres",subj:"quant",type:"normal",shortcut:"Mid-point theorem: line = ½ base. Angle bisector theorem key!",topics:["Parallel line angles","Triangle similarity","Pythagoras & converse","Incentre, circumcentre"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:20,topic:"Geometry — Circles + Coordinate",sub:"Chord, Tangent, Distance formula",subj:"quant",type:"normal",shortcut:"Angle in semicircle=90°. Tangent⊥radius.",topics:["Circle theorems","Tangent properties","Cyclic quadrilateral","Coordinate geometry basics"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:21,topic:"⚡ Week 3 Mix Test",sub:"25 Qs · 15 Min · Topics D15–D20",subj:"mix",type:"weekly-test",shortcut:"Mensuration is 20-25% of CGL Tier-2 — nail this test!",topics:["2D Mensuration 8 Qs","3D Mensuration 8 Qs","Geometry 5 Qs","Coordinate 4 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:22,topic:"Trigonometry Basics",sub:"Ratios, Standard values, Identities",subj:"quant",type:"normal",shortcut:"SOH-CAH-TOA! Table 0,30,45,60,90 must memorize. sin²+cos²=1!",topics:["6 trig ratios","Standard angle table","3 fundamental identities","Complementary angles"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:23,topic:"Trigonometry Advanced + DI",sub:"Height & Distance, Data Interpretation",subj:"quant",type:"normal",shortcut:"tan θ = Height/Base for H&D. DI: percentage change fast formula!",topics:["Height & Distance","Angle of elevation/depression","Bar & Line chart DI","Table DI shortcuts"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:24,topic:"Statistics + Data Sufficiency",sub:"Mean, Median, Mode, Probability",subj:"quant",type:"normal",shortcut:"Mean=(ΣfX/Σf). Median=middle value after sorting!",topics:["Measures of central tendency","Standard deviation basics","Simple probability","Data sufficiency tricks"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:25,topic:"English — Vocabulary Power",sub:"Synonyms, Antonyms, One-word substitution",subj:"english",type:"normal",shortcut:"Root word method: 1 root = 10+ words. Learn roots not words!",topics:["High-frequency synonyms list","Antonyms bank","One-word substitution 50 words","Idioms & phrases set 1"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:26,topic:"English — Reading Comprehension",sub:"RC strategy, Inference, Tone",subj:"english",type:"normal",shortcut:"Read question FIRST. 4th option trap in SSC RC — be careful!",topics:["RC reading strategy","Inference questions","Tone & attitude","Main idea identification"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:27,topic:"English — Error Spotting + Fill Ups",sub:"Common grammar errors, Cloze test",subj:"english",type:"normal",shortcut:"SVA: Find the SUBJECT first, ignore prepositional phrases!",topics:["Subject-Verb Agreement errors","Tense errors","Preposition errors","Cloze test strategy"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:28,topic:"⚡ Week 4 Mix Test",sub:"25 Qs · 15 Min · Trig + Stats + English",subj:"mix",type:"weekly-test",shortcut:"Mix of Quant & English — balance karo!",topics:["Trigonometry 6 Qs","DI + Statistics 5 Qs","Vocabulary 7 Qs","RC + Error Spotting 7 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:29,topic:"English — Grammar Complete",sub:"Narration, Voice, Sentence Correction",subj:"english",type:"normal",shortcut:"Narration: Reporting verb changes tense. Present→Past main rule!",topics:["Direct & Indirect speech","Active & Passive voice","Sentence rearrangement","Sentence correction tricks"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:30,topic:"Reasoning — Series & Analogy",sub:"Number, Letter, Figure series",subj:"reasoning",type:"normal",shortcut:"Number series: try +,−,×,÷,² in order. Most SSC series follow pattern!",topics:["Number series types","Letter series","Figure analogy","Number analogy"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:31,topic:"Reasoning — Coding & Blood Relations",sub:"Coding-Decoding, Family tree",subj:"reasoning",type:"normal",shortcut:"Coding: Check +/- shift first. Blood: Draw family tree always!",topics:["Letter coding","Number coding","Blood relation types","Mixed blood relation"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:32,topic:"Reasoning — Direction & Matrix",sub:"Directions sense, Matrix puzzles",subj:"reasoning",type:"normal",shortcut:"Direction: always start from NORTH. Matrix: row×col intersection!",topics:["8-direction sense","Shadow & clock problems","Matrix reasoning","Input-output patterns"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:33,topic:"Reasoning — Syllogism + Venn",subj:"reasoning",sub:"All-Some-No statements, Conclusions",type:"normal",shortcut:"Venn diagram method fastest for syllogism. Draw before solving!",topics:["All-Some-No rules","Complementary pairs","Venn diagram method","Possibility cases"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:34,topic:"Reasoning — Non-Verbal",sub:"Mirror image, Paper folding, Cube",subj:"reasoning",type:"normal",shortcut:"Mirror: flip horizontally, NOT vertically. Water image = vertical flip!",topics:["Mirror image","Water image","Paper folding/cutting","Cube & dice counting"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:35,topic:"⚡ Week 5 Mix Test",sub:"25 Qs · 15 Min · English + Reasoning",subj:"mix",type:"weekly-test",shortcut:"English + Reasoning = 50 Qs in CGL. Master these!",topics:["English Grammar 7 Qs","RC + Vocab 5 Qs","Reasoning Series 7 Qs","Reasoning Non-Verbal 6 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:36,topic:"GA — Ancient & Medieval History",sub:"Indus Valley to Mughal Empire",subj:"ga",type:"normal",shortcut:"Chronology trick: Harappa→Vedic→Mahajanapadas→Maurya→Gupta→Mughal",topics:["Indus Valley civilization","Vedic period","Mauryan Empire","Mughal Era key points"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:37,topic:"GA — Modern History + Freedom Movement",sub:"British rule to Independence 1947",subj:"ga",type:"normal",shortcut:"Acts timeline: 1773→1784→1833→1857→1919→1935→1947. Learn in order!",topics:["British Administration Acts","1857 revolt","Freedom movement leaders","Partition & Independence"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:38,topic:"GA — Indian Polity & Constitution",sub:"Fundamental Rights, Parliament, Judiciary",subj:"ga",type:"normal",shortcut:"Part III = FR, Part IV = DPSP, Part IVA = FD. Articles memory trick!",topics:["Preamble & key articles","Fundamental Rights 12-35","Parliament structure","Judiciary system"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:39,topic:"GA — Geography + Environment",sub:"Physical, Climate, Resources, Ecology",subj:"ga",type:"normal",shortcut:"Rivers: Remember watershed — Deccan rivers flow EAST. Himalayan flow varies!",topics:["Physical geography India","Climate zones","Natural resources","Environment & ecology basics"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:40,topic:"GA — Economy + Science",sub:"Budget, GDP, Physics, Chemistry, Bio",subj:"ga",type:"normal",shortcut:"GDP types: GDP, GNP, NNP, NDP — know the deductions chain!",topics:["Indian economy basics","Union budget concepts","Physics in everyday life","Biology basic facts"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:41,topic:"GA — Current Affairs (Last 6 months)",sub:"Awards, Sports, Appointments, Summits",subj:"ga",type:"normal",shortcut:"Current affairs = 15-20 Qs in CGL GA. This section decides your rank!",topics:["National awards 2024-25","Sports achievements","Government schemes","International summits"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:42,topic:"⚡ Week 6 Mix Test",sub:"25 Qs · 15 Min · Full GA Coverage",subj:"mix",type:"weekly-test",shortcut:"GA = easiest to score if prepared. 20+ out of 25 possible!",topics:["History 5 Qs","Polity 5 Qs","Geography + Economy 5 Qs","Science + Current Affairs 10 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:43,topic:"Rapid Revision — Quant Formulas",sub:"All formulas one-shot, Speed drill",subj:"quant",type:"normal",shortcut:"Formula sheet se practice: 5 sec per formula recall = exam ready!",topics:["Arithmetic formulas","Mensuration complete","Trig identities","Algebra identities"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:44,topic:"Rapid Revision — English Grammar",sub:"All grammar rules, 50 error patterns",subj:"english",type:"normal",shortcut:"Top 50 error patterns in SSC CGL — this list alone can score 8-10!",topics:["SVA 15 rules","Tense rules","Preposition 20 uses","Common grammatical errors"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:45,topic:"Rapid Revision — Reasoning",sub:"All reasoning types speed practice",subj:"reasoning",type:"normal",shortcut:"Reasoning: 25 Qs in 15 min = 36 sec each. Practice is the only trick!",topics:["Series speed drills","Coding-decoding fast","Syllogism 5-min method","Non-verbal rapid revision"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:46,topic:"Rapid Revision — GA All Subjects",sub:"History, Polity, Geography, Science one-shot",subj:"ga",type:"normal",shortcut:"GA revision: dates + names + facts. No concept needed — memory game!",topics:["History timeline fast","Polity key articles","Geography facts","Science quick facts"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:47,topic:"PYQ Special — Quant 2023-24",sub:"Last 2 year PYQ analysis + patterns",subj:"quant",type:"normal",shortcut:"PYQ pattern: Ratio+Percentage+Profit = 30% of Quant every year!",topics:["2024 PYQ set complete","2023 PYQ set complete","Repeating topics analysis","Prediction for 2025"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:48,topic:"PYQ Special — English 2023-24",sub:"RC passages, Vocab, Grammar PYQs",subj:"english",type:"normal",shortcut:"SSC reuses ~30% vocab every year. Previous year vocab = gold!",topics:["2024 English PYQ set","2023 English PYQ set","Repeating vocabulary","Grammar pattern analysis"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:49,topic:"⚡ Week 7 Mix Test",sub:"25 Qs · 15 Min · All Subjects Revision",subj:"mix",type:"weekly-test",shortcut:"This is your checkpoint — should score 18+ to be on track!",topics:["Quant Revision 8 Qs","English Revision 7 Qs","Reasoning 5 Qs","GA Revision 5 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:50,topic:"Advanced Quant — Tier-2 Special",sub:"High-level Algebra, Geometry",subj:"quant",type:"normal",shortcut:"Tier-2 Quant: deeper concepts but SAME shortcuts apply. Don't panic!",topics:["Advanced algebraic identities","Coordinate geometry deep","Permutation & Combination basics","Advanced trigonometry"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:51,topic:"Weak Area Attack — Quant",sub:"Your lowest scoring topics deep dive",subj:"quant",type:"normal",shortcut:"Identify your bottom 3 topics. 1 day focused = 3-5 marks gain!",topics:["Identify weak topics","50 questions from each","Pattern recognition","Speed improvement"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:52,topic:"Weak Area Attack — English",sub:"Error prone areas intensive practice",subj:"english",type:"normal",shortcut:"Most students fail on: Prepositions, Articles, Tenses — focus here!",topics:["Preposition intensive","Article usage rules","Tense error practice","Vocabulary gaps"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:53,topic:"Weak Area Attack — Reasoning",sub:"Non-verbal + complex reasoning",subj:"reasoning",type:"normal",shortcut:"Non-verbal: Mirror + Paper folding = 5-6 Qs every CGL exam. Easy marks!",topics:["Non-verbal intensive","Complex syllogism","Arrangement problems","Missing number patterns"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:54,topic:"Full Mock Analysis Day",sub:"Analyze last 3 mocks deep",subj:"mix",type:"normal",shortcut:"Mock without analysis = wasted attempt. Every wrong Q = 1 topic to revise!",topics:["Subject-wise accuracy","Time management analysis","Wrong question root cause","Strategy adjustment"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:55,topic:"Speed Maths Master Class",sub:"Mental math, Approximation, Tricks",subj:"quant",type:"normal",shortcut:"Squares 1-50, Cubes 1-30, Multiplication tricks = 30 sec saved per Q!",topics:["Squares & cubes rapid recall","Vedic multiplication tricks","Approximation technique","Fraction-Decimal conversion"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:56,topic:"⚡ Week 8 Mix Test",sub:"25 Qs · 15 Min · Advanced Level",subj:"mix",type:"weekly-test",shortcut:"Advanced level test — target 20+ to confirm exam readiness!",topics:["Advanced Quant 8 Qs","English Intensive 6 Qs","Reasoning Hard 6 Qs","GA Mix 5 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:57,topic:"Final Revision Sprint — Day 1",sub:"Complete formula sheet revision",subj:"mix",type:"normal",shortcut:"Final revision: Re-read, don't re-learn. Just activate memory!",topics:["All formulas one-shot","Top 100 vocab words","GA current affairs final","Strategy for exam day"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:58,topic:"Final Revision Sprint — Day 2",sub:"PYQ speed run, Last mock",subj:"mix",type:"normal",shortcut:"Don't learn new things last 3 days. Only revise what you know!",topics:["2024 full PYQ attempt","Weak areas last check","Mock attempt","Score analysis"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:59,topic:"Final Revision Sprint — Day 3",sub:"Speed drills, Time management",subj:"mix",type:"normal",shortcut:"Mental preparation: Visualize walking into exam hall confident. It works!",topics:["Speed drill all subjects","Time management practice","Attempt strategy final","Calm your mind"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:60,topic:"✅ Syllabus Complete!",sub:"Full syllabus done — celebrate then FLT mode ON",subj:"mix",type:"normal",shortcut:"Tu ne 60 din kar liye! Ab next 10 din = Full Length Tests only!",topics:["Complete syllabus revision","FLT strategy session","Target score finalization","Mental preparation"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:61,topic:"🏆 Full Length Test #1",sub:"100 Qs · 60 Min · CGL Tier-1 Pattern",subj:"flt",type:"full-test",shortcut:"FLT strategy: Reasoning→English→GA→Quant. Do your strongest first!",topics:["Complete CGL simulation","Exact exam timing","All 4 subjects","Score & accuracy tracking"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:62,topic:"🏆 Full Length Test #2",sub:"100 Qs · 60 Min · Analysis + Retarget",subj:"flt",type:"full-test",shortcut:"After FLT: 30 min analysis > 60 min another mock. Analysis is gold!",topics:["FLT attempt","Detailed postmortem","Accuracy per subject","Improvement plan"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:63,topic:"🏆 Full Length Test #3",sub:"100 Qs · 60 Min · Hard Level",subj:"flt",type:"full-test",shortcut:"Hard FLT day — if you score 140+ here, real exam will feel easier!",topics:["Hard level simulation","Time pressure practice","Difficult DI & RC","Score improvement focus"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:64,topic:"🏆 Full Length Test #4",sub:"100 Qs · 60 Min · PYQ Based",subj:"flt",type:"full-test",shortcut:"PYQ-based FLT: closest to real exam experience. Target: 150+",topics:["PYQ pattern simulation","2023-24 question style","Real exam time feeling","Confidence building"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:65,topic:"🏆 Full Length Test #5",sub:"100 Qs · 60 Min · Speed Focus",subj:"flt",type:"full-test",shortcut:"Speed FLT: 45 min attempt, 15 min review. Push your limits!",topics:["Speed optimization test","High accuracy under speed","Time saving techniques","Final strategy tuning"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:66,topic:"Deep Analysis Day",sub:"All 5 FLTs complete analysis",subj:"flt",type:"full-test",shortcut:"Pattern recognition from 5 mocks = predict your weak zones + fix!",topics:["5-FLT performance graph","Subject-wise trend","Consistent weak areas","Last revision topics"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:67,topic:"🏆 Full Length Test #6",sub:"100 Qs · 60 Min · Confidence Builder",subj:"flt",type:"full-test",shortcut:"Confidence FLT: Attempt what you know first. Skip & return!",topics:["Confidence mode attempt","Accuracy over speed","Build positive momentum","Score: 155+ target"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:68,topic:"🏆 Full Length Test #7",sub:"100 Qs · 60 Min · Random Mix",subj:"flt",type:"full-test",shortcut:"Last proper full mock. Give it your absolute best attempt!",topics:["Random difficulty mix","All pattern questions","Final strategy check","Score tracking"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:69,topic:"🏆 Full Length Test #8",sub:"100 Qs · 60 Min · Final Simulation",subj:"flt",type:"full-test",shortcut:"Kal exam hai — aaj last rehearsal. Apna best do!",topics:["Final mock exam","Exact CGL timing","No interruptions","Score tracking"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+{d:70,topic:"🎯 EXAM DAY READY!",sub:"Light revision + strategy + confidence",subj:"flt",type:"full-test",shortcut:"Tu ready hai! 70 din ki mehnat aaj rang layegi. Calm raho, process trust karo! 💪",topics:["Last formula sheet glance","Exam hall strategy","Admit card + ID ready","Mental preparation"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
+];
+
+const SUBJMAP={quant:{l:'Quantitative',c:'tq'},english:{l:'English',c:'te'},reasoning:{l:'Reasoning',c:'tr'},ga:{l:'General Awareness',c:'tg'},mix:{l:'Mix Test',c:'twt'},flt:{l:'Full Length Test',c:'tft'}};
+const WRANGES={0:[1,70],1:[1,7],2:[8,14],3:[15,21],4:[22,28],5:[29,35],6:[36,42],7:[43,49],8:[50,56],9:[57,60],10:[61,70]};
+const WSUMS={
+  1:{t:"Week 1 — Quant Basics",s:"D1–7 · Number System to SI/CI",p:['quant','mix']},
+  2:{t:"Week 2 — Quant Advanced",s:"D8–14 · Ratio to Algebra + Series",p:['quant','mix']},
+  3:{t:"Week 3 — Mensuration Complete",s:"D15–21 · 2D, 3D, Geometry, Coordinate",p:['quant','mix']},
+  4:{t:"Week 4 — Trig + DI + English Vocab",s:"D22–28 · Trig, Statistics, Vocabulary",p:['quant','english','mix']},
+  5:{t:"Week 5 — English Grammar + Reasoning",s:"D29–35 · SVA, RC, Full Reasoning",p:['english','reasoning','mix']},
+  6:{t:"Week 6 — General Awareness Complete",s:"D36–42 · History to Current Affairs",p:['ga','mix']},
+  7:{t:"Week 7 — Full Revision Sprints",s:"D43–49 · All subjects rapid revision",p:['quant','english','reasoning','ga','mix']},
+  8:{t:"Week 8 — Advanced PYQs + Weak Areas",s:"D50–56 · Deep dive + Tier-2 special",p:['quant','english','reasoning','ga','mix']},
+  9:{t:"Week 9 — Final Revision + Simulation",s:"D57–60 · Speed drills + Last mix test",p:['mix']},
+  10:{t:"🏆 FLT Zone — Days 61–70",s:"10 Full Length Tests + Analysis",p:['flt']},
+};
+
+function getStatus(d){if(d<TODAY)return 'completed';if(d===TODAY)return 'today';if(d<=TODAY+3)return 'available';return 'locked'}
+
+function renderDays(filter){
+  const[s,e]=WRANGES[filter];
+  const list=document.getElementById('daysList');list.innerHTML='';
+  if(filter>0&&WSUMS[filter]){
+    const ws=WSUMS[filter];
+    const w=document.createElement('div');w.className='wk-sum';
+    w.innerHTML=`<div><div class="wks-t">${ws.t}</div><div class="wks-s">${ws.s}</div></div><div class="wks-ps">${ws.p.map(p=>`<span class="wksp ${SUBJMAP[p].c}">${SUBJMAP[p].l}</span>`).join('')}</div>`;
+    list.appendChild(w);
+  }
+  DAYS.filter(d=>d.d>=s&&d.d<=e).forEach(day=>{
+    const st=getStatus(day.d);
+    const hasPDF=day.d<=TODAY;
+    const sm=SUBJMAP[day.subj];
+    const isWT=day.type==='weekly-test';
+    const isFT=day.type==='full-test';
+    const card=document.createElement('div');
+    card.className=`dc ${st}${isWT?' week-test':''}${isFT?' full-test':''}`;
+    card.id=`dc${day.d}`;
+    const spMap={today:`<span class="sp sp-today">🔥 TODAY</span>`,completed:`<span class="sp sp-done">✓ DONE</span>`,available:`<span class="sp sp-open">▶ OPEN</span>`,locked:`<span class="sp sp-lock">🔒 LOCKED</span>`};
+    if(isFT)spMap.locked=`<span class="sp sp-test">🏆 FLT</span>`;
+    const pBtn=hasPDF?`<a href="${day.pdf}" target="_blank" class="ab ab-pdf">📄 PDF</a>`:`<span class="ab ab-lock">📄 Soon</span>`;
+    const mBtn=hasPDF?`<a href="${day.mock}" class="ab ab-mock">🧪 Mock</a>`:`<span class="ab ab-lock">🧪 Soon</span>`;
+    const yBtn=hasPDF?`<a href="${day.yt}" target="_blank" class="ab ab-yt">▶ YT</a>`:`<span class="ab ab-lock">▶ Soon</span>`;
+    const mockLabel=isWT?'25Q·15Min':isFT?'100Q·60Min':'25Q·15Min';
+    card.innerHTML=`<div class="dc-row" onclick="toggleExp(${day.d})"><div class="dc-num"><span class="dn">${String(day.d).padStart(2,'0')}</span></div><div class="dc-info"><div class="dt">${day.topic}</div><div class="ds">${day.sub}</div><div class="dtagwrap"><span class="dtag ${sm.c}">${sm.l}</span>${isWT?'<span class="dtag twt">⚡ WEEKLY TEST</span>':''}${isFT?'<span class="dtag tft">🏆 FULL TEST</span>':''}<span class="dtag" style="background:rgba(255,255,255,.04);color:var(--txt3);border:1px solid var(--border)">${mockLabel}</span></div></div><div class="dc-act">${pBtn}</div><div class="dc-act">${mBtn}</div><div class="dc-act">${yBtn}</div><div class="dc-act">${spMap[st]||spMap.locked}</div></div><div class="dc-expand" id="exp${day.d}"><div class="exp-grid"><div class="exp-box"><div class="eb-icon">📚</div><div class="eb-title">Today's Topics</div><div class="eb-sub">${day.sub}</div><div class="eb-list">${day.topics.map(t=>`<div class="eb-li">${t}</div>`).join('')}</div><div class="sc-box"><strong>⚡ Shortcut:</strong> ${day.shortcut}</div>${hasPDF?`<a href="${day.pdf}" target="_blank" class="eb-btn ebb-pdf">📄 Download PDF Notes</a>`:`<span class="eb-btn ebb-lock">📄 PDF Uploading Soon...</span>`}</div><div class="exp-box"><div class="eb-icon">🧪</div><div class="eb-title">${isWT?'Weekly Mix Test':isFT?'Full Length Test':'Daily Topic Mock'}</div><div class="eb-sub">${isWT?'25 Questions · 15 Minutes · All completed topics':isFT?'100 Questions · 60 Minutes · CGL Tier-1 pattern':"25 Questions · 15 Minutes · Today's topic only"}</div><div class="eb-list"><div class="eb-li">SSC CGL 2024 pattern</div><div class="eb-li">Detailed explanation each question</div><div class="eb-li">Score + accuracy tracker</div></div>${hasPDF?`<a href="${day.mock}" class="eb-btn ebb-mock">🧪 Start ${isWT?'Weekly':isFT?'Full':'Topic'} Mock</a>`:`<span class="eb-btn ebb-lock">🧪 Mock Uploading Soon</span>`}</div><div class="exp-box"><div class="eb-icon">▶</div><div class="eb-title">YouTube Video Solution</div><div class="eb-sub">@rankupexam — Hindi explanation + shortcuts live</div><div class="eb-list"><div class="eb-li">Full concept in Hindi</div><div class="eb-li">Shortcut tricks shown live</div><div class="eb-li">PYQ solutions step-by-step</div></div>${hasPDF?`<a href="${day.yt}" target="_blank" class="eb-btn ebb-yt">▶ Watch @rankupexam</a>`:`<span class="eb-btn ebb-lock">▶ Video Coming Soon</span>`}</div></div></div>`;
+    list.appendChild(card);
+  });
+}
+
+function toggleExp(d){const e=document.getElementById(`exp${d}`);if(!e)return;const open=e.classList.contains('open');document.querySelectorAll('.dc-expand.open').forEach(x=>x.classList.remove('open'));if(!open)e.classList.add('open')}
+function fw(n,el){document.querySelectorAll('.wt').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderDays(n);if(n>0){const[s]=WRANGES[n];setTimeout(()=>{const c=document.getElementById(`dc${s}`);if(c)c.scrollIntoView({behavior:'smooth',block:'start'})},80)}}
+
+// ═══════════════════════════
+// HARD SHIFTS DATA
+// ═══════════════════════════
+const SHIFTS=[
+  {yr:'2021',date:'11 Apr 2022',shift:'Shift 3',rank:1,label:'CGL 2021'},
+  {yr:'2021',date:'12 Apr 2022',shift:'Shift 2',rank:2,label:'CGL 2021'},
+  {yr:'2021',date:'12 Apr 2022',shift:'Shift 3',rank:1,label:'CGL 2021'},
+  {yr:'2021',date:'13 Apr 2022',shift:'Shift 3',rank:2,label:'CGL 2021'},
+  {yr:'2021',date:'20 Apr 2022',shift:'Shift 1',rank:3,label:'CGL 2021'},
+  {yr:'2021',date:'21 Apr 2022',shift:'Shift 2',rank:2,label:'CGL 2021'},
+  {yr:'2022',date:'12 Dec 2022',shift:'Shift 3',rank:1,label:'CGL 2022'},
+  {yr:'2022',date:'8 Dec 2022',shift:'Shift 1',rank:2,label:'CGL 2022'},
+  {yr:'2022',date:'1 Dec 2022',shift:'Shift 3',rank:1,label:'CGL 2022'},
+  {yr:'2022',date:'3 Dec 2022',shift:'Shift 1',rank:2,label:'CGL 2022'},
+  {yr:'2022',date:'13 Dec 2022',shift:'Shift 1',rank:3,label:'CGL 2022'},
+  {yr:'2023',date:'26 July 2023',shift:'Shift 1',rank:1,label:'CGL 2023'},
+  {yr:'2023',date:'18 July 2023',shift:'Shift 3',rank:2,label:'CGL 2023'},
+  {yr:'2023',date:'26 July 2023',shift:'Shift 4',rank:1,label:'CGL 2023'},
+  {yr:'2023',date:'19 July 2023',shift:'Shift 4',rank:2,label:'CGL 2023'},
+  {yr:'2023',date:'19 July 2023',shift:'Shift 2',rank:3,label:'CGL 2023'},
+  {yr:'2023',date:'14 July 2023',shift:'Shift 3',rank:2,label:'CGL 2023'},
+  {yr:'2024',date:'17 Sept 2024',shift:'Shift 3',rank:1,label:'CGL 2024'},
+  {yr:'2024',date:'18 Sept 2024',shift:'Shift 3',rank:1,label:'CGL 2024'},
+  {yr:'2024',date:'24 Sept 2024',shift:'Shift 1',rank:2,label:'CGL 2024'},
+  {yr:'2024',date:'10 Sept 2024',shift:'Shift 1',rank:3,label:'CGL 2024'},
+  {yr:'2024',date:'19 Sept 2024',shift:'Shift 3',rank:1,label:'CGL 2024'},
+  {yr:'2024',date:'12 Sept 2024',shift:'Shift 3',rank:2,label:'CGL 2024'},
+  {yr:'2025',date:'12 Sept 2025',shift:'Shift 3',rank:1,label:'CGL 2025'},
+  {yr:'2025',date:'18 Sept 2025',shift:'Shift 3',rank:1,label:'CGL 2025'},
+  {yr:'2025',date:'15 Sept 2025',shift:'Shift 3',rank:2,label:'CGL 2025'},
+  {yr:'2025',date:'20 Sept 2025',shift:'Shift 1',rank:2,label:'CGL 2025'},
+  {yr:'2025',date:'18 Sept 2025',shift:'Shift 1',rank:3,label:'CGL 2025'},
+  {yr:'2025',date:'16 Sept 2025',shift:'Shift 2',rank:2,label:'CGL 2025'},
+  {yr:'2025',date:'13 Sept 2025',shift:'Shift 2',rank:3,label:'CGL 2025'},
+];
+
+let activeYear='all';
+const yrColors={'2021':'hard-3','2022':'hard-2','2023':'hard-2','2024':'hard-1','2025':'hard-1'};
+const rankCls={1:'r1',2:'r2',3:'r3'};
+const rankLbl={1:'🔥 Hardest',2:'⚡ Very Hard',3:'💪 Hard'};
+
+function shiftCardHTML(s,i){
+  return `<div class="shift-card ${yrColors[s.yr]||'hard-2'}">
+    <div class="sc-top"><div class="sc-name">${s.date} · ${s.shift}</div><span class="sc-rank ${rankCls[s.rank]||'r3'}">${rankLbl[s.rank]||'Hard'}</span></div>
+    <div class="sc-meta">SSC ${s.label} · Shift #${i+1}</div>
+    <div class="sc-actions">
+      <a href="https://youtube.com/@rankupexam" target="_blank" class="sca sca-try">🧪 Attempt Now</a>
+      <a href="https://youtube.com/@rankupexam" target="_blank" class="sca sca-yt">▶ YT Solution</a>
+    </div></div>`;
+}
+
+function renderShifts(yr){
+  const filtered=yr==='all'?SHIFTS:SHIFTS.filter(s=>s.yr===yr);
+  const list=document.getElementById('shiftList');
+  if(list){list.innerHTML='';document.getElementById('shiftCount').textContent=filtered.length+' Shifts';filtered.forEach((s,i)=>{const d=document.createElement('div');d.innerHTML=shiftCardHTML(s,i);list.appendChild(d.firstElementChild)})}
+}
+function setYear(yr,el){activeYear=yr;document.querySelectorAll('.ryt').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderShifts(yr)}
+
+function renderShiftsFull(yr){
+  const filtered=yr==='all'?SHIFTS:SHIFTS.filter(s=>s.yr===yr);
+  const list=document.getElementById('shiftListFull');
+  if(list){list.innerHTML='';filtered.forEach((s,i)=>{const d=document.createElement('div');d.innerHTML=shiftCardHTML(s,i);list.appendChild(d.firstElementChild)})}
+}
+function setYearS(yr,el){document.querySelectorAll('#shiftYearTabs .ryt').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderShiftsFull(yr)}
+
+// ═══════════════════════════
+// INIT
+// ═══════════════════════════
+updateXPUI();
+renderHeatmap();
+renderShifts('all');
+
+// Restore today's checks from state
+if(STATE.todayChecks){
+  STATE.todayChecks.forEach((checked,idx)=>{
+    if(checked){
+      const item=document.querySelector(`.tcl-item:nth-child(${idx+1})`);
+      if(item){item.classList.add('checked');document.getElementById('chk'+idx).textContent='✓';checksDone++}
     }
-  };
+  });
+}
+updateCheckProgress();
 
-  let currentQuiz = null;
-  let currentQ = 0;
-  let score = 0;
-  let answered = false;
-
-  function startQuiz(id) {
-    currentQuiz = quizData[id];
-    currentQ = 0;
-    score = 0;
-    answered = false;
-    document.getElementById('quiz-title').textContent = currentQuiz.title;
-    document.getElementById('quiz-overlay').classList.add('active');
-    renderQuestion();
-  }
-
-  function renderQuestion() {
-    const quiz = currentQuiz;
-    const q = quiz.questions[currentQ];
-    const total = quiz.questions.length;
-    const progress = ((currentQ) / total) * 100;
-    document.getElementById('quiz-progress').style.width = progress + '%';
-
-    const html = `
-      <div class="quiz-question">Q${currentQ + 1}/${total}. ${q.q}</div>
-      <div class="quiz-options">
-        ${q.opts.map((opt, i) => `
-          <button class="quiz-option" onclick="selectOption(${i})">${String.fromCharCode(65+i)}) ${opt}</button>
-        `).join('')}
-      </div>
-      <div class="quiz-explanation" id="explanation">${q.exp}</div>
-      <div class="quiz-footer">
-        <div class="quiz-score">Score: ${score}/${currentQ}</div>
-        <button class="btn-primary" id="next-btn" onclick="nextQuestion()" style="display:none; padding:10px 20px; font-size:0.85rem;">
-          ${currentQ + 1 < total ? 'Next →' : 'Finish 🎯'}
-        </button>
-      </div>
-    `;
-    document.getElementById('quiz-body').innerHTML = html;
-    answered = false;
-  }
-
-  function selectOption(idx) {
-    if (answered) return;
-    answered = true;
-    const q = currentQuiz.questions[currentQ];
-    const opts = document.querySelectorAll('.quiz-option');
-    opts.forEach((btn, i) => {
-      btn.disabled = true;
-      if (i === q.ans) btn.classList.add('correct');
-      else if (i === idx && idx !== q.ans) btn.classList.add('wrong');
-    });
-    if (idx === q.ans) score++;
-    document.getElementById('explanation').classList.add('show');
-    document.getElementById('next-btn').style.display = 'inline-flex';
-    document.querySelector('.quiz-score').textContent = `Score: ${score}/${currentQ + 1}`;
-  }
-
-  function nextQuestion() {
-    currentQ++;
-    if (currentQ >= currentQuiz.questions.length) {
-      showResult();
-    } else {
-      renderQuestion();
-    }
-  }
-
-  function showResult() {
-    const total = currentQuiz.questions.length;
-    const pct = Math.round((score / total) * 100);
-    let msg = pct >= 80 ? '🏆 Ekdum zabardast!' : pct >= 60 ? '👍 Accha kiya! Thoda aur mehnat karo.' : '💪 Practice karo! Agle test mein better karoge.';
-    document.getElementById('quiz-progress').style.width = '100%';
-    document.getElementById('quiz-body').innerHTML = `
-      <div class="quiz-result">
-        <div class="result-score">${pct}%</div>
-        <div class="result-label">${score} out of ${total} correct</div>
-        <div class="result-msg">${msg}</div>
-        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-          <button class="btn-primary" onclick="startQuiz('${Object.keys(quizData).find(k => quizData[k] === currentQuiz)}')">Retry Test</button>
-          <button class="btn-outline" onclick="closeQuiz()">Back to Tests</button>
-        </div>
-      </div>
-    `;
-  }
-
-  function closeQuiz() {
-    document.getElementById('quiz-overlay').classList.remove('active');
-  }
+// If today already completed
+if(STATE.completedDays.includes(TODAY_DAY)){
+  const btn=document.getElementById('completeDayBtn');
+  btn.className='complete-btn done';
+  btn.textContent='🎉 Day '+TODAY_DAY+' Complete!';
+}
 </script>
 </body>
 </html>
