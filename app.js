@@ -7,6 +7,32 @@
  */
 
 /* ───────────────────────────────────────────────────────
+   0. THEME — Dark / Light with localStorage persistence
+   ─────────────────────────────────────────────────────── */
+const THEME_KEY = 'rankupexam_theme';
+function applyTheme(theme) {
+  const body = document.body;
+  const ttD  = document.getElementById('ttDark');
+  const ttL  = document.getElementById('ttLight');
+  if (theme === 'light') {
+    body.classList.add('light');
+    if (ttD) ttD.classList.remove('active');
+    if (ttL) ttL.classList.add('active');
+  } else {
+    body.classList.remove('light');
+    if (ttD) ttD.classList.add('active');
+    if (ttL) ttL.classList.remove('active');
+  }
+  localStorage.setItem(THEME_KEY, theme);
+}
+window.setTheme = function(theme) { applyTheme(theme); };
+// Restore saved theme on load
+(function() {
+  const saved = localStorage.getItem(THEME_KEY) || 'dark';
+  if (saved === 'light') document.body.classList.add('light');
+})();
+
+/* ───────────────────────────────────────────────────────
    1. ADMIN MODE
    ?admin=true in URL → sets localStorage flag
    Persists across page reloads.
@@ -613,6 +639,10 @@ function injectBranding() {
    17. INIT
    ─────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
+  // Restore theme toggle UI
+  const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+  applyTheme(savedTheme);
+
   injectBranding();
   updateXPUI();
   renderTodayView();
