@@ -4,484 +4,122 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RankUpExam — 60+10 Day SSC CGL Operating System</title>
+<meta name="description" content="70-day SSC CGL preparation system. Daily PDF notes, 15-min mock tests, YouTube solutions. Start 8 June 2026.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="RankUpExam — 60+10 Day SSC CGL System">
+<meta property="og:description" content="Systematic 70-day SSC CGL preparation with daily PDF, mock, and video.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://rankupexam.github.io/">
+
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#04060a;--bg2:rgba(255,255,255,.022);--bg3:rgba(255,255,255,.035);--bg4:rgba(255,255,255,.05);
-  --border:rgba(255,255,255,.06);--bb:rgba(59,130,246,.2);--ba:rgba(200,170,110,.2);
-  --blue:#3b82f6;--blt:#60a5fa;--cyan:#7ab8d4;--violet:#9d8ecb;
-  --em:#6dbf9e;--amb:#c8aa6e;--red:#c97070;--org:#c48a5a;--pink:#c47ea0;
-  --txt:#e8e2d4;--txt2:#8a8070;--txt3:#4a4540;--txt4:#1a1510;
-  --gold:#c8aa6e;--gold2:#e8d090;--spotlight:rgba(20,40,90,.6);
-  --mono:'JetBrains Mono',monospace;--sans:'Outfit',sans-serif;--serif:'Cormorant Garamond',serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--txt);overflow-x:hidden;min-height:100vh;cursor:default}
 
-/* CINEMATIC CURSOR */
-body *{cursor:default}
-a,button,[onclick]{cursor:pointer!important}
-
-#vfx-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.noise-overlay{position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.45;mix-blend-mode:overlay}
-.vignette{position:fixed;inset:0;background:radial-gradient(ellipse at 70% 50%,transparent 20%,rgba(4,6,10,.85) 75%);pointer-events:none;z-index:2}
-/* Cinematic blue glow orb — like the LOURVE screenshot */
-.cinema-glow{position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(15,40,120,.35) 0%,rgba(10,25,80,.15) 40%,transparent 70%);top:50%;left:50%;transform:translate(-20%,-50%);pointer-events:none;z-index:1;animation:glowPulse 6s ease-in-out infinite}
-
-/* ═══ NAV ═══ */
-.nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:56px;background:rgba(4,6,10,.88);backdrop-filter:blur(30px);border-bottom:1px solid rgba(200,170,110,.08)}
-.nl-logo{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--txt);text-decoration:none;font-family:var(--mono)}
-.ld{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold),0 0 24px rgba(200,170,110,.3);animation:breathe 3s ease-in-out infinite}
-.nav-c{display:flex;align-items:center;gap:8px}
-.soc{display:flex;align-items:center;gap:5px;padding:5px 12px;font-size:10px;font-family:var(--mono);color:var(--txt3);text-decoration:none;border:1px solid rgba(255,255,255,.05);border-radius:4px;transition:all .3s;letter-spacing:.06em}
-.soc.yt:hover{color:#ff5555;border-color:rgba(255,85,85,.25);background:rgba(255,85,85,.04)}
-.soc.tg:hover{color:#4ab3d4;border-color:rgba(74,179,212,.25);background:rgba(74,179,212,.04)}
-
-/* XP BADGE in nav */
-.xp-badge{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:4px;background:rgba(200,170,110,.06);border:1px solid rgba(200,170,110,.15);cursor:default}
-.xp-badge-icon{font-size:11px}
-.xp-badge-val{font-size:10px;font-family:var(--mono);font-weight:700;color:var(--gold);letter-spacing:.05em}
-.xp-badge-streak{font-size:9px;font-family:var(--mono);color:var(--org);display:flex;align-items:center;gap:3px}
-
-.btn-nv{padding:6px 16px;font-size:10px;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0800;border:none;border-radius:4px;cursor:pointer;transition:all .25s;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase}
-.btn-nv:hover{opacity:.88;transform:translateY(-1px);box-shadow:0 4px 20px rgba(200,170,110,.25)}
-
-/* ═══ STICKY HEADER ═══ */
-.sticky-hdr{position:sticky;top:56px;z-index:400;background:rgba(4,6,10,.94);backdrop-filter:blur(24px);border-bottom:1px solid rgba(200,170,110,.07);padding:0;overflow-x:auto;scrollbar-width:none}.sticky-hdr::-webkit-scrollbar{display:none}
-.sh-inner{display:flex;align-items:center;gap:0;height:44px;min-width:max-content}
-.sh-brand{padding:0 18px;border-right:1px solid rgba(200,170,110,.07);display:flex;align-items:center;gap:8px;height:100%}
-.sh-brand-txt{font-size:10px;font-family:var(--mono);font-weight:700;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
-.sh-prog-wrap{padding:0 14px;display:flex;align-items:center;gap:8px;border-right:1px solid rgba(200,170,110,.07);flex-shrink:0}
-.sh-prog-lbl{font-size:9px;font-family:var(--mono);color:var(--txt3);white-space:nowrap;letter-spacing:.08em}
-.sh-prog-track{width:80px;height:2px;background:rgba(255,255,255,.04);border-radius:1px;overflow:hidden}
-.sh-prog-fill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width 1.2s ease}
-.sh-day-count{font-size:11px;font-family:var(--mono);font-weight:700;color:var(--gold);white-space:nowrap;letter-spacing:.05em}
-
-/* TIMER */
-.timer-pod{padding:0 14px;display:flex;align-items:center;gap:10px;height:100%}
-.tp-label{font-size:9px;font-family:var(--mono);color:var(--txt3);letter-spacing:.15em;text-transform:uppercase}
-.tp-display{font-size:15px;font-family:var(--mono);font-weight:400;letter-spacing:2px;color:var(--cyan);min-width:68px;opacity:.9}
-.tp-display.running{animation:glow-cyan 1.5s ease-in-out infinite}
-.tp-controls{display:flex;gap:4px}
-.tp-select{padding:3px 8px;font-size:9px;font-family:var(--mono);background:rgba(0,0,0,.5);border:1px solid rgba(200,170,110,.1);border-radius:3px;color:var(--txt2);outline:none;cursor:pointer}
-.tp-btn{width:24px;height:24px;border-radius:3px;border:1px solid rgba(200,170,110,.1);background:rgba(200,170,110,.04);color:var(--txt3);cursor:pointer;font-size:10px;display:flex;align-items:center;justify-content:center;transition:all .25s}
-.tp-btn:hover{background:rgba(122,184,212,.1);border-color:rgba(122,184,212,.25);color:var(--cyan)}
-.tp-btn.stop:hover{background:rgba(201,112,112,.1);border-color:rgba(201,112,112,.25);color:var(--red)}
-
-/* ═══ PAGE ═══ */
-.page{position:relative;z-index:10;padding-top:116px;padding-bottom:80px;max-width:1440px;margin:0 auto;padding-left:24px;padding-right:24px}
-
-/* ═══ VIEW SWITCHER ═══ */
-.view-switcher{display:flex;gap:0;margin-bottom:24px;border-bottom:1px solid rgba(200,170,110,.08)}
-.vs-btn{flex:none;padding:10px 20px;font-size:10px;font-family:var(--mono);font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all .3s;background:transparent;color:var(--txt3);text-align:center}
-.vs-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
-.vs-btn:hover:not(.active){color:var(--txt2)}
-
-/* ═══ TODAY VIEW ═══ */
-.today-view{display:block}
-.roadmap-view{display:none}
-
-/* TODAY HERO */
-.today-hero{margin-bottom:24px;position:relative;padding:20px 0 24px;border-bottom:1px solid rgba(200,170,110,.07)}
-.th-greeting{font-size:9px;font-family:var(--mono);color:var(--txt3);letter-spacing:.25em;text-transform:uppercase;margin-bottom:10px}
-.th-daynum{font-size:clamp(44px,7vw,80px);font-weight:300;letter-spacing:-4px;line-height:1;color:var(--gold);display:inline;margin-right:16px;font-family:var(--serif);font-style:italic}
-.th-topic{font-size:clamp(20px,2.8vw,34px);font-weight:300;letter-spacing:-.3px;line-height:1.2;color:var(--txt);font-family:var(--serif)}
-.th-sub{font-size:11px;font-family:var(--mono);color:var(--txt3);margin-top:8px;letter-spacing:.04em}
-
-/* STREAK DASHBOARD */
-.streak-dash{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
-.sd-card{background:rgba(255,255,255,.018);border:1px solid rgba(200,170,110,.07);border-radius:4px;padding:16px 18px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
-.sd-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,170,110,.02),transparent);pointer-events:none}
-.sd-card:hover{border-color:rgba(200,170,110,.14);background:rgba(200,170,110,.03)}
-.sd-icon{font-size:18px;margin-bottom:6px;opacity:.8}
-.sd-val{font-size:24px;font-weight:300;font-family:var(--serif);letter-spacing:-1px;margin-bottom:3px;font-style:italic}
-.sd-lbl{font-size:8.5px;font-family:var(--mono);color:var(--txt3);letter-spacing:.14em;text-transform:uppercase}
-.sd-streak .sd-val{color:var(--org)}
-.sd-xp .sd-val{color:var(--gold)}
-.sd-done .sd-val{color:var(--em)}
-.sd-rank .sd-val{color:var(--violet)}
-
-/* STREAK FIRE DISPLAY */
-.streak-fire{font-size:24px;animation:fire 0.8s ease-in-out infinite alternate}
-@keyframes fire{from{transform:scale(1)}to{transform:scale(1.15)}}
-
-/* XP BAR */
-.xp-bar-wrap{margin-bottom:20px;background:rgba(255,255,255,.015);border:1px solid rgba(200,170,110,.07);border-radius:4px;padding:16px 18px}
-.xp-bar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.xp-title{font-size:11px;font-weight:600;color:var(--txt);display:flex;align-items:center;gap:6px;letter-spacing:.04em}
-.xp-level{font-size:9px;font-family:var(--mono);font-weight:700;padding:2px 8px;border-radius:2px;background:rgba(157,142,203,.08);color:var(--violet);border:1px solid rgba(157,142,203,.15);letter-spacing:.08em}
-.xp-count{font-size:9px;font-family:var(--mono);color:var(--txt3);letter-spacing:.04em}
-.xp-bar-track{height:2px;background:rgba(255,255,255,.04);border-radius:1px;overflow:hidden;position:relative}
-.xp-bar-fill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width 1s ease;position:relative}
-.xp-bar-fill::after{content:'';position:absolute;top:0;right:0;bottom:0;width:30px;background:rgba(255,255,255,.4);filter:blur(4px)}
-.xp-milestones{display:flex;justify-content:space-between;margin-top:8px}
-.xp-ms{font-size:8px;font-family:var(--mono);color:var(--txt3);letter-spacing:.04em}
-
-/* TODAY MISSION */
-.today-mission{background:linear-gradient(135deg,rgba(30,60,120,.06),rgba(20,45,90,.03));border:1px solid rgba(59,130,246,.12);border-radius:4px;padding:22px;margin-bottom:20px}
-.tm-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:8px}
-.tm-title{font-size:14px;font-weight:300;color:var(--txt);display:flex;align-items:center;gap:10px;font-family:var(--serif);letter-spacing:.02em}
-.tm-badge{font-size:8.5px;font-family:var(--mono);padding:2px 8px;border-radius:2px;background:rgba(59,130,246,.1);color:var(--cyan);border:1px solid rgba(59,130,246,.15);letter-spacing:.1em}
-.tm-shortcut{font-size:11px;font-family:var(--mono);color:var(--cyan);background:rgba(20,50,90,.08);border:1px solid rgba(122,184,212,.1);border-radius:3px;padding:10px 14px;margin-bottom:16px;line-height:1.6;opacity:.85}
-.tm-shortcut strong{color:var(--gold)}
-.tm-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.tm-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:16px 12px;border-radius:3px;text-decoration:none;border:1px solid;transition:all .25s;cursor:pointer;position:relative;overflow:hidden}
-.tm-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(255,255,255,.02));pointer-events:none}
-.tm-btn:hover{transform:translateY(-2px)}
-.tm-btn-icon{font-size:18px;opacity:.85}
-.tm-btn-label{font-size:9.5px;font-weight:600;font-family:var(--mono);letter-spacing:.08em}
-.tm-btn-sub{font-size:8px;font-family:var(--mono);opacity:.55;letter-spacing:.04em}
-.tm-pdf{background:rgba(59,130,246,.05);border-color:rgba(59,130,246,.15);color:var(--cyan)}
-.tm-pdf:hover{background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.3)}
-.tm-mock{background:rgba(109,191,158,.05);border-color:rgba(109,191,158,.15);color:var(--em)}
-.tm-mock:hover{background:rgba(109,191,158,.1);border-color:rgba(109,191,158,.3);box-shadow:0 0 24px rgba(109,191,158,.08)}
-.tm-yt{background:rgba(201,112,112,.05);border-color:rgba(201,112,112,.15);color:var(--red)}
-.tm-yt:hover{background:rgba(201,112,112,.1);border-color:rgba(201,112,112,.25)}
-.tm-lock{background:transparent;border-color:var(--border);color:var(--txt3);cursor:not-allowed;opacity:.4}
-
-/* TOPIC CHECKLIST */
-.topic-checklist{background:rgba(255,255,255,.015);border:1px solid rgba(200,170,110,.07);border-radius:4px;padding:16px 18px;margin-bottom:20px}
-.tcl-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.tcl-title{font-size:11px;font-weight:600;color:var(--txt);letter-spacing:.06em;font-family:var(--mono)}
-.tcl-progress{font-size:10px;font-family:var(--mono);color:var(--em);letter-spacing:.04em}
-.tcl-items{display:flex;flex-direction:column;gap:5px}
-.tcl-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:3px;border:1px solid rgba(200,170,110,.06);background:rgba(0,0,0,.15);cursor:pointer;transition:all .25s;user-select:none}
-.tcl-item.checked{background:rgba(109,191,158,.03);border-color:rgba(109,191,158,.14)}
-.tcl-item:hover{border-color:rgba(200,170,110,.12)}
-.tcl-check{width:14px;height:14px;border-radius:2px;border:1px solid rgba(200,170,110,.2);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;transition:all .25s}
-.tcl-item.checked .tcl-check{background:var(--em);border-color:var(--em);color:#000}
-.tcl-text{font-size:11px;font-family:var(--mono);color:var(--txt2);flex:1;letter-spacing:.02em}
-.tcl-item.checked .tcl-text{color:var(--txt3);text-decoration:line-through}
-
-/* COMPLETE BUTTON */
-.complete-btn{width:100%;padding:15px;font-size:11px;font-weight:700;font-family:var(--mono);border:none;border-radius:3px;cursor:pointer;transition:all .3s;letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px;position:relative;overflow:hidden}
-.complete-btn.ready{background:linear-gradient(135deg,var(--em),#3a9f75);color:#000;box-shadow:0 0 40px rgba(109,191,158,.2)}
-.complete-btn.ready:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(109,191,158,.3)}
-.complete-btn.done{background:rgba(109,191,158,.06);color:var(--em);border:1px solid rgba(109,191,158,.15);cursor:default}
-.complete-btn.locked{background:rgba(255,255,255,.025);color:var(--txt3);border:1px solid rgba(200,170,110,.06);cursor:not-allowed}
-.complete-btn .cb-pulse{position:absolute;inset:0;background:rgba(255,255,255,.08);border-radius:inherit;animation:pulse-out .6s ease-out forwards;opacity:0}
-@keyframes pulse-out{0%{opacity:.4;transform:scale(.95)}100%{opacity:0;transform:scale(1.02)}}
-
-/* WEEK HEAT MAP */
-.week-heatmap{background:rgba(255,255,255,.015);border:1px solid rgba(200,170,110,.07);border-radius:4px;padding:16px 18px;margin-bottom:20px}
-.wh-title{font-size:11px;font-weight:600;color:var(--txt);margin-bottom:14px;letter-spacing:.06em;font-family:var(--mono)}
-.wh-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:8px}
-.wh-cell{aspect-ratio:1;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-family:var(--mono);cursor:default;transition:all .25s;border:1px solid transparent}
-.wh-cell.done{background:rgba(109,191,158,.15);border-color:rgba(109,191,158,.25);color:var(--em)}
-.wh-cell.today{background:rgba(200,170,110,.12);border-color:rgba(200,170,110,.35);color:var(--gold);animation:breathe 2s ease-in-out infinite}
-.wh-cell.open{background:rgba(59,130,246,.06);border-color:rgba(59,130,246,.12);color:var(--cyan)}
-.wh-cell.locked{background:rgba(255,255,255,.015);border-color:rgba(200,170,110,.04);color:var(--txt3)}
-.wh-week-label{font-size:8px;font-family:var(--mono);color:var(--txt3);margin-top:2px;letter-spacing:.05em}
-.wh-legend{display:flex;gap:14px;flex-wrap:wrap}
-.wh-leg-item{display:flex;align-items:center;gap:5px;font-size:8px;font-family:var(--mono);color:var(--txt3);letter-spacing:.04em}
-.wh-leg-dot{width:7px;height:7px;border-radius:1px}
-
-/* QUICK STATS ROW */
-.quick-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
-.qs-card{background:rgba(255,255,255,.015);border:1px solid rgba(200,170,110,.07);border-radius:4px;padding:14px;text-align:center}
-.qs-val{font-size:22px;font-weight:300;font-family:var(--serif);letter-spacing:-1px;font-style:italic}
-.qs-lbl{font-size:8.5px;font-family:var(--mono);color:var(--txt3);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
-
-/* TELEGRAM CTA */
-.tg-cta{background:linear-gradient(135deg,rgba(20,60,100,.07),rgba(10,40,80,.03));border:1px solid rgba(74,179,212,.12);border-radius:4px;padding:18px;margin-bottom:20px;display:flex;align-items:center;gap:16px}
-.tg-cta-icon{font-size:26px;flex-shrink:0;opacity:.8}
-.tg-cta-content{flex:1}
-.tg-cta-title{font-size:12px;font-weight:600;color:var(--txt);margin-bottom:4px;letter-spacing:.03em}
-.tg-cta-sub{font-size:10px;font-family:var(--mono);color:var(--txt3);line-height:1.6;letter-spacing:.02em}
-.tg-cta-btn{display:flex;align-items:center;gap:6px;padding:9px 16px;background:rgba(74,179,212,.08);border:1px solid rgba(74,179,212,.18);border-radius:3px;color:var(--cyan);font-size:9.5px;font-family:var(--mono);font-weight:700;text-decoration:none;white-space:nowrap;transition:all .25s;flex-shrink:0;letter-spacing:.08em;text-transform:uppercase}
-.tg-cta-btn:hover{background:rgba(74,179,212,.15);transform:translateY(-1px)}
-
-/* COMPLETION OVERLAY */
-.completion-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:rgba(4,6,10,.94);backdrop-filter:blur(30px);opacity:0;pointer-events:none;transition:opacity .5s}
-.completion-overlay.show{opacity:1;pointer-events:all}
-.completion-modal{text-align:center;padding:50px 40px;max-width:380px;border:1px solid rgba(200,170,110,.12);background:rgba(10,15,25,.6);border-radius:4px}
-.cm-emoji{font-size:56px;animation:bounce 0.7s ease infinite alternate;display:block;margin-bottom:20px}
-@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-8px)}}
-.cm-title{font-size:32px;font-weight:300;letter-spacing:-1px;color:var(--em);margin-bottom:8px;font-family:var(--serif);font-style:italic}
-.cm-xp{font-size:11px;font-family:var(--mono);color:var(--gold);margin-bottom:24px;letter-spacing:.06em}
-.cm-next{padding:13px 28px;background:linear-gradient(135deg,var(--em),#3a9f75);color:#000;font-size:10px;font-weight:700;font-family:var(--mono);border:none;border-radius:3px;cursor:pointer;transition:all .25s;letter-spacing:.12em;text-transform:uppercase}
-.cm-next:hover{transform:scale(1.04)}
-
-/* ═══ ROADMAP VIEW ═══ */
-.roadmap-view .main-layout{display:grid;grid-template-columns:1fr 340px;gap:16px;align-items:start}
-
-/* ═══ HERO (roadmap) ═══ */
-.hero{text-align:center;padding:20px 0 28px;border-bottom:1px solid rgba(200,170,110,.07);margin-bottom:20px}
-.h-badge{display:inline-flex;align-items:center;gap:8px;padding:4px 16px;border-radius:100px;border:1px solid rgba(200,170,110,.18);background:rgba(200,170,110,.04);font-size:9.5px;font-family:var(--mono);font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px}
-.h-badge-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);animation:breathe 2s ease-in-out infinite}
-.h-title{font-size:clamp(28px,4vw,52px);font-weight:300;letter-spacing:-2px;line-height:1.05;margin-bottom:12px;font-family:var(--serif);font-style:italic}
-.h-title .d60{color:var(--gold)}
-.h-title .cgl{color:var(--cyan);-webkit-text-fill-color:var(--cyan)}
-.h-sub{font-size:11px;color:var(--txt3);max-width:500px;margin:0 auto 18px;line-height:1.8;font-family:var(--mono);letter-spacing:.02em}
-.h-pills{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
-.h-pill{padding:5px 14px;border-radius:3px;font-size:10px;font-weight:600;font-family:var(--mono);text-decoration:none;border:1px solid;transition:all .25s;letter-spacing:.06em}
-.hp-yt{background:rgba(201,112,112,.06);color:var(--red);border-color:rgba(201,112,112,.15)}
-.hp-yt:hover{background:rgba(201,112,112,.12)}
-.hp-tg{background:rgba(74,179,212,.06);color:var(--cyan);border-color:rgba(74,179,212,.15)}
-.hp-tg:hover{background:rgba(74,179,212,.12)}
-.hp-g{background:rgba(109,191,158,.06);color:var(--em);border-color:rgba(109,191,158,.15)}
-
-/* MILESTONE BAR */
-.milestone-bar{background:rgba(255,255,255,.015);border:1px solid rgba(200,170,110,.07);border-radius:4px;padding:18px 20px;margin-bottom:16px}
-.mb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px}
-.mb-title{font-size:11px;font-weight:600;color:var(--txt);letter-spacing:.08em;font-family:var(--mono)}
-.mb-meta{font-size:9.5px;font-family:var(--mono);color:var(--txt3);letter-spacing:.04em}
-.mb-track{height:2px;background:rgba(255,255,255,.04);border-radius:1px;overflow:hidden;margin-bottom:12px;position:relative}
-.mb-fill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--red));transition:width 1.2s ease}
-.mb-ticks{display:flex;justify-content:space-between}
-.mbt{text-align:center;font-size:8px;font-family:var(--mono);color:var(--txt3);line-height:1.5;letter-spacing:.04em}
-.mbt.done .mbd{background:var(--gold);border-color:var(--gold)}
-.mbt.curr .mbd{background:var(--cyan);border-color:var(--cyan);animation:breathe 1.5s ease-in-out infinite}
-.mbt.test-z .mbd{background:var(--violet);border-color:var(--violet)}
-.mbd{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.04);border:1px solid rgba(200,170,110,.12);margin:0 auto 4px}
-
-/* LEFT PANEL */
-.left-panel{}
-.week-scroll{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;scrollbar-width:thin}
-.week-scroll::-webkit-scrollbar{height:2px}
-.week-scroll::-webkit-scrollbar-thumb{background:rgba(200,170,110,.15);border-radius:1px}
-.wt{padding:5px 14px;font-size:9.5px;font-family:var(--mono);font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.02);border:1px solid rgba(200,170,110,.07);border-radius:2px;color:var(--txt3);cursor:pointer;transition:all .25s;white-space:nowrap;flex-shrink:0}
-.wt:hover{border-color:rgba(200,170,110,.18);color:var(--txt2)}
-.wt.active{background:rgba(200,170,110,.07);border-color:rgba(200,170,110,.22);color:var(--gold)}
-.wt.test-wk{background:rgba(157,142,203,.05);border-color:rgba(157,142,203,.18);color:var(--violet)}
-
-.tbl-hdr{display:grid;grid-template-columns:44px 1fr 100px 100px 100px 80px;gap:0;padding:6px 12px;margin-bottom:6px}
-.th{font-size:8px;font-family:var(--mono);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
-
-.days-wrap{display:flex;flex-direction:column;gap:5px}
-.dc{background:rgba(255,255,255,.015);border:1px solid rgba(200,170,110,.06);border-radius:3px;overflow:hidden;transition:border-color .25s,box-shadow .25s;cursor:pointer}
-.dc:hover{border-color:rgba(200,170,110,.16)}
-.dc.today{border-color:rgba(200,170,110,.3);background:rgba(200,170,110,.02)}
-.dc.completed{border-color:rgba(109,191,158,.14)}
-.dc.locked{opacity:.35;cursor:not-allowed}
-.dc.full-test{border-color:rgba(157,142,203,.18);background:rgba(157,142,203,.015)}
-.dc.full-test:hover{border-color:rgba(157,142,203,.3)}
-.dc.week-test{border-color:rgba(122,184,212,.15);background:rgba(122,184,212,.01)}
-.dc-row{display:grid;grid-template-columns:44px 1fr 100px 100px 100px 80px;gap:0;align-items:center;padding:12px}
-.dc-num{font-size:10px;font-family:var(--mono);font-weight:700;color:var(--txt3)}
-.dc-num .dn{font-size:16px;font-weight:300;color:var(--txt);display:block;line-height:1;letter-spacing:-1px;font-family:var(--serif);font-style:italic}
-.dc-info .dt{font-size:12px;font-weight:500;color:var(--txt);letter-spacing:-.1px;margin-bottom:2px;font-family:var(--sans)}
-.dc-info .ds{font-size:10px;font-family:var(--mono);color:var(--txt3)}
-.dc-info .dtagwrap{margin-top:5px;display:flex;gap:4px;flex-wrap:wrap}
-.dtag{padding:1px 7px;border-radius:2px;font-size:8px;font-family:var(--mono);font-weight:700;letter-spacing:.08em}
-.tq{background:rgba(59,130,246,.08);color:var(--cyan);border:1px solid rgba(59,130,246,.14)}
-.te{background:rgba(109,191,158,.08);color:var(--em);border:1px solid rgba(109,191,158,.14)}
-.tr{background:rgba(157,142,203,.08);color:var(--violet);border:1px solid rgba(157,142,203,.14)}
-.tg{background:rgba(200,170,110,.08);color:var(--gold);border:1px solid rgba(200,170,110,.14)}
-.twt{background:rgba(122,184,212,.08);color:var(--cyan);border:1px solid rgba(122,184,212,.14)}
-.tft{background:rgba(196,126,160,.08);color:var(--pink);border:1px solid rgba(196,126,160,.14)}
-.dc-act{display:flex;align-items:center;justify-content:center}
-.ab{display:inline-flex;align-items:center;justify-content:center;gap:4px;padding:5px 10px;font-size:9px;font-weight:600;font-family:var(--mono);border-radius:2px;text-decoration:none;transition:all .2s;border:1px solid;white-space:nowrap;letter-spacing:.05em}
-.ab-pdf{background:rgba(59,130,246,.05);color:var(--cyan);border-color:rgba(59,130,246,.15)}
-.ab-pdf:hover{background:rgba(59,130,246,.12);transform:translateY(-1px)}
-.ab-mock{background:rgba(109,191,158,.05);color:var(--em);border-color:rgba(109,191,158,.15)}
-.ab-mock:hover{background:rgba(109,191,158,.12);transform:translateY(-1px)}
-.ab-yt{background:rgba(201,112,112,.05);color:var(--red);border-color:rgba(201,112,112,.14)}
-.ab-yt:hover{background:rgba(201,112,112,.12);transform:translateY(-1px)}
-.ab-lock{background:transparent;color:var(--txt3);border-color:rgba(200,170,110,.06);cursor:not-allowed;opacity:.5}
-.sp{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:100px;font-size:7.5px;font-family:var(--mono);font-weight:700;letter-spacing:.06em}
-.sp-today{background:rgba(200,170,110,.08);color:var(--gold);border:1px solid rgba(200,170,110,.22)}
-.sp-done{background:rgba(109,191,158,.06);color:var(--em);border:1px solid rgba(109,191,158,.16)}
-.sp-open{background:rgba(59,130,246,.06);color:var(--cyan);border:1px solid rgba(59,130,246,.15)}
-.sp-lock{background:rgba(100,116,139,.04);color:var(--txt3);border:1px solid rgba(200,170,110,.06)}
-.sp-test{background:rgba(157,142,203,.08);color:var(--violet);border:1px solid rgba(157,142,203,.2)}
-
-.dc-expand{display:none;border-top:1px solid rgba(200,170,110,.06);padding:18px;background:rgba(0,0,0,.3);animation:fadeDown .25s ease}
-.dc-expand.open{display:block}
-.exp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.exp-box{background:rgba(0,0,0,.35);border:1px solid rgba(200,170,110,.06);border-radius:3px;padding:14px}
-.eb-icon{font-size:15px;margin-bottom:8px;opacity:.75}
-.eb-title{font-size:11px;font-weight:600;color:var(--txt);margin-bottom:3px;letter-spacing:.04em}
-.eb-sub{font-size:9.5px;font-family:var(--mono);color:var(--txt3);line-height:1.6;margin-bottom:10px}
-.eb-list{margin-bottom:10px}
-.eb-li{font-size:9px;font-family:var(--mono);color:var(--txt2);padding:2px 0;display:flex;align-items:flex-start;gap:5px;letter-spacing:.02em}
-.eb-li::before{content:'—';color:var(--gold);flex-shrink:0;opacity:.5}
-.sc-box{background:rgba(200,170,110,.03);border:1px solid rgba(200,170,110,.08);border-radius:2px;padding:9px 11px;font-size:9.5px;font-family:var(--mono);color:var(--txt2);line-height:1.6;margin-bottom:10px}
-.sc-box strong{color:var(--gold)}
-.eb-btn{display:flex;align-items:center;justify-content:center;gap:5px;padding:8px 10px;font-size:9.5px;font-weight:600;font-family:var(--mono);border-radius:2px;text-decoration:none;transition:all .25s;border:1px solid;width:100%;letter-spacing:.06em}
-.ebb-pdf{background:rgba(59,130,246,.05);color:var(--cyan);border-color:rgba(59,130,246,.18)}
-.ebb-pdf:hover{background:rgba(59,130,246,.12)}
-.ebb-mock{background:rgba(109,191,158,.05);color:var(--em);border-color:rgba(109,191,158,.18)}
-.ebb-mock:hover{background:rgba(109,191,158,.12)}
-.ebb-yt{background:rgba(201,112,112,.05);color:var(--red);border-color:rgba(201,112,112,.14)}
-.ebb-yt:hover{background:rgba(201,112,112,.12)}
-.ebb-lock{background:transparent;color:var(--txt3);border-color:rgba(200,170,110,.06);cursor:not-allowed}
-
-.wk-sum{background:rgba(122,184,212,.03);border:1px solid rgba(122,184,212,.1);border-radius:3px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.wks-t{font-size:12px;font-weight:500;color:var(--cyan);letter-spacing:.02em}
-.wks-s{font-size:10px;font-family:var(--mono);color:var(--txt3)}
-.wks-ps{display:flex;gap:6px;flex-wrap:wrap}
-.wksp{padding:2px 9px;border-radius:100px;font-size:8px;font-family:var(--mono);font-weight:700;letter-spacing:.04em}
-
-/* RIGHT PANEL */
-.right-panel{position:sticky;top:108px}
-.rp-card{background:rgba(4,6,10,.8);border:1px solid rgba(201,112,112,.12);border-radius:4px;overflow:hidden;backdrop-filter:blur(20px)}
-.rp-hdr{padding:18px 20px;border-bottom:1px solid rgba(201,112,112,.08);background:linear-gradient(135deg,rgba(201,112,112,.05),rgba(200,170,110,.02))}
-.rp-hdr-badge{display:flex;align-items:center;gap:7px;margin-bottom:7px}
-.rp-hdr-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:breathe 1.5s ease-in-out infinite;box-shadow:0 0 8px rgba(201,112,112,.4)}
-.rp-hdr-lbl{font-size:8.5px;font-family:var(--mono);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
-.rp-hdr-title{font-size:15px;font-weight:300;letter-spacing:-.3px;color:var(--txt);margin-bottom:4px;font-family:var(--serif);font-style:italic}
-.rp-hdr-sub{font-size:9.5px;font-family:var(--mono);color:var(--txt3);line-height:1.6;letter-spacing:.02em}
-.rp-year-tabs{display:flex;gap:4px;padding:12px 14px;border-bottom:1px solid rgba(200,170,110,.06);overflow-x:auto;scrollbar-width:none}
-.rp-year-tabs::-webkit-scrollbar{display:none}
-.ryt{padding:4px 12px;font-size:9.5px;font-family:var(--mono);font-weight:700;border-radius:2px;border:1px solid rgba(200,170,110,.08);background:transparent;color:var(--txt3);cursor:pointer;transition:all .25s;flex-shrink:0;letter-spacing:.06em}
-.ryt:hover{border-color:rgba(201,112,112,.25);color:var(--red)}
-.ryt.active{background:rgba(201,112,112,.08);border-color:rgba(201,112,112,.22);color:var(--red)}
-.rp-shifts{padding:10px 14px;display:flex;flex-direction:column;gap:5px;max-height:420px;overflow-y:auto}
-.rp-shifts::-webkit-scrollbar{width:2px}
-.rp-shifts::-webkit-scrollbar-thumb{background:rgba(200,170,110,.12);border-radius:1px}
-.shift-card{background:rgba(255,255,255,.015);border:1px solid rgba(200,170,110,.06);border-radius:3px;padding:11px 13px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
-.shift-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--red);opacity:.3;transition:opacity .25s}
-.shift-card:hover{border-color:rgba(201,112,112,.2);background:rgba(201,112,112,.025)}
-.shift-card:hover::before{opacity:.8}
-.shift-card.hard-1::before{background:var(--red)}
-.shift-card.hard-2::before{background:var(--org)}
-.shift-card.hard-3::before{background:var(--gold)}
-.sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
-.sc-name{font-size:10.5px;font-weight:600;color:var(--txt);letter-spacing:-.1px;font-family:var(--sans)}
-.sc-rank{font-size:8px;font-family:var(--mono);padding:2px 7px;border-radius:2px;letter-spacing:.06em}
-.r1{background:rgba(201,112,112,.1);color:var(--red);border:1px solid rgba(201,112,112,.18)}
-.r2{background:rgba(200,170,110,.08);color:var(--gold);border:1px solid rgba(200,170,110,.16)}
-.r3{background:rgba(109,191,158,.06);color:var(--em);border:1px solid rgba(109,191,158,.15)}
-.sc-meta{font-size:9px;font-family:var(--mono);color:var(--txt3);letter-spacing:.02em}
-.sc-actions{display:flex;gap:5px;margin-top:9px}
-.sca{flex:1;padding:5px 8px;font-size:8.5px;font-family:var(--mono);font-weight:600;border-radius:2px;text-decoration:none;text-align:center;transition:all .25s;border:1px solid;letter-spacing:.04em}
-.sca-try{background:rgba(201,112,112,.06);color:var(--red);border-color:rgba(201,112,112,.16)}
-.sca-try:hover{background:rgba(201,112,112,.14)}
-.sca-yt{background:rgba(59,130,246,.05);color:var(--cyan);border-color:rgba(59,130,246,.15)}
-.sca-yt:hover{background:rgba(59,130,246,.12)}
-.rp-footer{padding:12px 14px;border-top:1px solid rgba(200,170,110,.06);background:rgba(0,0,0,.2)}
-.rpf-stat{display:flex;justify-content:space-between;align-items:center}
-.rpf-l{font-size:9.5px;font-family:var(--mono);color:var(--txt3);letter-spacing:.04em}
-.rpf-v{font-size:11px;font-family:var(--mono);font-weight:700;color:var(--red);letter-spacing:.04em}
-
-/* ═══ ANIMATIONS ═══ */
-@keyframes breathe{0%,100%{opacity:.45}50%{opacity:1}}
-@keyframes glow-cyan{0%,100%{text-shadow:0 0 8px rgba(122,184,212,.25)}50%{text-shadow:0 0 20px rgba(122,184,212,.6),0 0 40px rgba(122,184,212,.3)}}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes glowPulse{0%,100%{opacity:.7;transform:translate(-20%,-50%) scale(1)}50%{opacity:1;transform:translate(-20%,-50%) scale(1.05)}}
-
-::-webkit-scrollbar{width:3px;height:3px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(200,170,110,.12);border-radius:1px}
-
-@media(max-width:1100px){.roadmap-view .main-layout{grid-template-columns:1fr}.right-panel{position:static}.rp-shifts{max-height:300px}}
-@media(max-width:700px){
-  .nav-c .soc span{display:none}.nav-c .soc{padding:4px 7px}
-  .exp-grid{grid-template-columns:1fr}
-  .tbl-hdr{display:none}
-  .dc-row{grid-template-columns:40px 1fr 80px}
-  .dc-act:not(:first-of-type){display:none}
-  .page{padding-left:14px;padding-right:14px;padding-top:112px}
-  .tp-label{display:none}
-  .sh-brand-txt{font-size:9px}
-  .streak-dash{grid-template-columns:repeat(2,1fr)}
-  .tm-actions{grid-template-columns:1fr 1fr 1fr}
-  .quick-stats{grid-template-columns:repeat(3,1fr)}
-  .tg-cta{flex-direction:column;text-align:center}
-  .xp-badge-streak{display:none}
-  .today-view .main-layout{grid-template-columns:1fr}
-}
-</style>
+<!-- Styles -->
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- VFX BACKGROUND LAYERS -->
 <canvas id="vfx-canvas"></canvas>
 <div class="noise-overlay"></div>
 <div class="vignette"></div>
 <div class="cinema-glow"></div>
 
-<!-- COMPLETION OVERLAY -->
-<div class="completion-overlay" id="completionOverlay">
-  <div class="completion-modal">
-    <span class="cm-emoji" id="cmEmoji">🎉</span>
-    <div class="cm-title" id="cmTitle">Day Complete!</div>
-    <div class="cm-xp" id="cmXp">+50 XP earned · Streak continues! 🔥</div>
-    <button class="cm-next" onclick="closeCompletion()">Continue Preparation →</button>
-  </div>
-</div>
-
-<!-- NAV -->
+<!-- ══ NAV ══════════════════════════════════════════════ -->
 <nav class="nav">
-  <a href="#" class="nl-logo"><div class="ld"></div>RankUpExam</a>
+  <a href="#" class="nl-logo">
+    <div class="ld"></div>
+    <span>RankUpExam</span>
+  </a>
   <div class="nav-c">
-    <a href="https://youtube.com/@rankupexam" target="_blank" class="soc yt">
-      <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      <span>YouTube</span>
-    </a>
-    <a href="https://t.me/rankupexam" target="_blank" class="soc tg">
-      <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.03 9.57c-.15.68-.55.84-1.11.52l-3-2.21-1.45 1.4c-.16.16-.3.3-.61.3l.21-3.02 5.52-4.99c.24-.21-.05-.33-.37-.12L6.93 14.4l-2.96-.92c-.64-.2-.65-.64.14-.95l11.56-4.46c.54-.19 1.01.13.27.12z"/></svg>
-      <span>Telegram</span>
-    </a>
-    <div class="xp-badge" title="Your Progress">
+    <!-- Admin badge (hidden unless ?admin=true) -->
+    <div class="admin-badge" id="adminBadge">⚡ ADMIN</div>
+
+    <!-- Social links -->
+    <a href="#" class="soc yt" data-yt-href title="YouTube">▶ <span>YouTube</span></a>
+    <a href="#" class="soc tg" data-tg-href title="Telegram">📢 <span>Telegram</span></a>
+    <a href="https://instagram.com/rankupexam" target="_blank" class="soc ig" title="Instagram">📸 <span>IG</span></a>
+
+    <!-- XP badge -->
+    <div class="xp-badge">
       <span class="xp-badge-icon">⚡</span>
       <span class="xp-badge-val" id="navXP">0 XP</span>
       <span class="xp-badge-streak" id="navStreak">🔥 0</span>
     </div>
-    <button class="btn-nv" onclick="switchView('today')">▶ Start Day 8</button>
+
+    <!-- Auth: Login button / user widget -->
+    <button class="btn-nv" id="authLoginBtn" onclick="openAuthModal()">Sign In</button>
+    <div class="auth-user" id="authUser" onclick="this.classList.toggle('open')">
+      <img class="auth-avatar" id="authAvatar" src="" alt="User">
+      <span class="auth-name" id="authName">User</span>
+      <div class="auth-dd" id="authUserDd">
+        <img class="auth-dd-avatar" id="authDdAvatar" src="" alt="">
+        <div class="auth-dd-name"  id="authDdName"></div>
+        <div class="auth-dd-email" id="authDdEmail"></div>
+        <button class="auth-dd-out" onclick="authSignOut()">Sign Out</button>
+      </div>
+    </div>
   </div>
 </nav>
 
-<!-- STICKY HEADER -->
+<!-- ══ STICKY HEADER ════════════════════════════════════ -->
 <div class="sticky-hdr">
   <div class="sh-inner">
     <div class="sh-brand">
-      <div class="ld" style="width:6px;height:6px"></div>
-      <span class="sh-brand-txt">60+10 CGL PLAN</span>
+      <div class="sh-brand-txt">SSC CGL OS</div>
     </div>
     <div class="sh-prog-wrap">
       <span class="sh-prog-lbl">Progress</span>
-      <div class="sh-prog-track"><div class="sh-prog-fill" id="shFill" style="width:11.4%"></div></div>
-      <span class="sh-day-count" id="shDay">Day 8 / 70</span>
+      <div class="sh-prog-track"><div class="sh-prog-fill" id="shProgFill" style="width:0%"></div></div>
+      <span class="sh-day-count" id="shDayCount">Day — / 70</span>
     </div>
+    <!-- Study Timer -->
     <div class="timer-pod">
-      <span class="tp-label">Study Timer</span>
-      <div class="tp-display" id="timerDisp">00:00:00</div>
+      <span class="tp-label">Timer</span>
+      <span class="tp-display" id="timerDisp">00:00:00</span>
       <div class="tp-controls">
-        <select class="tp-select" id="timerHrs">
-          <option value="0">0h</option><option value="1">1h</option><option value="2">2h</option>
-          <option value="3">3h</option><option value="4">4h</option><option value="5">5h</option>
+        <select class="tp-select" id="timerHrs" title="Hours">
+          <option value="0">0h</option><option value="1">1h</option><option value="2">2h</option><option value="3">3h</option>
         </select>
-        <select class="tp-select" id="timerMins">
-          <option value="0">0m</option><option value="15">15m</option><option value="30">30m</option>
-          <option value="45">45m</option>
+        <select class="tp-select" id="timerMins" title="Minutes">
+          <option value="0">0m</option><option value="15">15m</option><option value="25">25m</option>
+          <option value="30">30m</option><option value="45">45m</option><option value="50">50m</option><option value="55">55m</option>
         </select>
         <button class="tp-btn" id="timerStartBtn" onclick="timerToggle()" title="Start/Pause">▶</button>
-        <button class="tp-btn stop" onclick="timerReset()" title="Reset">■</button>
+        <button class="tp-btn stop" onclick="timerReset()" title="Reset">↺</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PAGE -->
-<div class="page">
+<!-- ══ PAGE ══════════════════════════════════════════════ -->
+<main class="page">
 
   <!-- VIEW SWITCHER -->
   <div class="view-switcher">
-    <button class="vs-btn active" id="vsToday" onclick="switchView('today')">🎯 Today's Mission</button>
-    <button class="vs-btn" id="vsRoadmap" onclick="switchView('roadmap')">📅 Full Roadmap</button>
-    <button class="vs-btn" id="vsShifts" onclick="switchView('shifts')">⚡ Hard Shifts</button>
+    <button class="vs-btn active" id="vsToday"   onclick="switchView('today')">Today</button>
+    <button class="vs-btn"        id="vsRoadmap" onclick="switchView('roadmap')">Roadmap</button>
+    <button class="vs-btn"        id="vsShifts"  onclick="switchView('shifts')">Hard Shifts</button>
+    <button class="vs-btn"        id="vsAbout"   onclick="switchView('about')">About</button>
   </div>
 
-  <!-- ═══ TODAY VIEW ═══ -->
-  <div class="today-view" id="todayView">
+  <!-- ══ TODAY VIEW ═══════════════════════════════════ -->
+  <div id="todayView">
 
-    <!-- TODAY HERO -->
+    <!-- Hero -->
     <div class="today-hero">
-      <div class="th-greeting">📅 TODAY — DAY 8 OF 70</div>
-      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px">
-        <span class="th-daynum">08</span>
-        <span class="th-topic" id="todayTopicName">Ratio &amp; Proportion</span>
+      <div class="th-greeting">Your Study Dashboard — RankUpExam</div>
+      <div>
+        <span class="th-daynum" id="thDayNum">Day —</span>
+        <span class="th-topic"  id="thTopic">Loading…</span>
       </div>
-      <div class="th-sub" id="todayTopicSub">K-method, Partnership, Alligation — 25 Questions · 15 Minutes</div>
+      <div class="th-sub" id="thSub"></div>
     </div>
 
-    <!-- STREAK DASHBOARD -->
+    <!-- Streak Dashboard -->
     <div class="streak-dash">
       <div class="sd-card sd-streak">
-        <div class="sd-icon"><span class="streak-fire" id="streakFire">🔥</span></div>
+        <div class="sd-icon"><span class="streak-fire" id="streakFire">⭐</span></div>
         <div class="sd-val" id="streakVal">0</div>
         <div class="sd-lbl">Day Streak</div>
       </div>
@@ -492,7 +130,7 @@ a,button,[onclick]{cursor:pointer!important}
       </div>
       <div class="sd-card sd-done">
         <div class="sd-icon">✅</div>
-        <div class="sd-val" id="daysCompleted">7</div>
+        <div class="sd-val" id="daysCompleted">0</div>
         <div class="sd-lbl">Days Done</div>
       </div>
       <div class="sd-card sd-rank">
@@ -502,7 +140,7 @@ a,button,[onclick]{cursor:pointer!important}
       </div>
     </div>
 
-    <!-- XP BAR -->
+    <!-- XP Bar -->
     <div class="xp-bar-wrap">
       <div class="xp-bar-top">
         <div class="xp-title">⚡ XP Progress <span class="xp-level" id="xpLevelBadge">Beginner</span></div>
@@ -519,127 +157,116 @@ a,button,[onclick]{cursor:pointer!important}
       </div>
     </div>
 
-    <!-- TODAY MISSION -->
+    <!-- Today Mission -->
     <div class="today-mission">
       <div class="tm-header">
-        <div class="tm-title">🎯 Today's Mission <span class="tm-badge">Day 8</span></div>
+        <div class="tm-title">🎯 Today's Mission <span class="tm-badge" id="todayMissionBadge">Day —</span></div>
         <div style="font-size:9px;font-family:var(--mono);color:var(--txt3)">Complete all 3 → +150 XP</div>
       </div>
       <div class="tm-shortcut" id="todayShortcut">
-        <strong>⚡ Shortcut:</strong> K-method: a:b:c = ak:bk:ck. Alligation cross method = fastest approach!
+        <strong>⚡ Shortcut:</strong> Loading…
       </div>
       <div class="tm-actions">
-        <a href="https://drive.google.com/" target="_blank" class="tm-btn tm-pdf" onclick="logAction('pdf')">
+        <a href="#" id="todayPdfBtn" class="tm-btn tm-lock">
           <span class="tm-btn-icon">📄</span>
           <span class="tm-btn-label">PDF Notes</span>
           <span class="tm-btn-sub">+25 XP</span>
         </a>
-        <a href="#" class="tm-btn tm-mock" onclick="logAction('mock')">
+        <a href="#" id="todayMockBtn" class="tm-btn tm-lock">
           <span class="tm-btn-icon">🧪</span>
           <span class="tm-btn-label">Attempt Mock</span>
           <span class="tm-btn-sub">25Q · 15Min · +75 XP</span>
         </a>
-        <a href="https://youtube.com/@rankupexam" target="_blank" class="tm-btn tm-yt" onclick="logAction('yt')">
+        <a href="#" id="todayYtBtn" class="tm-btn tm-lock">
           <span class="tm-btn-icon">▶</span>
           <span class="tm-btn-label">Watch Video</span>
           <span class="tm-btn-sub">+25 XP</span>
         </a>
+        <a href="#" id="todayYtAnalysisBtn" class="tm-btn tm-lock">
+          <span class="tm-btn-icon">🎬</span>
+          <span class="tm-btn-label">PDF Analysis</span>
+          <span class="tm-btn-sub">Lecture +15 XP</span>
+        </a>
       </div>
     </div>
 
-    <!-- TOPIC CHECKLIST -->
+    <!-- Topic Checklist — rendered dynamically -->
     <div class="topic-checklist">
       <div class="tcl-header">
         <div class="tcl-title">📚 Today's Topics</div>
-        <div class="tcl-progress" id="checkProgress">0 / 4 done</div>
+        <div class="tcl-progress" id="checkProgress">0 / 0 done</div>
       </div>
-      <div class="tcl-items" id="checklistItems">
-        <div class="tcl-item" onclick="toggleCheck(this,0)">
-          <div class="tcl-check" id="chk0">›</div>
-          <div class="tcl-text">Ratio basics &amp; K-method</div>
-        </div>
-        <div class="tcl-item" onclick="toggleCheck(this,1)">
-          <div class="tcl-check" id="chk1">›</div>
-          <div class="tcl-text">Partnership problems</div>
-        </div>
-        <div class="tcl-item" onclick="toggleCheck(this,2)">
-          <div class="tcl-check" id="chk2">›</div>
-          <div class="tcl-text">Mixture &amp; alligation cross method</div>
-        </div>
-        <div class="tcl-item" onclick="toggleCheck(this,3)">
-          <div class="tcl-check" id="chk3">›</div>
-          <div class="tcl-text">SSC CGL 2023–24 PYQs</div>
-        </div>
-      </div>
+      <div class="tcl-items" id="checklistItems"></div>
     </div>
 
-    <!-- COMPLETE DAY BUTTON -->
+    <!-- Complete Day Button -->
     <button class="complete-btn locked" id="completeDayBtn" onclick="completeDay()">
       🔒 Complete all topics to unlock Day Complete
     </button>
 
-    <!-- WEEK HEATMAP -->
+    <!-- Heatmap -->
     <div class="week-heatmap">
       <div class="wh-title">📊 Your 70-Day Journey</div>
       <div class="wh-grid" id="heatmapGrid"></div>
       <div class="wh-legend">
-        <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(52,211,153,.25)"></div>Completed</div>
-        <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(251,191,36,.2)"></div>Today</div>
+        <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(109,191,158,.25)"></div>Completed</div>
+        <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(200,170,110,.2)"></div>Today</div>
         <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(59,130,246,.12)"></div>Available</div>
         <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(255,255,255,.04)"></div>Locked</div>
       </div>
     </div>
 
-    <!-- QUICK STATS -->
-    <div class="quick-stats" style="margin-bottom:20px">
+    <!-- Quick Stats -->
+    <div class="quick-stats">
       <div class="qs-card">
-        <div class="qs-val" style="color:var(--amb)" id="qs1">62</div>
+        <div class="qs-val" style="color:var(--amb)" id="qs1">—</div>
         <div class="qs-lbl">Days Left</div>
       </div>
       <div class="qs-card">
-        <div class="qs-val" style="color:var(--em)" id="qs2">11%</div>
+        <div class="qs-val" style="color:var(--em)" id="qs2">—%</div>
         <div class="qs-lbl">Completed</div>
       </div>
       <div class="qs-card">
-        <div class="qs-val" style="color:var(--cyan)" id="qs3">W2</div>
+        <div class="qs-val" style="color:var(--cyan)" id="qs3">—</div>
         <div class="qs-lbl">Current Week</div>
       </div>
     </div>
 
-    <!-- TELEGRAM CTA -->
+    <!-- Telegram CTA -->
     <div class="tg-cta">
       <div class="tg-cta-icon">📢</div>
       <div class="tg-cta-content">
-        <div class="tg-cta-title">Daily Tricks on Telegram — RankUpExam</div>
-        <div class="tg-cta-sub">Roz ek shortcut trick, PYQ analysis, aur motivation. 1000+ aspirants already joined!</div>
+        <div class="tg-cta-title" data-tg-cta-title>Daily Tricks on Telegram — RankUpExam</div>
+        <div class="tg-cta-sub"   data-tg-cta-sub>Join 1000+ aspirants for daily shortcut tricks and motivation.</div>
       </div>
-      <a href="https://t.me/rankupexam" target="_blank" class="tg-cta-btn">Join Now →</a>
+      <a href="#" class="tg-cta-btn" data-tg-href target="_blank">Join Now →</a>
     </div>
 
-  </div>
+  </div><!-- /todayView -->
 
-  <!-- ═══ ROADMAP VIEW ═══ -->
-  <div class="roadmap-view" id="roadmapView">
+  <!-- ══ ROADMAP VIEW ══════════════════════════════════ -->
+  <div id="roadmapView" style="display:none">
     <div class="hero">
       <div class="h-badge"><div class="h-badge-dot"></div>SSC CGL 2026 — Master Preparation Plan</div>
       <h1 class="h-title"><span class="d60">60+10</span> Days<br><span class="cgl">SSC CGL Complete System</span></h1>
       <p class="h-sub">60 din mein poora syllabus + weekly mix tests. Last 10 din — sirf Full Length Tests. Roz PDF notes, 15-min mock (25 Qs), aur YouTube video solution.</p>
       <div class="h-pills">
-        <a href="https://youtube.com/@rankupexam" target="_blank" class="h-pill hp-yt">▶ @rankupexam YouTube</a>
-        <a href="https://t.me/rankupexam" target="_blank" class="h-pill hp-tg">📢 t.me/rankupexam</a>
+        <a href="#" target="_blank" class="h-pill hp-yt" data-yt-href>▶ YouTube</a>
+        <a href="#" target="_blank" class="h-pill hp-tg" data-tg-href>📢 Telegram</a>
         <span class="h-pill hp-g">📄 Daily PDF + 🧪 Mock + ▶ Video</span>
       </div>
     </div>
+
     <div class="milestone-bar">
       <div class="mb-top">
         <div class="mb-title">📊 70-Day Master Timeline</div>
-        <div class="mb-meta" id="mbMeta">Day 8 of 70 · 62 days remaining</div>
+        <div class="mb-meta" id="mbMeta">Loading…</div>
       </div>
-      <div class="mb-track"><div class="mb-fill" id="mbFill" style="width:11.4%"></div></div>
+      <div class="mb-track"><div class="mb-fill" id="mbFill" style="width:0%"></div></div>
       <div class="mb-ticks">
         <div class="mbt done"><div class="mbd"></div>D1<br>Start</div>
-        <div class="mbt done"><div class="mbd"></div>D10<br>Quant-1</div>
-        <div class="mbt curr"><div class="mbd"></div>D20<br>Quant-2</div>
+        <div class="mbt"><div class="mbd"></div>D10<br>Quant-1</div>
+        <div class="mbt"><div class="mbd"></div>D20<br>Quant-2</div>
         <div class="mbt"><div class="mbd"></div>D30<br>Eng+Rea</div>
         <div class="mbt"><div class="mbd"></div>D40<br>GA+Mix</div>
         <div class="mbt"><div class="mbd"></div>D50<br>Revision</div>
@@ -647,6 +274,7 @@ a,button,[onclick]{cursor:pointer!important}
         <div class="mbt test-z"><div class="mbd"></div>D61-70<br>FLT Zone</div>
       </div>
     </div>
+
     <div class="main-layout">
       <div class="left-panel">
         <div class="week-scroll" id="weekTabs">
@@ -665,14 +293,16 @@ a,button,[onclick]{cursor:pointer!important}
         <div class="tbl-hdr">
           <div class="th">Day</div>
           <div class="th">Topic</div>
-          <div class="th" style="text-align:center">📄 PDF</div>
-          <div class="th" style="text-align:center">🧪 Mock</div>
-          <div class="th" style="text-align:center">▶ YT</div>
+          <div class="th" style="text-align:center">📄</div>
+          <div class="th" style="text-align:center">🧪</div>
+          <div class="th" style="text-align:center">▶</div>
+          <div class="th" style="text-align:center">🎬</div>
           <div class="th" style="text-align:center">Status</div>
         </div>
         <div class="days-wrap" id="daysList"></div>
       </div>
-      <div class="right-panel" id="rightPanelRoadmap">
+
+      <div class="right-panel">
         <div class="rp-card">
           <div class="rp-hdr">
             <div class="rp-hdr-badge"><div class="rp-hdr-dot"></div><span class="rp-hdr-lbl">⚡ Hard Shift Series</span></div>
@@ -681,11 +311,11 @@ a,button,[onclick]{cursor:pointer!important}
           </div>
           <div class="rp-year-tabs">
             <button class="ryt active" onclick="setYear('all',this)">All</button>
-            <button class="ryt" onclick="setYear('2021',this)">CGL 2021</button>
-            <button class="ryt" onclick="setYear('2022',this)">CGL 2022</button>
-            <button class="ryt" onclick="setYear('2023',this)">CGL 2023</button>
-            <button class="ryt" onclick="setYear('2024',this)">CGL 2024</button>
-            <button class="ryt" onclick="setYear('2025',this)">CGL 2025</button>
+            <button class="ryt" onclick="setYear('2021',this)">2021</button>
+            <button class="ryt" onclick="setYear('2022',this)">2022</button>
+            <button class="ryt" onclick="setYear('2023',this)">2023</button>
+            <button class="ryt" onclick="setYear('2024',this)">2024</button>
+            <button class="ryt" onclick="setYear('2025',this)">2025</button>
           </div>
           <div class="rp-shifts" id="shiftList"></div>
           <div class="rp-footer">
@@ -694,19 +324,19 @@ a,button,[onclick]{cursor:pointer!important}
               <span class="rpf-v" id="shiftCount">30 Shifts</span>
             </div>
             <div style="margin-top:8px">
-              <a href="https://youtube.com/@rankupexam" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;background:rgba(255,68,68,.07);border:1px solid rgba(255,68,68,.18);border-radius:8px;color:#ff6b6b;font-size:10px;font-family:var(--mono);text-decoration:none;font-weight:700">▶ Solutions on @rankupexam YouTube</a>
+              <a href="#" data-yt-href target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;background:rgba(255,68,68,.07);border:1px solid rgba(255,68,68,.18);border-radius:8px;color:#ff6b6b;font-size:10px;font-family:var(--mono);text-decoration:none;font-weight:700">▶ Solutions on YouTube</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div><!-- /roadmapView -->
 
-  <!-- ═══ HARD SHIFTS VIEW ═══ -->
+  <!-- ══ HARD SHIFTS VIEW ══════════════════════════════ -->
   <div id="shiftsView" style="display:none">
     <div class="today-hero" style="margin-bottom:16px">
       <div class="th-greeting">⚡ CHALLENGE MODE</div>
-      <div class="th-topic" style="font-size:clamp(20px,3vw,32px)">30 Hardest CGL Shifts</div>
+      <div class="th-topic" style="font-size:clamp(18px,3vw,32px);font-family:var(--serif);font-weight:300">30 Hardest CGL Shifts</div>
       <div class="th-sub">2021–2025 · Crack kiya toh real exam easy lagega!</div>
     </div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="shiftYearTabs">
@@ -720,434 +350,237 @@ a,button,[onclick]{cursor:pointer!important}
     <div style="display:flex;flex-direction:column;gap:8px" id="shiftListFull"></div>
   </div>
 
-</div><!-- /page -->
+  <!-- ══ ABOUT / INFO VIEW ════════════════════════════ -->
+  <div id="aboutView" class="about-view" style="display:none">
 
+    <div class="about-section">
+      <h2 class="about-h2">About RankUpExam</h2>
+      <p class="about-p">RankUpExam ek systematic 70-day SSC CGL preparation operating system hai. Founder <strong style="color:var(--gold)">Guru</strong> ne khud SSC CGL ki taiyari ki aur is platform ko build kiya un aspirants ke liye jo Hindi-medium se clear karna chahte hain.</p>
+      <p class="about-p">Roz ek PDF, ek mock test (25 Qs, 15 min), aur ek YouTube video solution milta hai — ek structured system mein, bina kisi confusion ke.</p>
+    </div>
+
+    <div class="about-section">
+      <h2 class="about-h2">Contact</h2>
+      <div class="about-contact-grid">
+        <a href="mailto:rankupexam@gmail.com" class="contact-card">
+          <div class="cc-icon">✉️</div>
+          <div class="cc-label">Email</div>
+          <div class="cc-value" data-email>rankupexam@gmail.com</div>
+        </a>
+        <a href="#" target="_blank" class="contact-card" data-tg-href>
+          <div class="cc-icon">📢</div>
+          <div class="cc-label">Telegram</div>
+          <div class="cc-value">t.me/rankupexam</div>
+        </a>
+        <a href="#" target="_blank" class="contact-card" data-yt-href>
+          <div class="cc-icon">▶</div>
+          <div class="cc-label">YouTube</div>
+          <div class="cc-value">@rankupexam</div>
+        </a>
+        <a href="https://instagram.com/rankupexam" target="_blank" class="contact-card">
+          <div class="cc-icon">📸</div>
+          <div class="cc-label">Instagram</div>
+          <div class="cc-value">@rankupexam</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h2 class="about-h2">Privacy Policy</h2>
+      <p class="about-p">RankUpExam koi personal data third-party ke saath share nahi karta. Google Sign-In sirf aapka naam aur email store karta hai — aapke progress ko personalize karne ke liye. Aapka data sirf aapke browser ke localStorage mein save hota hai.</p>
+      <ul class="about-list">
+        <li>Google Sign-In data: naam, email, profile photo</li>
+        <li>Study progress: localStorage mein sirf aapke device pe</li>
+        <li>Koi third-party analytics nahi</li>
+        <li>Data kabhi bhi delete kiya ja sakta hai browser storage clear karke</li>
+      </ul>
+    </div>
+
+    <div class="about-section">
+      <h2 class="about-h2">Terms &amp; Conditions</h2>
+      <ul class="about-list">
+        <li>Yeh platform free hai aur educational purpose ke liye hai.</li>
+        <li>Mock test links aur PDF links kabhi bhi update ho sakte hain.</li>
+        <li>Content accuracy maintain karne ki koshish ki jaati hai, par errors ke liye hum liable nahi hain.</li>
+        <li>Paid content ke liye alag terms apply honge — Telegram par details milenge.</li>
+        <li>Is platform ka content copy ya resell karna prohibited hai.</li>
+      </ul>
+    </div>
+
+    <div class="about-section">
+      <h2 class="about-h2">Disclaimer</h2>
+      <p class="about-p">RankUpExam SSC CGL preparation ke liye ek supplementary resource hai. Yeh platform SSC ya kisi government body se affiliated nahi hai. Exam dates, patterns, aur syllabus official SSC notification se verify karein. Study content based on past patterns hai aur future exams guarantee nahi karta.</p>
+    </div>
+
+  </div><!-- /aboutView -->
+
+</main><!-- /page -->
+
+<!-- ══ FOOTER ════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-col-title">RankUpExam</div>
+      <div class="footer-links">
+        <span class="footer-link" style="color:var(--txt2)">70-Day SSC CGL OS</span>
+        <span class="footer-link" style="color:var(--txt3)">Founder: Guru</span>
+        <a href="mailto:rankupexam@gmail.com" class="footer-link" data-email>rankupexam@gmail.com</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <div class="footer-links">
+        <a href="#" class="footer-link" onclick="switchView('today');return false">Today</a>
+        <a href="#" class="footer-link" onclick="switchView('roadmap');return false">Roadmap</a>
+        <a href="#" class="footer-link" onclick="switchView('shifts');return false">Hard Shifts</a>
+        <a href="#" class="footer-link" onclick="switchView('about');return false">About</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <div class="footer-links">
+        <a href="#" target="_blank" class="footer-link" data-yt-href>▶ YouTube</a>
+        <a href="#" target="_blank" class="footer-link" data-tg-href>📢 Telegram</a>
+        <a href="https://instagram.com/rankupexam" target="_blank" class="footer-link">📸 Instagram</a>
+        <a href="mailto:rankupexam@gmail.com" class="footer-link">✉ Email Us</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <div class="footer-links">
+        <a href="#" class="footer-link" onclick="switchView('about');return false">Privacy Policy</a>
+        <a href="#" class="footer-link" onclick="switchView('about');return false">Terms &amp; Conditions</a>
+        <a href="#" class="footer-link" onclick="switchView('about');return false">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy" data-footer-note>© 2026 RankUpExam. Designed for SSC CGL aspirants.</div>
+    <div class="footer-trust">
+      <div class="footer-trust-item">🔒 No Ads</div>
+      <div class="footer-trust-item">📱 Mobile-First</div>
+      <div class="footer-trust-item">⚡ Free to Use</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ COMPLETION OVERLAY ════════════════════════════════ -->
+<div class="completion-overlay" id="completionOverlay">
+  <div class="completion-modal">
+    <span class="cm-emoji" id="cmEmoji">🎉</span>
+    <div class="cm-title" id="cmTitle">Day Complete!</div>
+    <div class="cm-xp"   id="cmXp">+100 XP</div>
+    <button class="cm-next" onclick="closeCompletion()">Continue →</button>
+  </div>
+</div>
+
+<!-- ══ AUTH MODAL ════════════════════════════════════════ -->
+<div class="auth-modal-overlay" id="authModalOverlay" onclick="handleOverlayClick(event)">
+  <div class="auth-modal" style="position:relative">
+    <button class="am-close" onclick="closeAuthModal()">✕</button>
+    <div class="am-logo"><div class="ld"></div>RankUpExam</div>
+    <div class="am-title">Sign in to track progress</div>
+    <div class="am-sub">Google se sign in karo — aapka XP, streak, aur completed days sync ho jayenge. Free hai.</div>
+    <div class="am-divider"><span class="am-divider-txt">Continue with</span></div>
+    <button class="am-google-btn" id="authGoogleBtn" onclick="signInWithGoogle()">
+      <span class="am-google-icon">G</span>
+      <span id="googleBtnText">Continue with Google</span>
+    </button>
+    <div class="am-note">Sign in karne se aap Privacy Policy aur Terms se agree karte hain. Koi spam nahi.</div>
+  </div>
+</div>
+
+<!-- Background audio (optional) -->
+<audio id="bgAudio" loop preload="none">
+  <!-- Add an audio file URL here if desired -->
+  <!-- <source src="ambient.mp3" type="audio/mpeg"> -->
+</audio>
+<button class="audio-btn" id="audioBtnEl" onclick="toggleAudio()" title="Toggle ambient sound">🔇</button>
+
+<!-- ══ SCRIPTS (order matters) ══════════════════════════ -->
+<script src="config.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+<!-- Firebase auth (ES module) -->
+<script type="module" src="auth.js"></script>
+
+<!-- VFX Canvas -->
 <script>
-// ═══════════════════════════
-// VFX BACKGROUND
-// ═══════════════════════════
-const canvas = document.getElementById('vfx-canvas');
-const ctx = canvas.getContext('2d');
-let W, H, particles = [];
-const NPARTICLES = 60;
-function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
-resize();window.addEventListener('resize',resize);
-class Particle{
-  constructor(){this.reset()}
-  reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.2;this.vy=(Math.random()-.5)*.2;this.r=Math.random()*1.2+.2;this.alpha=Math.random()*.25+.05;this.color=Math.random()>.7?[200,170,110]:Math.random()>.5?[20,60,140]:[122,184,212]}
-  update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset()}
-  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(${this.color.join(',')},${this.alpha})`;ctx.fill()}
-}
-for(let i=0;i<NPARTICLES;i++)particles.push(new Particle());
-const ORBS=[{x:.65,y:.4,r:250,c:'10,30,100',a:.06},{x:.15,y:.7,r:180,c:'15,50,120',a:.04},{x:.5,y:.5,r:120,c:'20,40,80',a:.03}];
-let frame=0;
-function animate(){
-  ctx.clearRect(0,0,W,H);
-  ORBS.forEach(o=>{const gx=o.x*W+Math.sin(frame*.0005+o.r)*20,gy=o.y*H+Math.cos(frame*.0004+o.r)*15,g=ctx.createRadialGradient(gx,gy,0,gx,gy,o.r);g.addColorStop(0,`rgba(${o.c},${o.a})`);g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(0,0,W,H)});
-  particles.forEach(p=>{p.update();p.draw()});
-  frame++;requestAnimationFrame(animate);
-}
-animate();
+(function(){
+  const canvas = document.getElementById('vfx-canvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H;
+  const NPART = 55;
+  const particles = [];
 
-// ═══════════════════════════
-// TIMER
-// ═══════════════════════════
-let timerTotal=0,timerLeft=0,timerRunning=false,timerInterval=null;
-function timerToggle(){
-  if(!timerRunning){
-    const h=parseInt(document.getElementById('timerHrs').value)||0,m=parseInt(document.getElementById('timerMins').value)||0;
-    if(!timerLeft){timerTotal=(h*3600+m*60);timerLeft=timerTotal}
-    if(!timerLeft)return;
-    timerRunning=true;document.getElementById('timerStartBtn').textContent='⏸';document.getElementById('timerDisp').classList.add('running');
-    timerInterval=setInterval(()=>{if(timerLeft<=0){timerDone();return}timerLeft--;updateTimerDisplay()},1000);
-  }else{timerRunning=false;clearInterval(timerInterval);document.getElementById('timerStartBtn').textContent='▶';document.getElementById('timerDisp').classList.remove('running')}
-}
-function timerReset(){timerRunning=false;timerLeft=0;clearInterval(timerInterval);document.getElementById('timerStartBtn').textContent='▶';document.getElementById('timerDisp').textContent='00:00:00';document.getElementById('timerDisp').classList.remove('running')}
-function timerDone(){timerRunning=false;clearInterval(timerInterval);document.getElementById('timerDisp').textContent='DONE! ✓';document.getElementById('timerDisp').style.color='var(--em)';setTimeout(()=>{document.getElementById('timerDisp').style.color='var(--cyan)';timerLeft=0;updateTimerDisplay()},3000)}
-function updateTimerDisplay(){const h=Math.floor(timerLeft/3600),m=Math.floor((timerLeft%3600)/60),s=timerLeft%60;document.getElementById('timerDisp').textContent=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`}
+  function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
 
-// ═══════════════════════════
-// LOCALSTORAGE PERSISTENCE
-// ═══════════════════════════
-const STORAGE_KEY = 'rankupexam_v3';
-function loadState(){
-  try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch{return{}}
-}
-function saveState(state){
-  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch{}
-}
-let STATE = loadState();
-if(!STATE.completedDays) STATE.completedDays = [];
-if(!STATE.xp) STATE.xp = 0;
-if(!STATE.streak) STATE.streak = 0;
-if(!STATE.lastCompleted) STATE.lastCompleted = null;
-if(!STATE.checks) STATE.checks = {};
-if(!STATE.todayChecks) STATE.todayChecks = [false,false,false,false];
-if(!STATE.actions) STATE.actions = {};
-
-// ═══════════════════════════
-// XP & STREAK SYSTEM
-// ═══════════════════════════
-const XP_LEVELS=[
-  {name:'Beginner',min:0,max:500},
-  {name:'Intermediate',min:500,max:1500},
-  {name:'Expert',min:1500,max:3000},
-  {name:'Master',min:3000,max:6000},
-  {name:'Elite',min:6000,max:99999}
-];
-function getLevel(xp){return XP_LEVELS.find(l=>xp>=l.min&&xp<l.max)||XP_LEVELS[0]}
-function getRankBadge(streak){
-  if(streak>=30)return'🥇';
-  if(streak>=14)return'🥈';
-  if(streak>=7)return'🥉';
-  if(streak>=3)return'⭐';
-  return'—';
-}
-function updateXPUI(){
-  const xp=STATE.xp,streak=STATE.streak;
-  const level=getLevel(xp);
-  const pct=Math.min(100,((xp-level.min)/(level.max-level.min))*100);
-  document.getElementById('xpVal').textContent=xp;
-  document.getElementById('streakVal').textContent=streak;
-  document.getElementById('daysCompleted').textContent=STATE.completedDays.length;
-  document.getElementById('rankBadge').textContent=getRankBadge(streak);
-  document.getElementById('xpBarFill').style.width=pct+'%';
-  document.getElementById('xpLevelBadge').textContent=level.name;
-  document.getElementById('xpCountDisplay').textContent=xp+' / '+level.max+' XP to next level';
-  document.getElementById('navXP').textContent=xp+' XP';
-  document.getElementById('navStreak').textContent='🔥 '+streak;
-  document.getElementById('streakFire').textContent=streak>=3?'🔥':'⭐';
-}
-function addXP(amount){
-  STATE.xp=(STATE.xp||0)+amount;
-  saveState(STATE);
-  updateXPUI();
-}
-
-// ═══════════════════════════
-// TOPIC CHECKLIST
-// ═══════════════════════════
-let checksDone=0;
-function toggleCheck(el,idx){
-  el.classList.toggle('checked');
-  const chk=document.getElementById('chk'+idx);
-  if(el.classList.contains('checked')){
-    chk.textContent='✓';
-    checksDone++;
-    if(!STATE.todayChecks[idx]){STATE.todayChecks[idx]=true;addXP(5)}
-  }else{
-    chk.textContent='›';
-    checksDone=Math.max(0,checksDone-1);
-    STATE.todayChecks[idx]=false;
-  }
-  saveState(STATE);
-  updateCheckProgress();
-}
-function updateCheckProgress(){
-  const total=4;
-  document.getElementById('checkProgress').textContent=checksDone+' / '+total+' done';
-  const btn=document.getElementById('completeDayBtn');
-  if(checksDone>=total){
-    btn.className='complete-btn ready';
-    btn.textContent='✅ Mark Day 8 as Complete (+100 XP)';
-  }else if(STATE.completedDays.includes(8)){
-    btn.className='complete-btn done';
-    btn.textContent='🎉 Day 8 Complete!';
-  }else{
-    btn.className='complete-btn locked';
-    btn.textContent='🔒 Complete all topics to unlock Day Complete ('+checksDone+'/'+total+')';
-  }
-}
-function logAction(type){
-  if(!STATE.actions) STATE.actions={};
-  if(!STATE.actions[type]){
-    STATE.actions[type]=true;
-    const xpMap={pdf:25,mock:75,yt:25};
-    addXP(xpMap[type]||10);
-    saveState(STATE);
-  }
-}
-
-// ═══════════════════════════
-// DAY COMPLETE
-// ═══════════════════════════
-const TODAY_DAY=8;
-function completeDay(){
-  if(checksDone<4)return;
-  if(STATE.completedDays.includes(TODAY_DAY))return;
-  STATE.completedDays.push(TODAY_DAY);
-  STATE.xp=(STATE.xp||0)+100;
-  // Streak logic
-  const today=new Date().toDateString();
-  if(STATE.lastCompleted){
-    const last=new Date(STATE.lastCompleted);
-    const diff=(new Date()-last)/(1000*60*60*24);
-    if(diff<1.5)STATE.streak=(STATE.streak||0)+1;
-    else if(diff>1.5)STATE.streak=1;
-  }else{STATE.streak=1}
-  STATE.lastCompleted=today;
-  saveState(STATE);
-  updateXPUI();
-  showCompletion();
-  updateCheckProgress();
-  renderHeatmap();
-}
-function showCompletion(){
-  const streak=STATE.streak;
-  document.getElementById('cmEmoji').textContent=streak>=7?'🏆':streak>=3?'🔥':'🎉';
-  document.getElementById('cmTitle').textContent='Day '+TODAY_DAY+' Complete!';
-  document.getElementById('cmXp').textContent='+100 XP earned · Streak: '+streak+' days 🔥';
-  document.getElementById('completionOverlay').classList.add('show');
-}
-function closeCompletion(){document.getElementById('completionOverlay').classList.remove('show')}
-
-// ═══════════════════════════
-// HEATMAP
-// ═══════════════════════════
-function renderHeatmap(){
-  const grid=document.getElementById('heatmapGrid');grid.innerHTML='';
-  for(let d=1;d<=70;d++){
-    const cell=document.createElement('div');
-    cell.className='wh-cell';
-    cell.title='Day '+d;
-    if(STATE.completedDays.includes(d)||d<TODAY_DAY){cell.classList.add('done');cell.textContent=d}
-    else if(d===TODAY_DAY){cell.classList.add('today');cell.textContent=d}
-    else if(d<=TODAY_DAY+3){cell.classList.add('open');cell.textContent=d}
-    else{cell.classList.add('locked');cell.textContent=d}
-    grid.appendChild(cell);
-  }
-}
-
-// ═══════════════════════════
-// VIEW SWITCHER
-// ═══════════════════════════
-function switchView(view){
-  document.getElementById('todayView').style.display='none';
-  document.getElementById('roadmapView').style.display='none';
-  document.getElementById('shiftsView').style.display='none';
-  document.getElementById('vsToday').classList.remove('active');
-  document.getElementById('vsRoadmap').classList.remove('active');
-  document.getElementById('vsShifts').classList.remove('active');
-  if(view==='today'){document.getElementById('todayView').style.display='block';document.getElementById('vsToday').classList.add('active')}
-  else if(view==='roadmap'){document.getElementById('roadmapView').style.display='block';document.getElementById('vsRoadmap').classList.add('active');renderDays(0)}
-  else if(view==='shifts'){document.getElementById('shiftsView').style.display='block';document.getElementById('vsShifts').classList.add('active');renderShiftsFull('all')}
-}
-
-// ═══════════════════════════
-// DAY DATA
-// ═══════════════════════════
-const TODAY=8;
-const DAYS=[
-{d:1,topic:"Number System",sub:"Types, Divisibility Rules, Factors",subj:"quant",type:"normal",shortcut:"Digital Sum method se divisibility check fastest!",topics:["Prime & Composite Numbers","Divisibility 2–13","LCM & HCF shortcuts","Unit digit tricks"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:2,topic:"HCF & LCM",sub:"Shortcut tricks, Word problems",subj:"quant",type:"normal",shortcut:"HCF × LCM = Product of two numbers!",topics:["Prime factorization method","Division method shortcut","Word problems","PYQs 2019–2024"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:3,topic:"Simplification & BODMAS",sub:"Fractions, Surds, Indices",subj:"quant",type:"normal",shortcut:"BODMAS strictly — Bracket→Of→Div→Mul→Add→Sub",topics:["BODMAS rule","Fractions & Decimals","Square root tricks","Cube root shortcuts"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:4,topic:"Percentage",sub:"Basic to Advanced, SSC Pattern",subj:"quant",type:"normal",shortcut:"x% of y = y% of x — swap trick se 3x fast!",topics:["% basics & change","Successive % change","Population/depreciation","SSC CGL 2024 PYQs"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:5,topic:"Profit & Loss",sub:"CP/SP, Discount, Dishonest trader",subj:"quant",type:"normal",shortcut:"Profit% = (SP-CP)/CP × 100",topics:["Basic P&L","Marked price & discount","Successive discount","Dishonest seller tricks"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:6,topic:"Simple & Compound Interest",sub:"SI vs CI, Half-yearly",subj:"quant",type:"normal",shortcut:"2yr CI = SI + SI²/100 — fastest for 2-year problems!",topics:["SI formula","CI formula","Half-yearly compounding","Population growth"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:7,topic:"⚡ Week 1 Mix Test",sub:"25 Qs · 15 Min · Topics D1–D6",subj:"mix",type:"weekly-test",shortcut:"Speed target: 36 seconds per question!",topics:["Number System 5 Qs","HCF/LCM 4 Qs","Simplification 4 Qs","Percentage + P&L + SI/CI 12 Qs"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:8,topic:"Ratio & Proportion",sub:"K-method, Partnership, Alligation",subj:"quant",type:"normal",shortcut:"K-method: a:b:c = ak:bk:ck. Alligation cross = fastest!",topics:["Ratio basics & K-method","Partnership problems","Mixture & alligation","SSC PYQs 2023-24"],pdf:"https://drive.google.com/",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:9,topic:"Average",sub:"Weighted avg, Age problems",subj:"quant",type:"normal",shortcut:"ΔAvg = ΔSum/n. Replacement trick saves 80% time!",topics:["Average basics","Weighted average","Age-based problems","Train average speed trap"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:10,topic:"Time & Work",sub:"LCM method, Efficiency tricks",subj:"quant",type:"normal",shortcut:"LCM method: Total work = LCM. Efficiency = Work/Day",topics:["Basic T&W","LCM shortcut","Pipes & cisterns","Work & wages"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:11,topic:"Speed, Distance & Time",sub:"Relative speed, Trains, Boats",subj:"quant",type:"normal",shortcut:"Same dir: |S1-S2|. Opp dir: S1+S2. Boat: B=(D+U)/2",topics:["Basic SDT","Relative speed","Train crossing","Boat & stream"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:12,topic:"Algebra Part 1",sub:"Identities, Linear equations",subj:"quant",type:"normal",shortcut:"(a+b)²=a²+2ab+b², (a+b)(a-b)=a²-b² — yaad karo!",topics:["Algebraic identities","Linear eq solving","Two-variable system","SSC identity PYQs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:13,topic:"Algebra Part 2 + Number Series",sub:"Quadratic, Series patterns",subj:"quant",type:"normal",shortcut:"Sum of roots=-b/a, Product=c/a. Series: check +,×,² first!",topics:["Quadratic equations","Nature of roots","AP/GP series","Mixed pattern series"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:14,topic:"⚡ Week 2 Mix Test",sub:"25 Qs · 15 Min · Topics D8–D13",subj:"mix",type:"weekly-test",shortcut:"Ratio+Average+T&W+SDT+Algebra — 36 sec per question!",topics:["Ratio & Proportion 5 Qs","Average + T&W 5 Qs","SDT + Boats 5 Qs","Algebra + Series 10 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:15,topic:"Mensuration 2D Part 1",sub:"Triangle, Rectangle, Circle",subj:"quant",type:"normal",shortcut:"Triangle: ½×b×h. Circle: πr². These 2 come in every exam!",topics:["Triangle types & area","Rectangle & square","Circle formulas","Sector & segment area"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:16,topic:"Mensuration 2D Part 2",sub:"Trapezium, Rhombus, Polygon",subj:"quant",type:"normal",shortcut:"Trapezium = ½×(sum of parallel sides)×h. Always draw figure!",topics:["Trapezium & parallelogram","Rhombus area tricks","Regular polygon","Combined shapes"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:17,topic:"Mensuration 3D Part 1",sub:"Cube, Cuboid, Cylinder",subj:"quant",type:"normal",shortcut:"Cylinder: V=πr²h, LSA=2πrh, TSA=2πr(r+h). Most common!",topics:["Cube & cuboid formulas","Cylinder complete","Water-in-tank problems","Unit conversion tricks"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:18,topic:"Mensuration 3D Part 2",sub:"Cone, Sphere, Frustum",subj:"quant",type:"normal",shortcut:"Cone: l=√(r²+h²). Sphere: V=4/3πr³.",topics:["Cone formulas complete","Sphere & hemisphere","Frustum of cone","Melting/recasting problems"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:19,topic:"Geometry — Lines, Angles, Triangles",sub:"Parallel lines, Similarity, Centres",subj:"quant",type:"normal",shortcut:"Mid-point theorem: line = ½ base. Angle bisector theorem key!",topics:["Parallel line angles","Triangle similarity","Pythagoras & converse","Incentre, circumcentre"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:20,topic:"Geometry — Circles + Coordinate",sub:"Chord, Tangent, Distance formula",subj:"quant",type:"normal",shortcut:"Angle in semicircle=90°. Tangent⊥radius.",topics:["Circle theorems","Tangent properties","Cyclic quadrilateral","Coordinate geometry basics"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:21,topic:"⚡ Week 3 Mix Test",sub:"25 Qs · 15 Min · Topics D15–D20",subj:"mix",type:"weekly-test",shortcut:"Mensuration is 20-25% of CGL Tier-2 — nail this test!",topics:["2D Mensuration 8 Qs","3D Mensuration 8 Qs","Geometry 5 Qs","Coordinate 4 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:22,topic:"Trigonometry Basics",sub:"Ratios, Standard values, Identities",subj:"quant",type:"normal",shortcut:"SOH-CAH-TOA! Table 0,30,45,60,90 must memorize. sin²+cos²=1!",topics:["6 trig ratios","Standard angle table","3 fundamental identities","Complementary angles"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:23,topic:"Trigonometry Advanced + DI",sub:"Height & Distance, Data Interpretation",subj:"quant",type:"normal",shortcut:"tan θ = Height/Base for H&D. DI: percentage change fast formula!",topics:["Height & Distance","Angle of elevation/depression","Bar & Line chart DI","Table DI shortcuts"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:24,topic:"Statistics + Data Sufficiency",sub:"Mean, Median, Mode, Probability",subj:"quant",type:"normal",shortcut:"Mean=(ΣfX/Σf). Median=middle value after sorting!",topics:["Measures of central tendency","Standard deviation basics","Simple probability","Data sufficiency tricks"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:25,topic:"English — Vocabulary Power",sub:"Synonyms, Antonyms, One-word substitution",subj:"english",type:"normal",shortcut:"Root word method: 1 root = 10+ words. Learn roots not words!",topics:["High-frequency synonyms list","Antonyms bank","One-word substitution 50 words","Idioms & phrases set 1"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:26,topic:"English — Reading Comprehension",sub:"RC strategy, Inference, Tone",subj:"english",type:"normal",shortcut:"Read question FIRST. 4th option trap in SSC RC — be careful!",topics:["RC reading strategy","Inference questions","Tone & attitude","Main idea identification"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:27,topic:"English — Error Spotting + Fill Ups",sub:"Common grammar errors, Cloze test",subj:"english",type:"normal",shortcut:"SVA: Find the SUBJECT first, ignore prepositional phrases!",topics:["Subject-Verb Agreement errors","Tense errors","Preposition errors","Cloze test strategy"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:28,topic:"⚡ Week 4 Mix Test",sub:"25 Qs · 15 Min · Trig + Stats + English",subj:"mix",type:"weekly-test",shortcut:"Mix of Quant & English — balance karo!",topics:["Trigonometry 6 Qs","DI + Statistics 5 Qs","Vocabulary 7 Qs","RC + Error Spotting 7 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:29,topic:"English — Grammar Complete",sub:"Narration, Voice, Sentence Correction",subj:"english",type:"normal",shortcut:"Narration: Reporting verb changes tense. Present→Past main rule!",topics:["Direct & Indirect speech","Active & Passive voice","Sentence rearrangement","Sentence correction tricks"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:30,topic:"Reasoning — Series & Analogy",sub:"Number, Letter, Figure series",subj:"reasoning",type:"normal",shortcut:"Number series: try +,−,×,÷,² in order. Most SSC series follow pattern!",topics:["Number series types","Letter series","Figure analogy","Number analogy"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:31,topic:"Reasoning — Coding & Blood Relations",sub:"Coding-Decoding, Family tree",subj:"reasoning",type:"normal",shortcut:"Coding: Check +/- shift first. Blood: Draw family tree always!",topics:["Letter coding","Number coding","Blood relation types","Mixed blood relation"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:32,topic:"Reasoning — Direction & Matrix",sub:"Directions sense, Matrix puzzles",subj:"reasoning",type:"normal",shortcut:"Direction: always start from NORTH. Matrix: row×col intersection!",topics:["8-direction sense","Shadow & clock problems","Matrix reasoning","Input-output patterns"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:33,topic:"Reasoning — Syllogism + Venn",subj:"reasoning",sub:"All-Some-No statements, Conclusions",type:"normal",shortcut:"Venn diagram method fastest for syllogism. Draw before solving!",topics:["All-Some-No rules","Complementary pairs","Venn diagram method","Possibility cases"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:34,topic:"Reasoning — Non-Verbal",sub:"Mirror image, Paper folding, Cube",subj:"reasoning",type:"normal",shortcut:"Mirror: flip horizontally, NOT vertically. Water image = vertical flip!",topics:["Mirror image","Water image","Paper folding/cutting","Cube & dice counting"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:35,topic:"⚡ Week 5 Mix Test",sub:"25 Qs · 15 Min · English + Reasoning",subj:"mix",type:"weekly-test",shortcut:"English + Reasoning = 50 Qs in CGL. Master these!",topics:["English Grammar 7 Qs","RC + Vocab 5 Qs","Reasoning Series 7 Qs","Reasoning Non-Verbal 6 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:36,topic:"GA — Ancient & Medieval History",sub:"Indus Valley to Mughal Empire",subj:"ga",type:"normal",shortcut:"Chronology trick: Harappa→Vedic→Mahajanapadas→Maurya→Gupta→Mughal",topics:["Indus Valley civilization","Vedic period","Mauryan Empire","Mughal Era key points"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:37,topic:"GA — Modern History + Freedom Movement",sub:"British rule to Independence 1947",subj:"ga",type:"normal",shortcut:"Acts timeline: 1773→1784→1833→1857→1919→1935→1947. Learn in order!",topics:["British Administration Acts","1857 revolt","Freedom movement leaders","Partition & Independence"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:38,topic:"GA — Indian Polity & Constitution",sub:"Fundamental Rights, Parliament, Judiciary",subj:"ga",type:"normal",shortcut:"Part III = FR, Part IV = DPSP, Part IVA = FD. Articles memory trick!",topics:["Preamble & key articles","Fundamental Rights 12-35","Parliament structure","Judiciary system"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:39,topic:"GA — Geography + Environment",sub:"Physical, Climate, Resources, Ecology",subj:"ga",type:"normal",shortcut:"Rivers: Remember watershed — Deccan rivers flow EAST. Himalayan flow varies!",topics:["Physical geography India","Climate zones","Natural resources","Environment & ecology basics"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:40,topic:"GA — Economy + Science",sub:"Budget, GDP, Physics, Chemistry, Bio",subj:"ga",type:"normal",shortcut:"GDP types: GDP, GNP, NNP, NDP — know the deductions chain!",topics:["Indian economy basics","Union budget concepts","Physics in everyday life","Biology basic facts"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:41,topic:"GA — Current Affairs (Last 6 months)",sub:"Awards, Sports, Appointments, Summits",subj:"ga",type:"normal",shortcut:"Current affairs = 15-20 Qs in CGL GA. This section decides your rank!",topics:["National awards 2024-25","Sports achievements","Government schemes","International summits"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:42,topic:"⚡ Week 6 Mix Test",sub:"25 Qs · 15 Min · Full GA Coverage",subj:"mix",type:"weekly-test",shortcut:"GA = easiest to score if prepared. 20+ out of 25 possible!",topics:["History 5 Qs","Polity 5 Qs","Geography + Economy 5 Qs","Science + Current Affairs 10 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:43,topic:"Rapid Revision — Quant Formulas",sub:"All formulas one-shot, Speed drill",subj:"quant",type:"normal",shortcut:"Formula sheet se practice: 5 sec per formula recall = exam ready!",topics:["Arithmetic formulas","Mensuration complete","Trig identities","Algebra identities"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:44,topic:"Rapid Revision — English Grammar",sub:"All grammar rules, 50 error patterns",subj:"english",type:"normal",shortcut:"Top 50 error patterns in SSC CGL — this list alone can score 8-10!",topics:["SVA 15 rules","Tense rules","Preposition 20 uses","Common grammatical errors"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:45,topic:"Rapid Revision — Reasoning",sub:"All reasoning types speed practice",subj:"reasoning",type:"normal",shortcut:"Reasoning: 25 Qs in 15 min = 36 sec each. Practice is the only trick!",topics:["Series speed drills","Coding-decoding fast","Syllogism 5-min method","Non-verbal rapid revision"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:46,topic:"Rapid Revision — GA All Subjects",sub:"History, Polity, Geography, Science one-shot",subj:"ga",type:"normal",shortcut:"GA revision: dates + names + facts. No concept needed — memory game!",topics:["History timeline fast","Polity key articles","Geography facts","Science quick facts"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:47,topic:"PYQ Special — Quant 2023-24",sub:"Last 2 year PYQ analysis + patterns",subj:"quant",type:"normal",shortcut:"PYQ pattern: Ratio+Percentage+Profit = 30% of Quant every year!",topics:["2024 PYQ set complete","2023 PYQ set complete","Repeating topics analysis","Prediction for 2025"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:48,topic:"PYQ Special — English 2023-24",sub:"RC passages, Vocab, Grammar PYQs",subj:"english",type:"normal",shortcut:"SSC reuses ~30% vocab every year. Previous year vocab = gold!",topics:["2024 English PYQ set","2023 English PYQ set","Repeating vocabulary","Grammar pattern analysis"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:49,topic:"⚡ Week 7 Mix Test",sub:"25 Qs · 15 Min · All Subjects Revision",subj:"mix",type:"weekly-test",shortcut:"This is your checkpoint — should score 18+ to be on track!",topics:["Quant Revision 8 Qs","English Revision 7 Qs","Reasoning 5 Qs","GA Revision 5 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:50,topic:"Advanced Quant — Tier-2 Special",sub:"High-level Algebra, Geometry",subj:"quant",type:"normal",shortcut:"Tier-2 Quant: deeper concepts but SAME shortcuts apply. Don't panic!",topics:["Advanced algebraic identities","Coordinate geometry deep","Permutation & Combination basics","Advanced trigonometry"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:51,topic:"Weak Area Attack — Quant",sub:"Your lowest scoring topics deep dive",subj:"quant",type:"normal",shortcut:"Identify your bottom 3 topics. 1 day focused = 3-5 marks gain!",topics:["Identify weak topics","50 questions from each","Pattern recognition","Speed improvement"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:52,topic:"Weak Area Attack — English",sub:"Error prone areas intensive practice",subj:"english",type:"normal",shortcut:"Most students fail on: Prepositions, Articles, Tenses — focus here!",topics:["Preposition intensive","Article usage rules","Tense error practice","Vocabulary gaps"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:53,topic:"Weak Area Attack — Reasoning",sub:"Non-verbal + complex reasoning",subj:"reasoning",type:"normal",shortcut:"Non-verbal: Mirror + Paper folding = 5-6 Qs every CGL exam. Easy marks!",topics:["Non-verbal intensive","Complex syllogism","Arrangement problems","Missing number patterns"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:54,topic:"Full Mock Analysis Day",sub:"Analyze last 3 mocks deep",subj:"mix",type:"normal",shortcut:"Mock without analysis = wasted attempt. Every wrong Q = 1 topic to revise!",topics:["Subject-wise accuracy","Time management analysis","Wrong question root cause","Strategy adjustment"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:55,topic:"Speed Maths Master Class",sub:"Mental math, Approximation, Tricks",subj:"quant",type:"normal",shortcut:"Squares 1-50, Cubes 1-30, Multiplication tricks = 30 sec saved per Q!",topics:["Squares & cubes rapid recall","Vedic multiplication tricks","Approximation technique","Fraction-Decimal conversion"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:56,topic:"⚡ Week 8 Mix Test",sub:"25 Qs · 15 Min · Advanced Level",subj:"mix",type:"weekly-test",shortcut:"Advanced level test — target 20+ to confirm exam readiness!",topics:["Advanced Quant 8 Qs","English Intensive 6 Qs","Reasoning Hard 6 Qs","GA Mix 5 Qs"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:57,topic:"Final Revision Sprint — Day 1",sub:"Complete formula sheet revision",subj:"mix",type:"normal",shortcut:"Final revision: Re-read, don't re-learn. Just activate memory!",topics:["All formulas one-shot","Top 100 vocab words","GA current affairs final","Strategy for exam day"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:58,topic:"Final Revision Sprint — Day 2",sub:"PYQ speed run, Last mock",subj:"mix",type:"normal",shortcut:"Don't learn new things last 3 days. Only revise what you know!",topics:["2024 full PYQ attempt","Weak areas last check","Mock attempt","Score analysis"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:59,topic:"Final Revision Sprint — Day 3",sub:"Speed drills, Time management",subj:"mix",type:"normal",shortcut:"Mental preparation: Visualize walking into exam hall confident. It works!",topics:["Speed drill all subjects","Time management practice","Attempt strategy final","Calm your mind"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:60,topic:"✅ Syllabus Complete!",sub:"Full syllabus done — celebrate then FLT mode ON",subj:"mix",type:"normal",shortcut:"Tu ne 60 din kar liye! Ab next 10 din = Full Length Tests only!",topics:["Complete syllabus revision","FLT strategy session","Target score finalization","Mental preparation"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:61,topic:"🏆 Full Length Test #1",sub:"100 Qs · 60 Min · CGL Tier-1 Pattern",subj:"flt",type:"full-test",shortcut:"FLT strategy: Reasoning→English→GA→Quant. Do your strongest first!",topics:["Complete CGL simulation","Exact exam timing","All 4 subjects","Score & accuracy tracking"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:62,topic:"🏆 Full Length Test #2",sub:"100 Qs · 60 Min · Analysis + Retarget",subj:"flt",type:"full-test",shortcut:"After FLT: 30 min analysis > 60 min another mock. Analysis is gold!",topics:["FLT attempt","Detailed postmortem","Accuracy per subject","Improvement plan"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:63,topic:"🏆 Full Length Test #3",sub:"100 Qs · 60 Min · Hard Level",subj:"flt",type:"full-test",shortcut:"Hard FLT day — if you score 140+ here, real exam will feel easier!",topics:["Hard level simulation","Time pressure practice","Difficult DI & RC","Score improvement focus"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:64,topic:"🏆 Full Length Test #4",sub:"100 Qs · 60 Min · PYQ Based",subj:"flt",type:"full-test",shortcut:"PYQ-based FLT: closest to real exam experience. Target: 150+",topics:["PYQ pattern simulation","2023-24 question style","Real exam time feeling","Confidence building"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:65,topic:"🏆 Full Length Test #5",sub:"100 Qs · 60 Min · Speed Focus",subj:"flt",type:"full-test",shortcut:"Speed FLT: 45 min attempt, 15 min review. Push your limits!",topics:["Speed optimization test","High accuracy under speed","Time saving techniques","Final strategy tuning"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:66,topic:"Deep Analysis Day",sub:"All 5 FLTs complete analysis",subj:"flt",type:"full-test",shortcut:"Pattern recognition from 5 mocks = predict your weak zones + fix!",topics:["5-FLT performance graph","Subject-wise trend","Consistent weak areas","Last revision topics"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:67,topic:"🏆 Full Length Test #6",sub:"100 Qs · 60 Min · Confidence Builder",subj:"flt",type:"full-test",shortcut:"Confidence FLT: Attempt what you know first. Skip & return!",topics:["Confidence mode attempt","Accuracy over speed","Build positive momentum","Score: 155+ target"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:68,topic:"🏆 Full Length Test #7",sub:"100 Qs · 60 Min · Random Mix",subj:"flt",type:"full-test",shortcut:"Last proper full mock. Give it your absolute best attempt!",topics:["Random difficulty mix","All pattern questions","Final strategy check","Score tracking"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:69,topic:"🏆 Full Length Test #8",sub:"100 Qs · 60 Min · Final Simulation",subj:"flt",type:"full-test",shortcut:"Kal exam hai — aaj last rehearsal. Apna best do!",topics:["Final mock exam","Exact CGL timing","No interruptions","Score tracking"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-{d:70,topic:"🎯 EXAM DAY READY!",sub:"Light revision + strategy + confidence",subj:"flt",type:"full-test",shortcut:"Tu ready hai! 70 din ki mehnat aaj rang layegi. Calm raho, process trust karo! 💪",topics:["Last formula sheet glance","Exam hall strategy","Admit card + ID ready","Mental preparation"],pdf:"#",mock:"#",yt:"https://youtube.com/@rankupexam"},
-];
-
-const SUBJMAP={quant:{l:'Quantitative',c:'tq'},english:{l:'English',c:'te'},reasoning:{l:'Reasoning',c:'tr'},ga:{l:'General Awareness',c:'tg'},mix:{l:'Mix Test',c:'twt'},flt:{l:'Full Length Test',c:'tft'}};
-const WRANGES={0:[1,70],1:[1,7],2:[8,14],3:[15,21],4:[22,28],5:[29,35],6:[36,42],7:[43,49],8:[50,56],9:[57,60],10:[61,70]};
-const WSUMS={
-  1:{t:"Week 1 — Quant Basics",s:"D1–7 · Number System to SI/CI",p:['quant','mix']},
-  2:{t:"Week 2 — Quant Advanced",s:"D8–14 · Ratio to Algebra + Series",p:['quant','mix']},
-  3:{t:"Week 3 — Mensuration Complete",s:"D15–21 · 2D, 3D, Geometry, Coordinate",p:['quant','mix']},
-  4:{t:"Week 4 — Trig + DI + English Vocab",s:"D22–28 · Trig, Statistics, Vocabulary",p:['quant','english','mix']},
-  5:{t:"Week 5 — English Grammar + Reasoning",s:"D29–35 · SVA, RC, Full Reasoning",p:['english','reasoning','mix']},
-  6:{t:"Week 6 — General Awareness Complete",s:"D36–42 · History to Current Affairs",p:['ga','mix']},
-  7:{t:"Week 7 — Full Revision Sprints",s:"D43–49 · All subjects rapid revision",p:['quant','english','reasoning','ga','mix']},
-  8:{t:"Week 8 — Advanced PYQs + Weak Areas",s:"D50–56 · Deep dive + Tier-2 special",p:['quant','english','reasoning','ga','mix']},
-  9:{t:"Week 9 — Final Revision + Simulation",s:"D57–60 · Speed drills + Last mix test",p:['mix']},
-  10:{t:"🏆 FLT Zone — Days 61–70",s:"10 Full Length Tests + Analysis",p:['flt']},
-};
-
-function getStatus(d){if(d<TODAY)return 'completed';if(d===TODAY)return 'today';if(d<=TODAY+3)return 'available';return 'locked'}
-
-function renderDays(filter){
-  const[s,e]=WRANGES[filter];
-  const list=document.getElementById('daysList');list.innerHTML='';
-  if(filter>0&&WSUMS[filter]){
-    const ws=WSUMS[filter];
-    const w=document.createElement('div');w.className='wk-sum';
-    w.innerHTML=`<div><div class="wks-t">${ws.t}</div><div class="wks-s">${ws.s}</div></div><div class="wks-ps">${ws.p.map(p=>`<span class="wksp ${SUBJMAP[p].c}">${SUBJMAP[p].l}</span>`).join('')}</div>`;
-    list.appendChild(w);
-  }
-  DAYS.filter(d=>d.d>=s&&d.d<=e).forEach(day=>{
-    const st=getStatus(day.d);
-    const hasPDF=day.d<=TODAY;
-    const sm=SUBJMAP[day.subj];
-    const isWT=day.type==='weekly-test';
-    const isFT=day.type==='full-test';
-    const card=document.createElement('div');
-    card.className=`dc ${st}${isWT?' week-test':''}${isFT?' full-test':''}`;
-    card.id=`dc${day.d}`;
-    const spMap={today:`<span class="sp sp-today">🔥 TODAY</span>`,completed:`<span class="sp sp-done">✓ DONE</span>`,available:`<span class="sp sp-open">▶ OPEN</span>`,locked:`<span class="sp sp-lock">🔒 LOCKED</span>`};
-    if(isFT)spMap.locked=`<span class="sp sp-test">🏆 FLT</span>`;
-    const pBtn=hasPDF?`<a href="${day.pdf}" target="_blank" class="ab ab-pdf">📄 PDF</a>`:`<span class="ab ab-lock">📄 Soon</span>`;
-    const mBtn=hasPDF?`<a href="${day.mock}" class="ab ab-mock">🧪 Mock</a>`:`<span class="ab ab-lock">🧪 Soon</span>`;
-    const yBtn=hasPDF?`<a href="${day.yt}" target="_blank" class="ab ab-yt">▶ YT</a>`:`<span class="ab ab-lock">▶ Soon</span>`;
-    const mockLabel=isWT?'25Q·15Min':isFT?'100Q·60Min':'25Q·15Min';
-    card.innerHTML=`<div class="dc-row" onclick="toggleExp(${day.d})"><div class="dc-num"><span class="dn">${String(day.d).padStart(2,'0')}</span></div><div class="dc-info"><div class="dt">${day.topic}</div><div class="ds">${day.sub}</div><div class="dtagwrap"><span class="dtag ${sm.c}">${sm.l}</span>${isWT?'<span class="dtag twt">⚡ WEEKLY TEST</span>':''}${isFT?'<span class="dtag tft">🏆 FULL TEST</span>':''}<span class="dtag" style="background:rgba(255,255,255,.04);color:var(--txt3);border:1px solid var(--border)">${mockLabel}</span></div></div><div class="dc-act">${pBtn}</div><div class="dc-act">${mBtn}</div><div class="dc-act">${yBtn}</div><div class="dc-act">${spMap[st]||spMap.locked}</div></div><div class="dc-expand" id="exp${day.d}"><div class="exp-grid"><div class="exp-box"><div class="eb-icon">📚</div><div class="eb-title">Today's Topics</div><div class="eb-sub">${day.sub}</div><div class="eb-list">${day.topics.map(t=>`<div class="eb-li">${t}</div>`).join('')}</div><div class="sc-box"><strong>⚡ Shortcut:</strong> ${day.shortcut}</div>${hasPDF?`<a href="${day.pdf}" target="_blank" class="eb-btn ebb-pdf">📄 Download PDF Notes</a>`:`<span class="eb-btn ebb-lock">📄 PDF Uploading Soon...</span>`}</div><div class="exp-box"><div class="eb-icon">🧪</div><div class="eb-title">${isWT?'Weekly Mix Test':isFT?'Full Length Test':'Daily Topic Mock'}</div><div class="eb-sub">${isWT?'25 Questions · 15 Minutes · All completed topics':isFT?'100 Questions · 60 Minutes · CGL Tier-1 pattern':"25 Questions · 15 Minutes · Today's topic only"}</div><div class="eb-list"><div class="eb-li">SSC CGL 2024 pattern</div><div class="eb-li">Detailed explanation each question</div><div class="eb-li">Score + accuracy tracker</div></div>${hasPDF?`<a href="${day.mock}" class="eb-btn ebb-mock">🧪 Start ${isWT?'Weekly':isFT?'Full':'Topic'} Mock</a>`:`<span class="eb-btn ebb-lock">🧪 Mock Uploading Soon</span>`}</div><div class="exp-box"><div class="eb-icon">▶</div><div class="eb-title">YouTube Video Solution</div><div class="eb-sub">@rankupexam — Hindi explanation + shortcuts live</div><div class="eb-list"><div class="eb-li">Full concept in Hindi</div><div class="eb-li">Shortcut tricks shown live</div><div class="eb-li">PYQ solutions step-by-step</div></div>${hasPDF?`<a href="${day.yt}" target="_blank" class="eb-btn ebb-yt">▶ Watch @rankupexam</a>`:`<span class="eb-btn ebb-lock">▶ Video Coming Soon</span>`}</div></div></div>`;
-    list.appendChild(card);
-  });
-}
-
-function toggleExp(d){const e=document.getElementById(`exp${d}`);if(!e)return;const open=e.classList.contains('open');document.querySelectorAll('.dc-expand.open').forEach(x=>x.classList.remove('open'));if(!open)e.classList.add('open')}
-function fw(n,el){document.querySelectorAll('.wt').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderDays(n);if(n>0){const[s]=WRANGES[n];setTimeout(()=>{const c=document.getElementById(`dc${s}`);if(c)c.scrollIntoView({behavior:'smooth',block:'start'})},80)}}
-
-// ═══════════════════════════
-// HARD SHIFTS DATA
-// ═══════════════════════════
-const SHIFTS=[
-  {yr:'2021',date:'11 Apr 2022',shift:'Shift 3',rank:1,label:'CGL 2021'},
-  {yr:'2021',date:'12 Apr 2022',shift:'Shift 2',rank:2,label:'CGL 2021'},
-  {yr:'2021',date:'12 Apr 2022',shift:'Shift 3',rank:1,label:'CGL 2021'},
-  {yr:'2021',date:'13 Apr 2022',shift:'Shift 3',rank:2,label:'CGL 2021'},
-  {yr:'2021',date:'20 Apr 2022',shift:'Shift 1',rank:3,label:'CGL 2021'},
-  {yr:'2021',date:'21 Apr 2022',shift:'Shift 2',rank:2,label:'CGL 2021'},
-  {yr:'2022',date:'12 Dec 2022',shift:'Shift 3',rank:1,label:'CGL 2022'},
-  {yr:'2022',date:'8 Dec 2022',shift:'Shift 1',rank:2,label:'CGL 2022'},
-  {yr:'2022',date:'1 Dec 2022',shift:'Shift 3',rank:1,label:'CGL 2022'},
-  {yr:'2022',date:'3 Dec 2022',shift:'Shift 1',rank:2,label:'CGL 2022'},
-  {yr:'2022',date:'13 Dec 2022',shift:'Shift 1',rank:3,label:'CGL 2022'},
-  {yr:'2023',date:'26 July 2023',shift:'Shift 1',rank:1,label:'CGL 2023'},
-  {yr:'2023',date:'18 July 2023',shift:'Shift 3',rank:2,label:'CGL 2023'},
-  {yr:'2023',date:'26 July 2023',shift:'Shift 4',rank:1,label:'CGL 2023'},
-  {yr:'2023',date:'19 July 2023',shift:'Shift 4',rank:2,label:'CGL 2023'},
-  {yr:'2023',date:'19 July 2023',shift:'Shift 2',rank:3,label:'CGL 2023'},
-  {yr:'2023',date:'14 July 2023',shift:'Shift 3',rank:2,label:'CGL 2023'},
-  {yr:'2024',date:'17 Sept 2024',shift:'Shift 3',rank:1,label:'CGL 2024'},
-  {yr:'2024',date:'18 Sept 2024',shift:'Shift 3',rank:1,label:'CGL 2024'},
-  {yr:'2024',date:'24 Sept 2024',shift:'Shift 1',rank:2,label:'CGL 2024'},
-  {yr:'2024',date:'10 Sept 2024',shift:'Shift 1',rank:3,label:'CGL 2024'},
-  {yr:'2024',date:'19 Sept 2024',shift:'Shift 3',rank:1,label:'CGL 2024'},
-  {yr:'2024',date:'12 Sept 2024',shift:'Shift 3',rank:2,label:'CGL 2024'},
-  {yr:'2025',date:'12 Sept 2025',shift:'Shift 3',rank:1,label:'CGL 2025'},
-  {yr:'2025',date:'18 Sept 2025',shift:'Shift 3',rank:1,label:'CGL 2025'},
-  {yr:'2025',date:'15 Sept 2025',shift:'Shift 3',rank:2,label:'CGL 2025'},
-  {yr:'2025',date:'20 Sept 2025',shift:'Shift 1',rank:2,label:'CGL 2025'},
-  {yr:'2025',date:'18 Sept 2025',shift:'Shift 1',rank:3,label:'CGL 2025'},
-  {yr:'2025',date:'16 Sept 2025',shift:'Shift 2',rank:2,label:'CGL 2025'},
-  {yr:'2025',date:'13 Sept 2025',shift:'Shift 2',rank:3,label:'CGL 2025'},
-];
-
-let activeYear='all';
-const yrColors={'2021':'hard-3','2022':'hard-2','2023':'hard-2','2024':'hard-1','2025':'hard-1'};
-const rankCls={1:'r1',2:'r2',3:'r3'};
-const rankLbl={1:'🔥 Hardest',2:'⚡ Very Hard',3:'💪 Hard'};
-
-function shiftCardHTML(s,i){
-  return `<div class="shift-card ${yrColors[s.yr]||'hard-2'}">
-    <div class="sc-top"><div class="sc-name">${s.date} · ${s.shift}</div><span class="sc-rank ${rankCls[s.rank]||'r3'}">${rankLbl[s.rank]||'Hard'}</span></div>
-    <div class="sc-meta">SSC ${s.label} · Shift #${i+1}</div>
-    <div class="sc-actions">
-      <a href="https://youtube.com/@rankupexam" target="_blank" class="sca sca-try">🧪 Attempt Now</a>
-      <a href="https://youtube.com/@rankupexam" target="_blank" class="sca sca-yt">▶ YT Solution</a>
-    </div></div>`;
-}
-
-function renderShifts(yr){
-  const filtered=yr==='all'?SHIFTS:SHIFTS.filter(s=>s.yr===yr);
-  const list=document.getElementById('shiftList');
-  if(list){list.innerHTML='';document.getElementById('shiftCount').textContent=filtered.length+' Shifts';filtered.forEach((s,i)=>{const d=document.createElement('div');d.innerHTML=shiftCardHTML(s,i);list.appendChild(d.firstElementChild)})}
-}
-function setYear(yr,el){activeYear=yr;document.querySelectorAll('.ryt').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderShifts(yr)}
-
-function renderShiftsFull(yr){
-  const filtered=yr==='all'?SHIFTS:SHIFTS.filter(s=>s.yr===yr);
-  const list=document.getElementById('shiftListFull');
-  if(list){list.innerHTML='';filtered.forEach((s,i)=>{const d=document.createElement('div');d.innerHTML=shiftCardHTML(s,i);list.appendChild(d.firstElementChild)})}
-}
-function setYearS(yr,el){document.querySelectorAll('#shiftYearTabs .ryt').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderShiftsFull(yr)}
-
-// ═══════════════════════════
-// INIT
-// ═══════════════════════════
-updateXPUI();
-renderHeatmap();
-renderShifts('all');
-
-// Restore today's checks from state
-if(STATE.todayChecks){
-  STATE.todayChecks.forEach((checked,idx)=>{
-    if(checked){
-      const item=document.querySelector(`.tcl-item:nth-child(${idx+1})`);
-      if(item){item.classList.add('checked');document.getElementById('chk'+idx).textContent='✓';checksDone++}
+  class Particle {
+    constructor(){ this.reset(); }
+    reset(){
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      this.vx = (Math.random() - .5) * .18;
+      this.vy = (Math.random() - .5) * .18;
+      this.r  = Math.random() * 1.2 + .2;
+      this.a  = Math.random() * .22 + .04;
+      this.c  = Math.random() > .7 ? [200,170,110] : Math.random() > .5 ? [20,60,140] : [122,184,212];
     }
-  });
-}
-updateCheckProgress();
+    update(){ this.x += this.vx; this.y += this.vy; if(this.x<0||this.x>W||this.y<0||this.y>H) this.reset(); }
+    draw(){
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${this.c.join(',')},${this.a})`;
+      ctx.fill();
+    }
+  }
 
-// If today already completed
-if(STATE.completedDays.includes(TODAY_DAY)){
-  const btn=document.getElementById('completeDayBtn');
-  btn.className='complete-btn done';
-  btn.textContent='🎉 Day '+TODAY_DAY+' Complete!';
-}
+  for(let i = 0; i < NPART; i++) particles.push(new Particle());
+
+  const ORBS = [
+    {x:.65,y:.4,r:250,c:'10,30,100',a:.05},
+    {x:.15,y:.7,r:180,c:'15,50,120',a:.04},
+    {x:.5, y:.5,r:120,c:'20,40,80', a:.03}
+  ];
+  let frame = 0;
+
+  (function animate(){
+    ctx.clearRect(0, 0, W, H);
+    ORBS.forEach(o => {
+      const gx = o.x*W + Math.sin(frame*.0005+o.r)*20;
+      const gy = o.y*H + Math.cos(frame*.0004+o.r)*15;
+      const g  = ctx.createRadialGradient(gx,gy,0,gx,gy,o.r);
+      g.addColorStop(0, `rgba(${o.c},${o.a})`);
+      g.addColorStop(1, 'transparent');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    });
+    particles.forEach(p => { p.update(); p.draw(); });
+    frame++;
+    requestAnimationFrame(animate);
+  })();
+})();
 </script>
+
+<!-- Audio toggle -->
+<script>
+(function(){
+  const audio = document.getElementById('bgAudio');
+  const btn   = document.getElementById('audioBtnEl');
+  if(!audio || !audio.src) return;
+  let muted = true;
+  audio.volume = 0.15;
+  audio.addEventListener('timeupdate', () => { if(audio.currentTime >= 9) audio.currentTime = 0; });
+  window.toggleAudio = function(){
+    muted = !muted;
+    if(muted){ audio.pause(); btn.textContent = '🔇'; btn.classList.remove('playing'); }
+    else { audio.play().catch(()=>{}); btn.textContent = '🎵'; btn.classList.add('playing'); }
+  };
+})();
+</script>
+
 </body>
 </html>
