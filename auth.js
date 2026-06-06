@@ -1,75 +1,88 @@
 /**
- * ═══════════════════════════════════════════════════════
+ * ═══════════════════════════════════════════════════
  *  RankUpExam — auth.js
- *  Firebase authentication module.
- *  Google Sign-In, persistent session, logout.
- *  Depends on: config.js (must load first)
- * ═══════════════════════════════════════════════════════
+ *  Google Sign-in / Sign-out / Auth State
+ * ═══════════════════════════════════════════════════
  */
 
-import { initializeApp }             from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getAuth, GoogleAuthProvider,
-         signInWithPopup, signOut,
-         onAuthStateChanged }         from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+import { auth } from "./config.js";
 
-// ── Init ──────────────────────────────────────────────────
-const app      = initializeApp(window.CONFIG.firebase);
-const auth     = getAuth(app);
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 const provider = new GoogleAuthProvider();
-provider.addScope('profile');
-provider.addScope('email');
 
-// ── UI helpers ────────────────────────────────────────────
-function setLoggedIn(user) {
-  document.getElementById('authLoginBtn').style.display  = 'none';
-  const uw = document.getElementById('authUser');
-  uw.style.display = 'flex';
-  const photo = user.photoURL || '';
-  document.getElementById('authAvatar').src    = photo;
-  document.getElementById('authDdAvatar').src  = photo;
-  const first = (user.displayName || 'User').split(' ')[0];
-  document.getElementById('authName').textContent    = first;
-  document.getElementById('authDdName').textContent  = user.displayName || '';
-  document.getElementById('authDdEmail').textContent = user.email || '';
-  // Notify app layer
-  window.dispatchEvent(new CustomEvent('ru:login', { detail: { user } }));
+const loginBtn  = document.getElementById("google-login");
+const logoutBtn = document.getElementById("logout-btn");
+const userBox   = document.getElementById("user-box");
+
+// ── Sign In ──
+if (loginBtn) {
+  loginBtn.addEventListener("click", async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user   = result.user;
+
+      localStorage.setItem("rankup-user", JSON.stringify({
+        name:  user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+        uid:   user.uid
+      }));
+
+      window.location.reload();
+
+    } catch (error) {
+      alert("Sign-in failed: " + error.message);
+      console.error(error);
+    }
+  });
 }
 
-function setLoggedOut() {
-  document.getElementById('authLoginBtn').style.display = 'flex';
-  document.getElementById('authUser').style.display     = 'none';
-  window.dispatchEvent(new Event('ru:logout'));
+// ── Sign Out ──
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    localStorage.removeItem("rankup-user");
+    window.location.reload();
+  });
 }
 
-// ── Auth state observer (restores session on refresh) ─────
-onAuthStateChanged(auth, user => {
-  if (user) setLoggedIn(user);
-  else      setLoggedOut();
+// ── Auth State Listener ──
+onAuthStateChanged(auth, (user) => {
+  if (user && userBox) {
+    userBox.innerHTML = `
+      <div class="user-profile">
+        <img src="${user.photoURL}" alt="${user.displayName}" class="user-avatar">
+        <div class="user-info">
+          <h3 class="user-name">${user.displayName}</h3>
+          <p class="user-email">${user.email}</p>
+        </div>
+      </div>
+    `;
+  }
+
+  // Update nav sign-in button across site
+  const navSignInBtn = document.getElementById("nav-signin-btn");
+  if (navSignInBtn) {
+    if (user) {
+      navSignInBtn.innerHTML = `<img src="${user.photoURL}" style="width:22px;height:22px;border-radius:50%;object-fit:cover;border:1px solid var(--gold)"> ${user.displayName.split(' ')[0]}`;
+      navSignInBtn.onclick = () => window.location.href = '/signin.html';
+    } else {
+      navSignInBtn.textContent = 'Sign In';
+      navSignInBtn.onclick = () => window.location.href = '/signin.html';
+    }
+  }
 });
 
-// ── Sign In ───────────────────────────────────────────────
-window.signInWithGoogle = async function () {
-  const btn = document.getElementById('authGoogleBtn');
-  const txt = document.getElementById('googleBtnText');
-  btn.disabled = true;
-  btn.classList.add('loading');
-  txt.textContent = 'Signing in…';
+// ── Helper: get current user from localStorage (sync) ──
+export function getCurrentUser() {
   try {
-    const result = await signInWithPopup(auth, provider);
-    closeAuthModal();
-    setLoggedIn(result.user);
-  } catch (e) {
-    txt.textContent = 'Continue with Google';
-    btn.disabled = false;
-    btn.classList.remove('loading');
-    if (e.code !== 'auth/popup-closed-by-user')
-      alert('Sign-in failed: ' + e.message);
-  }
-};
-
-// ── Sign Out ──────────────────────────────────────────────
-window.authSignOut = async function () {
-  await signOut(auth);
-  setLoggedOut();
-  document.getElementById('authUserDd').classList.remove('open');
-};
+    const raw = localStorage.getItem("rankup-user");
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}

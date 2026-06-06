@@ -1,3 +1,6 @@
+/* RankUpExam — data.js | 70-day SSC CGL plan + Hard Shifts */
+
+// ── DATA ────────────────────────────────────────────────
 /**
  * RankUpExam — data.js (Official SSC CGL Syllabus — 60+10 Day Plan)
  * Edit ONLY this file for: pdf, mock, yt, ytAnalysis links, topics, titles.
@@ -440,5 +443,11 @@ const SHIFTS = [
   {yr:'2025',date:'20 Sept 2025',shift:'Shift 1',rank:2,label:'CGL 2025',mock:'#',yt:'https://youtube.com/@rankupexam'},
 ];
 
-window.DAYS   = DAYS;
+
+
+
+window.DAYS = DAYS;
+window.SHIFTS = SHIFTS;
+
+window.DAYS = DAYS;
 window.SHIFTS = SHIFTS;

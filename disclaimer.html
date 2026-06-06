@@ -1,152 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi-IN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Disclaimer | RankUpExam</title>
-<meta name="description" content="Disclaimer for RankUpExam SSC preparation content, mock tests, analytics, and future subscriptions.">
-<meta name="robots" content="index,follow">
+<title>Disclaimer — RankUpExam</title>
+<meta name="theme-color" content="#04060a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-:root{
-  --bg:#070b14;
-  --bg2:#0b1220;
-  --panel:rgba(10,16,28,.78);
-  --panel-2:rgba(13,21,38,.92);
-  --line:rgba(255,255,255,.08);
-  --line-2:rgba(255,255,255,.12);
-  --text:#e8edf7;
-  --muted:#a9b3c7;
-  --muted-2:#7f8aa3;
-  --gold:#f2c86b;
-  --gold-2:#cda24b;
-  --accent:#7bdcff;
-  --danger:#ff8aa3;
-  --shadow:0 24px 70px rgba(0,0,0,.42);
-  --radius:22px;
-  --radius-sm:14px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(circle at top left, rgba(123,220,255,.10), transparent 28%),
-    radial-gradient(circle at right top, rgba(242,200,107,.09), transparent 24%),
-    linear-gradient(180deg, #070b14 0%, #09111d 40%, #06090f 100%);
-  min-height:100vh;
-  line-height:1.7;
-}
-body::before{
-  content:'';
-  position:fixed; inset:0;
-  background:
-    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-  background-size:42px 42px;
-  pointer-events:none;
-  opacity:.16;
-  mask-image:linear-gradient(180deg, rgba(0,0,0,.7), transparent 92%);
-}
-.container{width:min(1100px, calc(100% - 32px)); margin:0 auto;}
-.backbar{
-  position:sticky; top:0; z-index:1000;
-  backdrop-filter:blur(18px);
-  background:rgba(7,11,20,.72);
-  border-bottom:1px solid var(--line);
-}
-.backbar .inner{display:flex; align-items:center; gap:14px; padding:14px 0;}
-.back-btn{
-  display:inline-flex; align-items:center; gap:10px;
-  color:var(--text); text-decoration:none; font-weight:600;
-  padding:10px 14px; border:1px solid var(--line);
-  border-radius:999px; background:rgba(255,255,255,.03);
-  box-shadow:0 10px 30px rgba(0,0,0,.18);
-}
-.back-btn:hover{border-color:rgba(242,200,107,.35); transform:translateY(-1px)}
-.badge{
-  display:inline-flex; align-items:center; gap:8px;
-  color:var(--gold); font-size:.78rem; letter-spacing:.18em; text-transform:uppercase;
-}
-.hero{padding:34px 0 18px;}
-.hero-card{
-  position:relative; overflow:hidden;
-  background:linear-gradient(180deg, rgba(13,21,38,.96), rgba(8,12,21,.92));
-  border:1px solid var(--line);
-  border-radius:calc(var(--radius) + 8px);
-  box-shadow:var(--shadow);
-  padding:28px;
-}
-.hero-card::after{
-  content:''; position:absolute; inset:-2px;
-  background:linear-gradient(135deg, rgba(242,200,107,.20), transparent 30%, transparent 70%, rgba(123,220,255,.14));
-  pointer-events:none; mask:linear-gradient(#000,#000) content-box, linear-gradient(#000,#000);
-  -webkit-mask-composite:xor; mask-composite:exclude; padding:1px; border-radius:inherit;
-}
-.kicker{color:var(--gold); text-transform:uppercase; letter-spacing:.18em; font-size:.78rem; margin-bottom:12px}
-h1{margin:0 0 12px; font-size:clamp(2rem, 4vw, 3.5rem); line-height:1.08; letter-spacing:-.03em;}
-.lead{margin:0; max-width:70ch; color:var(--muted); font-size:1.02rem}
-.meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:20px}
-.meta span{
-  border:1px solid var(--line); background:rgba(255,255,255,.03);
-  color:var(--muted); padding:8px 12px; border-radius:999px; font-size:.88rem;
-}
-main{padding:8px 0 60px}
-.grid{display:grid; grid-template-columns:repeat(12,1fr); gap:18px; margin-top:18px}
-.panel{
-  grid-column:span 12;
-  background:linear-gradient(180deg, var(--panel), rgba(8,12,20,.88));
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:24px;
-  box-shadow:var(--shadow);
-}
-.panel h2{margin:0 0 12px; font-size:1.2rem; letter-spacing:-.02em}
-.panel h3{margin:18px 0 10px; font-size:1rem; color:#f6f8fc}
-.panel p, .panel li{color:var(--muted); margin-top:0}
-.panel ul{margin:10px 0 0; padding-left:18px}
-.panel li{margin:7px 0}
-.note{
-  border-left:3px solid rgba(242,200,107,.7);
-  background:rgba(242,200,107,.06);
-  padding:14px 16px; border-radius:14px; color:#d7deea;
-}
-.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px}
-.card{
-  background:rgba(255,255,255,.03); border:1px solid var(--line);
-  border-radius:18px; padding:16px;
-}
-.card .title{color:#fff; font-weight:700; margin-bottom:6px}
-.card .desc{color:var(--muted-2); font-size:.94rem}
-.table-wrap{overflow:auto; border:1px solid var(--line); border-radius:18px; margin-top:14px}
-table{width:100%; border-collapse:collapse; min-width:620px; background:rgba(255,255,255,.02)}
-th,td{padding:14px 16px; border-bottom:1px solid var(--line)}
-th{color:#fff; text-align:left; background:rgba(255,255,255,.03); font-size:.92rem}
-td{color:var(--muted)}
-.footer{padding:0 0 36px; color:var(--muted-2); font-size:.92rem}
-.small{font-size:.92rem; color:var(--muted-2)}
-.taglist{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
-.tag{padding:7px 10px; border:1px solid var(--line); border-radius:999px; color:#dbe4f6; background:rgba(255,255,255,.02); font-size:.84rem}
-@media (max-width: 820px){
-  .hero-card,.panel{padding:20px}
-  .cards{grid-template-columns:1fr}
-}
+.legal-wrap{max-width:740px;margin:0 auto;padding:calc(var(--nav-h) + 40px) 20px 80px}
+.legal-badge{display:inline-flex;align-items:center;gap:8px;padding:4px 12px;background:rgba(200,170,110,.06);border:1px solid rgba(200,170,110,.15);border-radius:3px;font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px}
+.legal-title{font-family:'Outfit',sans-serif;font-size:clamp(24px,5vw,38px);font-weight:300;color:#e8e2d4;line-height:1.2;margin-bottom:8px}
+.legal-updated{font-family:var(--mono);font-size:10px;color:var(--txt3);margin-bottom:36px}
+.legal-section{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.04)}
+.legal-section:last-child{border-bottom:none}
+.legal-h2{font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.legal-p{font-size:13px;color:var(--txt2);line-height:1.9;margin-bottom:10px}
+.legal-list{list-style:none;padding:0;margin:0 0 10px}
+.legal-list li{font-size:13px;color:var(--txt2);line-height:1.9;padding:4px 0 4px 18px;position:relative}
+.legal-list li::before{content:"—";position:absolute;left:0;color:var(--txt3);font-family:var(--mono)}
+.legal-back{display:inline-flex;align-items:center;gap:8px;margin-top:32px;padding:10px 20px;background:rgba(200,170,110,.06);border:1px solid rgba(200,170,110,.15);border-radius:4px;color:var(--gold);font-family:var(--mono);font-size:11px;text-decoration:none;transition:all .2s}
+.legal-back:hover{background:rgba(200,170,110,.12)}
 </style>
 </head>
 <body>
-<header class="backbar"><div class="container inner"><a class="back-btn" href="javascript:history.back()" aria-label="Go back">← Back</a><div class="badge">RankUpExam Legal</div></div></header>
-<main class="container">
-  <section class="hero"><div class="hero-card"><div class="kicker">Disclaimer</div><h1>Important limitations of our content</h1><p class="lead">RankUpExam is built to support SSC exam preparation with mock tests, analytics, and study guidance. This disclaimer explains what the platform does and does not guarantee.</p><div class="meta"><span>Effective: 05 June 2026</span><span>Exam preparation guidance only</span><span>Professional content notice</span></div></div></section>
-  <section class="grid">
-    <article class="panel"><h2>1. Educational purpose only</h2><p>All content on RankUpExam is provided for educational and informational purposes. It is not legal, financial, career, or official exam authority advice, and it should not be treated as a substitute for official notifications or instructions.</p></article>
-    <article class="panel"><h2>2. No guarantee of results</h2><p>Mock test scores, analytics, accuracy metrics, and recommendation features are designed to help you study better, but they do not guarantee selection, cutoff success, or exam performance. Outcomes depend on many factors outside our control.</p></article>
-    <article class="panel"><h2>3. Third-party and official sources</h2><p>We may reference exam-related information from public sources, recruiters, and official notices, but users should verify deadlines, syllabus changes, fee details, and eligibility criteria from the relevant official authority before acting on them.</p></article>
-    <article class="panel"><h2>4. Analytics and recommendations</h2><p>Insights, rankings, and suggestions are generated from available platform data and may not always reflect complete real-world performance. They are intended to support learning, not to make decisions on your behalf.</p><div class="cards"><div class="card"><div class="title">Mock tests</div><div class="desc">Useful for practice, but not an official exam paper.</div></div><div class="card"><div class="title">Analytics</div><div class="desc">Derived from your activity and may change over time.</div></div><div class="card"><div class="title">Content updates</div><div class="desc">Topics may be updated without prior notice.</div></div></div></article>
-    <article class="panel"><h2>5. External links and services</h2><p>RankUpExam may contain links to external websites, payment gateways, authentication services, or support tools. We are not responsible for the content, policies, or actions of third-party services you choose to use.</p></article>
-    <article class="panel"><h2>6. Contact</h2><p>For any concern related to platform content, corrections, or reporting an issue, contact the RankUpExam team through the official support channel available on the website.</p><div class="taglist"><span class="tag">SSC prep</span><span class="tag">Mock tests</span><span class="tag">Analytics</span><span class="tag">Subscriptions</span></div></article>
-  </section>
-  <div class="footer">© 2026 RankUpExam. All rights reserved.</div>
-</main>
+<div class="noise"></div>
+
+<nav>
+  <div class="nav-left">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+      <div class="nav-logo-dot"></div>
+      <span class="nav-brand">RankUpExam</span>
+    </a>
+  </div>
+  <div class="nav-right">
+    <a href="/" class="nav-btn btn-ghost">← Home</a>
+  </div>
+</nav>
+
+<div class="legal-wrap">
+  <div class="legal-badge">📋 Legal</div>
+  <h1 class="legal-title">Disclaimer</h1>
+  <div class="legal-updated">Last updated: June 2026</div>
+
+  <div class="legal-section">
+    <div class="legal-h2">General Information</div>
+    <p class="legal-p">RankUpExam (rankupexam.vercel.app) ek free exam preparation platform hai jo SSC CGL, Railway, Banking, aur other government exams ke aspirants ke liye banaya gaya hai.</p>
+    <p class="legal-p">Yeh platform kisi bhi government body, SSC, UPSC, Railway Board, ya kisi official examination authority se affiliated, endorsed, ya authorized nahi hai.</p>
+  </div>
+
+  <div class="legal-section">
+    <div class="legal-h2">Content Accuracy</div>
+    <p class="legal-p">Hamare practice questions, mock tests, aur study material humari best knowledge ke according accurate hain. Lekin:</p>
+    <ul class="legal-list">
+      <li>Exam patterns, syllabus, aur cut-offs change ho sakte hain — official notifications se verify karein</li>
+      <li>Koi bhi question exact exam mein aaye — iska koi guarantee nahi hai</li>
+      <li>Current Affairs content time-sensitive hoti hai — latest updates ke liye official sources dekhein</li>
+      <li>Explanations educational purpose ke liye hain — koi error mile toh rankupexam@gmail.com pe batayein</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <div class="legal-h2">External Links</div>
+    <p class="legal-p">RankUpExam mein kuch external links ho sakti hain (YouTube, Telegram, official sites). Hum un external websites ke content ke liye responsible nahi hain.</p>
+  </div>
+
+  <div class="legal-section">
+    <div class="legal-h2">No Guarantee of Results</div>
+    <p class="legal-p">RankUpExam use karne se exam clearance ka koi guarantee nahi hai. Yeh ek supplementary preparation tool hai. Success ke liye consistent effort, proper study plan, aur official resources zaroor use karein.</p>
+  </div>
+
+  <div class="legal-section">
+    <div class="legal-h2">Contact</div>
+    <p class="legal-p">Koi bhi concern ho toh: <a href="mailto:rankupexam@gmail.com" style="color:var(--cyan)">rankupexam@gmail.com</a></p>
+  </div>
+
+  <a href="/" class="legal-back">← Back to RankUpExam</a>
+</div>
+
+<script>
+// Simple nav logo dot
+document.querySelector('.nav-logo-dot') && (document.querySelector('.nav-logo-dot').style.cssText = 'width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)');
+</script>
 </body>
 </html>

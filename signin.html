@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="hi-IN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — RankUpExam</title>
+<meta name="theme-color" content="#04060a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:#04060a;color:#e8e2d4;
+  font-family:'Outfit',sans-serif;
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:20px;
+  overflow-x:hidden;
+}
+:root{
+  --bg:#04060a;--gold:#c8aa6e;--gold2:#e8d090;
+  --cyan:#7ab8d4;--em:#6dbf9e;--red:#c97070;
+  --txt:#e8e2d4;--txt2:#8a8070;--txt3:#4a4540;
+  --border:rgba(255,255,255,.06);
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Cormorant Garamond',serif;
+}
+
+/* noise + glow */
+.noise{position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4;mix-blend-mode:overlay}
+.glow{position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(15,40,120,.25) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
+
+/* card */
+.card{
+  width:100%;max-width:420px;
+  background:rgba(255,255,255,.018);
+  border:1px solid rgba(200,170,110,.1);
+  border-radius:16px;
+  padding:44px 36px 36px;
+  position:relative;z-index:10;
+  animation:fadeUp .4s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* logo */
+.logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:36px}
+.logo-dot{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+.logo-text{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--gold);letter-spacing:.14em;text-transform:uppercase}
+
+/* heading */
+.card-title{font-family:var(--serif);font-size:30px;font-weight:400;color:#e8e2d4;text-align:center;line-height:1.25;margin-bottom:6px}
+.card-sub{font-size:12px;color:var(--txt3);text-align:center;line-height:1.7;margin-bottom:28px}
+
+/* benefits */
+.benefits{display:flex;flex-direction:column;gap:8px;margin-bottom:26px}
+.benefit{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(255,255,255,.012);border:1px solid rgba(255,255,255,.04);border-radius:8px}
+.benefit-icon{font-size:15px;flex-shrink:0}
+.benefit-text strong{display:block;font-family:var(--mono);font-size:10px;color:var(--txt);letter-spacing:.05em;margin-bottom:2px}
+.benefit-text span{font-size:11px;color:var(--txt3);line-height:1.5}
+
+/* divider */
+.divider{display:flex;align-items:center;gap:12px;margin:0 0 20px}
+.divider-line{flex:1;height:1px;background:rgba(255,255,255,.05)}
+.divider-txt{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.08em}
+
+/* google btn */
+#google-login{
+  width:100%;padding:14px 20px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  color:#e8e2d4;
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:500;
+  cursor:pointer;transition:all .2s;
+  margin-bottom:0;
+}
+#google-login:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18);transform:translateY(-1px)}
+#google-login:active{transform:none}
+#google-login:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.g-icon{width:20px;height:20px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#333;flex-shrink:0}
+
+/* logout btn */
+#logout-btn{
+  width:100%;margin-top:10px;padding:11px 20px;
+  background:rgba(201,112,112,.06);
+  border:1px solid rgba(201,112,112,.15);
+  border-radius:10px;
+  color:var(--red);
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  cursor:pointer;transition:all .2s;
+  display:none;
+}
+#logout-btn:hover{background:rgba(201,112,112,.12)}
+
+/* user box */
+#user-box{margin-top:20px}
+.user-profile{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 16px;
+  background:rgba(200,170,110,.04);
+  border:1px solid rgba(200,170,110,.1);
+  border-radius:10px;
+}
+.user-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,170,110,.3)}
+.user-name{font-size:14px;font-weight:600;color:var(--txt);margin-bottom:2px}
+.user-email{font-size:11px;color:var(--txt3);font-family:var(--mono)}
+
+/* note + skip */
+.auth-note{font-size:10px;color:var(--txt3);text-align:center;line-height:1.8;margin-top:20px}
+.auth-note a{color:var(--txt3);text-decoration:underline;transition:color .2s}
+.auth-note a:hover{color:var(--txt2)}
+.skip{display:block;text-align:center;margin-top:14px;color:var(--txt3);font-family:var(--mono);font-size:10px;text-decoration:none;transition:color .2s}
+.skip:hover{color:var(--txt2)}
+
+/* loading spinner inside btn */
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.15);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="glow"></div>
+
+<div class="card">
+
+  <div class="logo">
+    <div class="logo-dot"></div>
+    <div class="logo-text">RankUpExam</div>
+  </div>
+
+  <h1 class="card-title">Welcome,<br>Aspirant 🎯</h1>
+  <p class="card-sub">Sign in karke apna XP, streak aur<br>progress save karo — bilkul free.</p>
+
+  <div class="benefits">
+    <div class="benefit">
+      <div class="benefit-icon">⚡</div>
+      <div class="benefit-text">
+        <strong>XP & Streak Sync</strong>
+        <span>Sabhi devices pe progress save rahega</span>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">📊</div>
+      <div class="benefit-text">
+        <strong>Performance History</strong>
+        <span>Saare mock tests ke results ek jagah</span>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">🏆</div>
+      <div class="benefit-text">
+        <strong>Rank Badge</strong>
+        <span>Apni rank track karo — roz improve karo</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-txt">Continue with</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <button id="google-login">
+    <div class="g-icon">G</div>
+    Sign in with Google
+  </button>
+
+  <button id="logout-btn">↩ Sign Out</button>
+
+  <div id="user-box"></div>
+
+  <p class="auth-note">
+    Sign in karke aap hamare
+    <a href="/terms.html">Terms</a> aur
+    <a href="/privacy-policy.html">Privacy Policy</a>
+    se agree karte hain.<br>Koi spam nahi. Kabhi bhi sign out kar sakte hain.
+  </p>
+
+  <a href="/" class="skip">← Bina sign in ke continue karo</a>
+
+</div>
+
+<script type="module">
+import { auth } from "./config.js";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const provider  = new GoogleAuthProvider();
+const loginBtn  = document.getElementById("google-login");
+const logoutBtn = document.getElementById("logout-btn");
+const userBox   = document.getElementById("user-box");
+
+// ── Sign In ──
+loginBtn.addEventListener("click", async () => {
+  loginBtn.disabled = true;
+  loginBtn.innerHTML = '<div class="spinner"></div> Signing in...';
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user   = result.user;
+    localStorage.setItem("rankup-user", JSON.stringify({
+      name: user.displayName, email: user.email,
+      photo: user.photoURL,   uid: user.uid
+    }));
+    // Redirect home after success
+    setTimeout(() => { window.location.href = '/'; }, 800);
+  } catch (err) {
+    loginBtn.disabled = false;
+    loginBtn.innerHTML = '<div class="g-icon">G</div> Sign in with Google';
+    if (err.code !== 'auth/popup-closed-by-user') {
+      alert("Sign-in failed: " + err.message);
+    }
+  }
+});
+
+// ── Sign Out ──
+logoutBtn.addEventListener("click", async () => {
+  await signOut(auth);
+  localStorage.removeItem("rankup-user");
+  window.location.reload();
+});
+
+// ── Auth State ──
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // Show user profile + logout, hide login
+    loginBtn.style.display  = 'none';
+    logoutBtn.style.display = 'block';
+    userBox.innerHTML = `
+      <div class="user-profile">
+        <img src="${user.photoURL}" alt="${user.displayName}" class="user-avatar">
+        <div>
+          <div class="user-name">${user.displayName}</div>
+          <div class="user-email">${user.email}</div>
+        </div>
+      </div>`;
+    // Update heading
+    document.querySelector('.card-title').innerHTML =
+      'Welcome back,<br>' + user.displayName.split(' ')[0] + '! 👋';
+    document.querySelector('.card-sub').textContent =
+      'Aap sign in hain. Study karte raho!';
+  } else {
+    loginBtn.style.display  = 'flex';
+    logoutBtn.style.display = 'none';
+  }
+});
+</script>
+</body>
+</html>

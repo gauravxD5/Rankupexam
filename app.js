@@ -1,3 +1,6 @@
+/* RankUpExam — app.js | Core CGL OS logic: XP, Timer, Today, Roadmap, Shifts */
+
+// ── APP ─────────────────────────────────────────────────
 /**
  * ═══════════════════════════════════════════════════════
  *  RankUpExam — app.js
@@ -5,32 +8,6 @@
  *  Depends on: config.js, data.js (must load before this)
  * ═══════════════════════════════════════════════════════
  */
-
-/* ───────────────────────────────────────────────────────
-   0. THEME — Dark / Light with localStorage persistence
-   ─────────────────────────────────────────────────────── */
-const THEME_KEY = 'rankupexam_theme';
-function applyTheme(theme) {
-  const body = document.body;
-  const ttD  = document.getElementById('ttDark');
-  const ttL  = document.getElementById('ttLight');
-  if (theme === 'light') {
-    body.classList.add('light');
-    if (ttD) ttD.classList.remove('active');
-    if (ttL) ttL.classList.add('active');
-  } else {
-    body.classList.remove('light');
-    if (ttD) ttD.classList.add('active');
-    if (ttL) ttL.classList.remove('active');
-  }
-  localStorage.setItem(THEME_KEY, theme);
-}
-window.setTheme = function(theme) { applyTheme(theme); };
-// Restore saved theme on load
-(function() {
-  const saved = localStorage.getItem(THEME_KEY) || 'dark';
-  if (saved === 'light') document.body.classList.add('light');
-})();
 
 /* ───────────────────────────────────────────────────────
    1. ADMIN MODE
@@ -639,13 +616,80 @@ function injectBranding() {
    17. INIT
    ─────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  // Restore theme toggle UI
-  const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
-  applyTheme(savedTheme);
-
   injectBranding();
   updateXPUI();
   renderTodayView();
   renderHeatmap();
   renderShifts('all', 'shiftList');
 });
+
+
+
+// ── CGL OS init (called when SSC CGL view is shown) ──
+window._cglInitDone = false;
+function initCglOS() {
+  if(window._cglInitDone) return;
+  window._cglInitDone = true;
+  injectBranding();
+  updateXPUI();
+  renderTodayView();
+  renderHeatmap();
+  renderShifts('all', 'shiftList');
+  renderDays(0);
+}
+
+// Override showView to init CGL OS when first opened
+const _origShowView = showView;
+window.showView = function(id) {
+  _origShowView(id);
+  if(id === 'sscCgl') {
+    initCglOS();
+    // Show the sticky header only for CGL view
+    const hdr = document.getElementById('cglStickyHdr');
+    if(hdr) hdr.style.display = 'block';
+  } else {
+    const hdr = document.getElementById('cglStickyHdr');
+    if(hdr) hdr.style.display = 'none';
+  }
+};
+
+// ── TIMER (SSC CGL OS) ──
+let timerLeft = 0, timerRunning = false, timerInterval = null;
+window.timerToggle = function () {
+  if (!timerRunning) {
+    const h = parseInt(document.getElementById('timerHrs').value)  || 0;
+    const m = parseInt(document.getElementById('timerMins').value) || 0;
+    if (!timerLeft) timerLeft = h * 3600 + m * 60;
+    if (!timerLeft) return;
+    timerRunning = true;
+    document.getElementById('timerStartBtn').textContent = '⏸';
+    document.getElementById('timerDisp').classList.add('running');
+    timerInterval = setInterval(() => {
+      if (timerLeft <= 0) { timerDone(); return; }
+      timerLeft--;
+      updateTimerDisplay();
+    }, 1000);
+  } else {
+    timerRunning = false;
+    clearInterval(timerInterval);
+    document.getElementById('timerStartBtn').textContent = '▶';
+    document.getElementById('timerDisp').classList.remove('running');
+  }
+};
+window.timerReset = function () {
+  timerRunning = false; timerLeft = 0;
+  clearInterval(timerInterval);
+  document.getElementById('timerStartBtn').textContent  = '▶';
+  document.getElementById('timerDisp').textContent      = '00:00:00';
+  document.getElementById('timerDisp').classList.remove('running');
+};
+function timerDone() {
+  timerRunning = false; clearInterval(timerInterval);
+  const disp = document.getElementById('timerDisp');
+  disp.textContent = 'DONE! ✓'; disp.style.color = 'var(--em)';
+  setTimeout(() => { disp.style.color = 'var(--cyan)'; timerLeft = 0; updateTimerDisplay(); }, 3000);
+}
+function updateTimerDisplay() {
+  const h = Math.floor(timerLeft / 3600), m = Math.floor((timerLeft % 3600) / 60), s = timerLeft % 60;
+  document.getElementById('timerDisp').textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
