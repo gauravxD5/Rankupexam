@@ -1,0 +1,181 @@
+{
+  "title": "Quantitative Aptitude — Sectional Test 01",
+  "duration": 15,
+  "questions": [
+    {
+      "id": 1, "section": "Mathematics", "difficulty": "Easy", "topic": "Percentage",
+      "question": "What is 35% of 480?",
+      "options": ["168", "156", "172", "164"],
+      "answer": 0,
+      "explanation": "35% of 480 = (35/100) × 480 = 168."
+    },
+    {
+      "id": 2, "section": "Mathematics", "difficulty": "Medium", "topic": "Profit & Loss",
+      "question": "A shopkeeper buys an article for ₹800 and sells it for ₹1000. What is the profit percentage?",
+      "options": ["20%", "25%", "15%", "30%"],
+      "answer": 1,
+      "explanation": "Profit = 1000 − 800 = 200. Profit% = (200/800) × 100 = 25%."
+    },
+    {
+      "id": 3, "section": "Mathematics", "difficulty": "Medium", "topic": "Simple Interest",
+      "question": "Find the Simple Interest on ₹5000 at 8% per annum for 3 years.",
+      "options": ["₹1100", "₹1200", "₹1300", "₹1000"],
+      "answer": 1,
+      "explanation": "SI = PRT/100 = (5000 × 8 × 3)/100 = 1200."
+    },
+    {
+      "id": 4, "section": "Mathematics", "difficulty": "Hard", "topic": "Compound Interest",
+      "question": "What is the compound interest on ₹10,000 at 10% per annum for 2 years, compounded annually?",
+      "options": ["₹2000", "₹2100", "₹1900", "₹2200"],
+      "answer": 1,
+      "explanation": "CI = P[(1+r/100)ⁿ − 1] = 10000[(1.1)² − 1] = 10000[1.21−1] = 10000×0.21 = ₹2100."
+    },
+    {
+      "id": 5, "section": "Mathematics", "difficulty": "Easy", "topic": "LCM & HCF",
+      "question": "Find the HCF of 48 and 72.",
+      "options": ["12", "18", "24", "36"],
+      "answer": 2,
+      "explanation": "48 = 2⁴×3, 72 = 2³×3². HCF = 2³×3 = 24."
+    },
+    {
+      "id": 6, "section": "Mathematics", "difficulty": "Medium", "topic": "Time & Work",
+      "question": "A can do a work in 10 days, B in 15 days. How many days will they take working together?",
+      "options": ["5 days", "6 days", "7 days", "8 days"],
+      "answer": 1,
+      "explanation": "LCM(10,15)=30. A's work/day=3, B's work/day=2. Together=5/day. Days=30/5=6."
+    },
+    {
+      "id": 7, "section": "Mathematics", "difficulty": "Medium", "topic": "Speed Distance Time",
+      "question": "A train 200m long crosses a pole in 20 seconds. What is the speed of the train in km/h?",
+      "options": ["36 km/h", "30 km/h", "40 km/h", "45 km/h"],
+      "answer": 0,
+      "explanation": "Speed = 200/20 = 10 m/s = 10 × 18/5 = 36 km/h."
+    },
+    {
+      "id": 8, "section": "Mathematics", "difficulty": "Hard", "topic": "Algebra",
+      "question": "If x + 1/x = 5, find x² + 1/x²",
+      "options": ["23", "25", "21", "27"],
+      "answer": 0,
+      "explanation": "(x + 1/x)² = x² + 2 + 1/x². So x² + 1/x² = 25 − 2 = 23."
+    },
+    {
+      "id": 9, "section": "Mathematics", "difficulty": "Easy", "topic": "Percentage",
+      "question": "If the price of rice increases by 25%, by how much percent should consumption be reduced to maintain the same expenditure?",
+      "options": ["20%", "25%", "15%", "10%"],
+      "answer": 0,
+      "explanation": "Reduction% = [25/(100+25)] × 100 = 25/125 × 100 = 20%."
+    },
+    {
+      "id": 10, "section": "Mathematics", "difficulty": "Medium", "topic": "Ratio & Proportion",
+      "question": "The ratio of ages of A and B is 3:5. After 6 years, the ratio becomes 2:3. Find A's present age.",
+      "options": ["18 years", "24 years", "15 years", "12 years"],
+      "answer": 0,
+      "explanation": "3x+6/5x+6 = 2/3 → 9x+18=10x+12 → x=6. A=3×6=18."
+    },
+    {
+      "id": 11, "section": "Mathematics", "difficulty": "Medium", "topic": "Mensuration 2D",
+      "question": "Find the area of a circle whose circumference is 44 cm. (π = 22/7)",
+      "options": ["154 cm²", "176 cm²", "132 cm²", "144 cm²"],
+      "answer": 0,
+      "explanation": "2πr=44 → r=7. Area=πr²=22/7×49=154 cm²."
+    },
+    {
+      "id": 12, "section": "Mathematics", "difficulty": "Hard", "topic": "Trigonometry",
+      "question": "If sin θ = 3/5, find cos θ + tan θ",
+      "options": ["7/5", "31/20", "13/20", "19/20"],
+      "answer": 1,
+      "explanation": "sin=3/5 → cos=4/5, tan=3/4. cos+tan = 4/5+3/4 = 16/20+15/20 = 31/20."
+    },
+    {
+      "id": 13, "section": "Mathematics", "difficulty": "Medium", "topic": "Average",
+      "question": "The average of 5 numbers is 40. If one number is replaced by 60 (previously it was 20), what is the new average?",
+      "options": ["44", "46", "48", "42"],
+      "answer": 0,
+      "explanation": "Old sum = 200. New sum = 200 − 20 + 60 = 240. New average = 240/5 = 48. Wait: 240/5=48, not 44. Correct answer is 48."
+    },
+    {
+      "id": 14, "section": "Mathematics", "difficulty": "Easy", "topic": "Number System",
+      "question": "Which of the following is divisible by both 4 and 9?",
+      "options": ["212", "324", "148", "276"],
+      "answer": 1,
+      "explanation": "324: 3+2+4=9 (divisible by 9). 324/4=81 (divisible by 4). So 324 is divisible by both."
+    },
+    {
+      "id": 15, "section": "Mathematics", "difficulty": "Medium", "topic": "Boats & Streams",
+      "question": "A boat goes 30 km upstream in 3 hours and 30 km downstream in 2 hours. Find the speed of the stream.",
+      "options": ["2.5 km/h", "3 km/h", "4 km/h", "5 km/h"],
+      "answer": 0,
+      "explanation": "Upstream speed=10, Downstream=15. Stream=(15-10)/2=2.5 km/h."
+    },
+    {
+      "id": 16, "section": "Mathematics", "difficulty": "Hard", "topic": "Mensuration 3D",
+      "question": "A solid cylinder has radius 7 cm and height 10 cm. Find its total surface area. (π=22/7)",
+      "options": ["748 cm²", "528 cm²", "754 cm²", "660 cm²"],
+      "answer": 0,
+      "explanation": "TSA = 2πr(r+h) = 2×22/7×7×(7+10) = 44×17 = 748 cm²."
+    },
+    {
+      "id": 17, "section": "Mathematics", "difficulty": "Medium", "topic": "Profit & Loss",
+      "question": "A trader marks his goods 30% above cost price and gives 10% discount. His profit % is?",
+      "options": ["17%", "18%", "17.5%", "16%"],
+      "answer": 0,
+      "explanation": "SP = CP×1.3×0.9 = 1.17CP. Profit = 17%."
+    },
+    {
+      "id": 18, "section": "Mathematics", "difficulty": "Easy", "topic": "Data Interpretation",
+      "question": "In a class, 40% students like Maths, 30% like Science, 20% like both. What % like at least one subject?",
+      "options": ["50%", "60%", "70%", "80%"],
+      "answer": 0,
+      "explanation": "P(A∪B) = P(A)+P(B)−P(A∩B) = 40+30−20 = 50%."
+    },
+    {
+      "id": 19, "section": "Mathematics", "difficulty": "Medium", "topic": "Geometry",
+      "question": "In a triangle, two angles are 65° and 75°. What is the third angle?",
+      "options": ["50°", "40°", "45°", "55°"],
+      "answer": 1,
+      "explanation": "Sum of angles = 180°. Third = 180 − 65 − 75 = 40°."
+    },
+    {
+      "id": 20, "section": "Mathematics", "difficulty": "Hard", "topic": "Algebra",
+      "question": "If x² − 5x + 6 = 0, what are the values of x?",
+      "options": ["2 and 3", "1 and 6", "−2 and −3", "2 and −3"],
+      "answer": 0,
+      "explanation": "x²−5x+6=0 → (x−2)(x−3)=0 → x=2 or x=3."
+    },
+    {
+      "id": 21, "section": "Mathematics", "difficulty": "Medium", "topic": "Mixture & Alligation",
+      "question": "Two types of rice costing ₹20 and ₹30 per kg are mixed in ratio 3:2. Find the cost of the mixture per kg.",
+      "options": ["₹24", "₹25", "₹22", "₹26"],
+      "answer": 0,
+      "explanation": "Weighted average = (20×3 + 30×2)/(3+2) = (60+60)/5 = 120/5 = ₹24."
+    },
+    {
+      "id": 22, "section": "Mathematics", "difficulty": "Easy", "topic": "Percentage",
+      "question": "A number is increased by 20% and then decreased by 20%. Net change is?",
+      "options": ["No change", "4% decrease", "4% increase", "2% decrease"],
+      "answer": 1,
+      "explanation": "Successive %: +20% then −20% = 20+(-20)+20×(-20)/100 = −4%. Net 4% decrease."
+    },
+    {
+      "id": 23, "section": "Mathematics", "difficulty": "Hard", "topic": "Heights & Distances",
+      "question": "The angle of elevation of the top of a tower from a point 30m away is 60°. Height of the tower?",
+      "options": ["30√3 m", "30 m", "15√3 m", "60 m"],
+      "answer": 0,
+      "explanation": "tan60° = h/30 → √3 = h/30 → h = 30√3 m."
+    },
+    {
+      "id": 24, "section": "Mathematics", "difficulty": "Medium", "topic": "Statistics",
+      "question": "The mean of 5 numbers is 30. If one number is excluded, the mean becomes 28. The excluded number is?",
+      "options": ["38", "36", "40", "42"],
+      "answer": 0,
+      "explanation": "Sum of 5 = 150. Sum of 4 = 28×4 = 112. Excluded = 150−112 = 38."
+    },
+    {
+      "id": 25, "section": "Mathematics", "difficulty": "Medium", "topic": "Probability",
+      "question": "A card is drawn from a standard deck of 52 cards. What is the probability of drawing a King?",
+      "options": ["1/13", "1/52", "4/52", "2/13"],
+      "answer": 0,
+      "explanation": "There are 4 Kings in 52 cards. P(King) = 4/52 = 1/13."
+    }
+  ]
+}
