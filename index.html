@@ -1,1102 +1,591 @@
 <!DOCTYPE html>
-<html lang="hi-IN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RankUpExam — Free Practice Hub | SSC CGL, Railway, Banking, UP, Bihar</title>
-<meta name="description" content="India's best free exam practice hub. SSC CGL, Railway, Banking, UP Police, BPSC, Typing Test, Current Affairs — sab free.">
-<meta property="og:title" content="RankUpExam — India's Free Exam Practice Hub">
-<meta property="og:description" content="SSC CGL 70-Day OS, Mock Tests, Typing Test, Current Affairs — 100% Free.">
+<title>RankUpExam — 60+10 Day SSC CGL Operating System</title>
+<meta name="description" content="70-day SSC CGL preparation system. Daily PDF notes, 15-min mock tests, YouTube solutions. Start 8 June 2026.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="RankUpExam — 60+10 Day SSC CGL System">
+<meta property="og:description" content="Systematic 70-day SSC CGL preparation with daily PDF, mock, and video.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#04060a">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://rankupexam.github.io/">
 
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- Styles -->
 <link rel="stylesheet" href="style.css">
-<style>
-/* ── Nav Sign-in Pill ── */
-.nav-signin-pill{
-  display:flex;align-items:center;gap:6px;
-  padding:5px 12px 5px 8px;
-  background:rgba(200,170,110,.06);
-  border:1px solid rgba(200,170,110,.18);
-  border-radius:20px;
-  color:var(--gold);
-  font-family:var(--mono);font-size:10px;font-weight:600;
-  text-decoration:none;letter-spacing:.05em;
-  transition:all .2s;cursor:pointer;
-}
-.nav-signin-pill:hover{background:rgba(200,170,110,.14);border-color:rgba(200,170,110,.35)}
-.nav-signin-pill.signed-in{background:rgba(109,191,158,.06);border-color:rgba(109,191,158,.18);color:var(--em)}
-.nsp-icon{font-size:13px;line-height:1}
-.nsp-txt{line-height:1}
-.nsp-avatar{width:20px;height:20px;border-radius:50%;object-fit:cover;border:1px solid rgba(200,170,110,.4)}
-</style>
 </head>
 <body>
 
-<div class="noise"></div>
-<div class="glow-orb"></div>
+<!-- VFX BACKGROUND LAYERS -->
+<canvas id="vfx-canvas"></canvas>
+<div class="noise-overlay"></div>
+<div class="vignette"></div>
+<div class="cinema-glow"></div>
 
-<!-- ═══ NAV ═══ -->
-<nav>
-  <div class="nav-left">
-    <div class="hamburger" id="hamburger" onclick="toggleSidebar()">
-      <span></span><span></span><span></span>
+<!-- ══ NAV ══════════════════════════════════════════════ -->
+<nav class="nav">
+  <a href="#" class="nl-logo">
+    <div class="ld"></div>
+    <span>RankUpExam</span>
+  </a>
+  <div class="nav-c">
+    <!-- Admin badge (hidden unless ?admin=true) -->
+    <div class="admin-badge" id="adminBadge">⚡ ADMIN</div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+      <span class="tt-opt active" id="ttDark" onclick="setTheme('dark')">🌙</span>
+      <span class="tt-opt" id="ttLight" onclick="setTheme('light')">☀️</span>
     </div>
-    <a class="nav-logo" onclick="showView('home')">
-      <div class="nav-dot"></div>
-      RANKUP<span style="color:var(--gold)">EXAM</span>
-    </a>
-  </div>
 
-  <div class="nav-search">
-    <span style="color:var(--txt3);font-size:11px">⌕</span>
-    <input type="text" placeholder="Search exams, topics, questions...">
-  </div>
+    <!-- Social links -->
+    <a href="#" class="soc yt" data-yt-href title="YouTube">▶ <span>YouTube</span></a>
+    <a href="#" class="soc tg" data-tg-href title="Telegram">📢 <span>Telegram</span></a>
+    <a href="https://instagram.com/rankupexam" target="_blank" class="soc ig" title="Instagram">📸 <span>IG</span></a>
 
-  <div class="nav-right">
-    <a class="nav-btn btn-yt" href="https://youtube.com/@RankUpExam" target="_blank">▶ YouTube</a>
-    <a class="nav-btn btn-tg" href="https://t.me/rankupexam" target="_blank">✈ Telegram</a>
-    <button class="nav-btn" style="background:linear-gradient(135deg,#1e3d80,#2a54ab);color:#fff;border:none;padding:6px 12px;border-radius:3px;font-family:var(--mono);font-size:10px;font-weight:700;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;" onclick="showView('sscCgl')">🏆 CGL OS</button>
-    <button class="nav-btn btn-gold" onclick="showView('mock')">Free Mock Test</button>
-    <a class="nav-btn nav-signin-pill" id="nav-signin-btn" href="/signin.html">
-      <span class="nsp-icon">👤</span>
-      <span class="nsp-txt">Sign In</span>
-    </a>
+    <!-- XP badge -->
+    <div class="xp-badge">
+      <span class="xp-badge-icon">⚡</span>
+      <span class="xp-badge-val" id="navXP">0 XP</span>
+      <span class="xp-badge-streak" id="navStreak">🔥 0</span>
+    </div>
+
+    <!-- Auth: Login button / user widget -->
+    <button class="btn-nv" id="authLoginBtn" onclick="openAuthModal()">Sign In</button>
+    <div class="auth-user" id="authUser" onclick="this.classList.toggle('open')">
+      <img class="auth-avatar" id="authAvatar" src="" alt="User">
+      <span class="auth-name" id="authName">User</span>
+      <div class="auth-dd" id="authUserDd">
+        <img class="auth-dd-avatar" id="authDdAvatar" src="" alt="">
+        <div class="auth-dd-name"  id="authDdName"></div>
+        <div class="auth-dd-email" id="authDdEmail"></div>
+        <button class="auth-dd-out" onclick="authSignOut()">Sign Out</button>
+      </div>
+    </div>
   </div>
 </nav>
 
-<!-- ═══ SIDEBAR ═══ -->
-<div class="sidebar" id="sidebar">
-
-  <!-- QUICK ACCESS -->
-  <div class="sb-section">
-    <div class="sb-section-title">Quick Access</div>
-    <div class="sb-item active" onclick="showView('home')"><div class="sb-item-left"><span class="sb-icon">🏠</span><span class="sb-label">Home</span></div></div>
-    <div class="sb-item" onclick="showView('typing')"><div class="sb-item-left"><span class="sb-icon">⌨️</span><span class="sb-label">Typing Test</span></div><span class="sb-badge hot">HOT</span></div>
-    <div class="sb-item" onclick="showView('ca')"><div class="sb-item-left"><span class="sb-icon">📰</span><span class="sb-label">Current Affairs</span></div><span class="sb-badge new">NEW</span></div>
-    <div class="sb-item" onclick="showView('sscCgl')"><div class="sb-item-left"><span class="sb-icon">🏆</span><span class="sb-label">SSC CGL OS</span></div><span class="sb-badge" style="background:rgba(59,130,246,.12);color:var(--cyan);border-color:rgba(59,130,246,.2)">FEATURED</span></div>
-    <div class="sb-item" onclick="showView('mock')"><div class="sb-item-left"><span class="sb-icon">📝</span><span class="sb-label">Mock Tests</span></div></div>
-    <div class="sb-item" onclick="showView('gk')"><div class="sb-item-left"><span class="sb-icon">🧠</span><span class="sb-label">GK Quiz</span></div></div>
-    <div class="sb-item" onclick="showView('pdf')"><div class="sb-item-left"><span class="sb-icon">📄</span><span class="sb-label">Free PDFs</span></div></div>
-  </div>
-
-  <!-- SSC -->
-  <div class="sb-section">
-    <div class="sb-section-title">Exams</div>
-    <div class="sb-item" onclick="toggleSub('ssc-sub',this)">
-      <div class="sb-item-left"><span class="sb-icon">🏆</span><span class="sb-label">SSC</span></div>
-      <span class="sb-arrow">›</span>
+<!-- ══ STICKY HEADER ════════════════════════════════════ -->
+<div class="sticky-hdr">
+  <div class="sh-inner">
+    <div class="sh-brand">
+      <div class="sh-brand-txt">SSC CGL OS</div>
     </div>
-    <div class="sb-sub" id="ssc-sub">
-      <div class="sb-sub-item" onclick="showView('sscCgl')" style="color:var(--gold)">🏆 SSC CGL</div>
-      <div class="sb-sub-item" onclick="showExam('SSC CHSL')">SSC CHSL</div>
-      <div class="sb-sub-item" onclick="showExam('SSC MTS')">SSC MTS</div>
-      <div class="sb-sub-item" onclick="showExam('SSC GD')">SSC GD</div>
-      <div class="sb-sub-item" onclick="showExam('SSC CPO')">SSC CPO</div>
-      <div class="sb-sub-item" onclick="showExam('SSC Steno')">SSC Steno</div>
-      <div class="sb-sub-item" onclick="showExam('SSC JE')">SSC JE</div>
-      <div class="sb-sub-item" onclick="showExam('Delhi Police')">Delhi Police</div>
+    <div class="sh-prog-wrap">
+      <span class="sh-prog-lbl">Progress</span>
+      <div class="sh-prog-track"><div class="sh-prog-fill" id="shProgFill" style="width:0%"></div></div>
+      <span class="sh-day-count" id="shDayCount">Day — / 70</span>
     </div>
-
-    <div class="sb-item" onclick="toggleSub('rly-sub',this)">
-      <div class="sb-item-left"><span class="sb-icon">🚂</span><span class="sb-label">Railway</span></div>
-      <span class="sb-arrow">›</span>
-    </div>
-    <div class="sb-sub" id="rly-sub">
-      <div class="sb-sub-item" onclick="showExam('RRB NTPC')">RRB NTPC</div>
-      <div class="sb-sub-item" onclick="showExam('RRB Group D')">Group D</div>
-      <div class="sb-sub-item" onclick="showExam('RRB ALP')">ALP</div>
-      <div class="sb-sub-item" onclick="showExam('RPF')">RPF</div>
-      <div class="sb-sub-item" onclick="showExam('RRB Technician')">Technician</div>
-      <div class="sb-sub-item" onclick="showExam('RRB JE')">RRB JE</div>
-    </div>
-
-    <div class="sb-item" onclick="toggleSub('bank-sub',this)">
-      <div class="sb-item-left"><span class="sb-icon">🏦</span><span class="sb-label">Banking</span></div>
-      <span class="sb-arrow">›</span>
-    </div>
-    <div class="sb-sub" id="bank-sub">
-      <div class="sb-sub-item" onclick="showExam('SBI PO')">SBI PO</div>
-      <div class="sb-sub-item" onclick="showExam('SBI Clerk')">SBI Clerk</div>
-      <div class="sb-sub-item" onclick="showExam('IBPS PO')">IBPS PO</div>
-      <div class="sb-sub-item" onclick="showExam('IBPS Clerk')">IBPS Clerk</div>
-      <div class="sb-sub-item" onclick="showExam('RRB PO')">RRB PO</div>
-      <div class="sb-sub-item" onclick="showExam('RBI Assistant')">RBI Assistant</div>
-    </div>
-
-    <div class="sb-item" onclick="toggleSub('up-sub',this)">
-      <div class="sb-item-left"><span class="sb-icon">🌾</span><span class="sb-label">UP Exams</span></div>
-      <span class="sb-arrow">›</span>
-    </div>
-    <div class="sb-sub" id="up-sub">
-      <div class="sb-sub-item" onclick="showExam('UPSSSC PET')">UPSSSC PET</div>
-      <div class="sb-sub-item" onclick="showExam('UP Police')">UP Police</div>
-      <div class="sb-sub-item" onclick="showExam('RO ARO')">RO / ARO</div>
-      <div class="sb-sub-item" onclick="showExam('Lekhpal')">Lekhpal</div>
-      <div class="sb-sub-item" onclick="showExam('VDO')">VDO</div>
-      <div class="sb-sub-item" onclick="showExam('UPPSC')">UPPSC</div>
-    </div>
-
-    <div class="sb-item" onclick="toggleSub('bih-sub',this)">
-      <div class="sb-item-left"><span class="sb-icon">🏛️</span><span class="sb-label">Bihar Exams</span></div>
-      <span class="sb-arrow">›</span>
-    </div>
-    <div class="sb-sub" id="bih-sub">
-      <div class="sb-sub-item" onclick="showExam('BPSC')">BPSC</div>
-      <div class="sb-sub-item" onclick="showExam('Bihar Police')">Bihar Police</div>
-      <div class="sb-sub-item" onclick="showExam('CSBC')">CSBC</div>
-      <div class="sb-sub-item" onclick="showExam('Bihar SI')">Bihar SI</div>
-      <div class="sb-sub-item" onclick="showExam('BPSC AEDO')">BPSC AEDO</div>
-    </div>
-
-    <div class="sb-item" onclick="toggleSub('pol-sub',this)">
-      <div class="sb-item-left"><span class="sb-icon">👮</span><span class="sb-label">Police</span></div>
-      <span class="sb-arrow">›</span>
-    </div>
-    <div class="sb-sub" id="pol-sub">
-      <div class="sb-sub-item" onclick="showExam('UP Police')">UP Police</div>
-      <div class="sb-sub-item" onclick="showExam('Bihar Police')">Bihar Police</div>
-      <div class="sb-sub-item" onclick="showExam('Delhi Police')">Delhi Police</div>
-      <div class="sb-sub-item" onclick="showExam('MP Police')">MP Police</div>
-    </div>
-
-    <div class="sb-item" onclick="toggleSub('def-sub',this)">
-      <div class="sb-item-left"><span class="sb-icon">⚔️</span><span class="sb-label">Defence</span></div>
-      <span class="sb-arrow">›</span>
-    </div>
-    <div class="sb-sub" id="def-sub">
-      <div class="sb-sub-item" onclick="showExam('CDS')">CDS</div>
-      <div class="sb-sub-item" onclick="showExam('NDA')">NDA</div>
-      <div class="sb-sub-item" onclick="showExam('AFCAT')">AFCAT</div>
-      <div class="sb-sub-item" onclick="showExam('Agniveer')">Agniveer</div>
-    </div>
-
-    <div class="sb-item" onclick="showExam('CCC')">
-      <div class="sb-item-left"><span class="sb-icon">💻</span><span class="sb-label">CCC</span></div>
+    <!-- Study Timer -->
+    <div class="timer-pod">
+      <span class="tp-label">Timer</span>
+      <span class="tp-display" id="timerDisp">00:00:00</span>
+      <div class="tp-controls">
+        <select class="tp-select" id="timerHrs" title="Hours">
+          <option value="0">0h</option><option value="1">1h</option><option value="2">2h</option><option value="3">3h</option>
+        </select>
+        <select class="tp-select" id="timerMins" title="Minutes">
+          <option value="0">0m</option><option value="15">15m</option><option value="25">25m</option>
+          <option value="30">30m</option><option value="45">45m</option><option value="50">50m</option><option value="55">55m</option>
+        </select>
+        <button class="tp-btn" id="timerStartBtn" onclick="timerToggle()" title="Start/Pause">▶</button>
+        <button class="tp-btn stop" onclick="timerReset()" title="Reset">↺</button>
+      </div>
     </div>
   </div>
-
-  <!-- TOOLS -->
-  <div class="sb-section">
-    <div class="sb-section-title">Tools</div>
-    <div class="sb-item" onclick="showView('typing')"><div class="sb-item-left"><span class="sb-icon">⌨️</span><span class="sb-label">Typing Test</span></div><span class="sb-badge hot">HOT</span></div>
-    <div class="sb-item" onclick="showView('ca')"><div class="sb-item-left"><span class="sb-icon">📰</span><span class="sb-label">Current Affairs Quiz</span></div></div>
-    <div class="sb-item" onclick="alert('Coming soon!')"><div class="sb-item-left"><span class="sb-icon">⚔️</span><span class="sb-label">Quiz Battle</span></div><span class="sb-badge new">SOON</span></div>
-    <div class="sb-item" onclick="alert('Coming soon!')"><div class="sb-item-left"><span class="sb-icon">🗓️</span><span class="sb-label">Exam Calendar</span></div></div>
-    <div class="sb-item" onclick="alert('Coming soon!')"><div class="sb-item-left"><span class="sb-icon">🏅</span><span class="sb-label">Live Leaderboard</span></div></div>
-  </div>
-
 </div>
 
-<!-- ═══ MAIN LAYOUT ═══ -->
-<div class="layout">
-  <div class="main-content" id="mainContent">
+<!-- ══ PAGE ══════════════════════════════════════════════ -->
+<main class="page">
 
-    <!-- ═══ HOME VIEW ═══ -->
-    <div class="view active" id="homeView">
+  <!-- VIEW SWITCHER -->
+  <div class="view-switcher">
+    <button class="vs-btn active" id="vsToday"   onclick="switchView('today')">Today</button>
+    <button class="vs-btn"        id="vsRoadmap" onclick="switchView('roadmap')">Roadmap</button>
+    <button class="vs-btn"        id="vsShifts"  onclick="switchView('shifts')">Hard Shifts</button>
+    <button class="vs-btn"        id="vsAbout"   onclick="switchView('about')">About</button>
+  </div>
 
-      <!-- HERO -->
-      <div class="hero">
-        <div class="hero-eyebrow"><div class="hero-dot"></div>India's Free Practice Hub</div>
-        <h1 class="hero-title">
-          Crack Every Exam.<br>
-          <span class="hl">Free. Smart. Fast.</span><br>
-          <span class="dim">SSC · Railway · Banking · UP · Bihar</span>
-        </h1>
-        <p class="hero-sub">Mock tests, typing test, current affairs, PDF notes, GK quiz — sab ek jagah, sab bilkul free. No login, no paywall.</p>
-        <div class="hero-pills">
-          <a class="hp hp-primary" onclick="showView('mock')">Start Free Mock Test →</a>
-          <a class="hp hp-outline" onclick="showView('typing')">⌨ Typing Test</a>
-          <a class="hp hp-outline" onclick="showView('ca')">📰 Current Affairs</a>
-          <a class="hp hp-outline" onclick="showView('pdf')">📄 Free PDFs</a>
-        </div>
+  <!-- ══ TODAY VIEW ═══════════════════════════════════ -->
+  <div id="todayView">
+
+    <!-- Hero -->
+    <div class="today-hero">
+      <div class="th-greeting">Your Study Dashboard — RankUpExam</div>
+      <div>
+        <span class="th-daynum" id="thDayNum">Day —</span>
+        <span class="th-topic"  id="thTopic">Loading…</span>
       </div>
+      <div class="th-sub" id="thSub"></div>
+    </div>
 
-      <!-- STATS -->
-      <div class="stats-strip">
-        <div class="stat-cell"><div class="stat-n">50K+</div><div class="stat-l">Students</div></div>
-        <div class="stat-cell"><div class="stat-n">1000+</div><div class="stat-l">Questions</div></div>
-        <div class="stat-cell"><div class="stat-n">13</div><div class="stat-l">Exam Categories</div></div>
-        <div class="stat-cell"><div class="stat-n">100%</div><div class="stat-l">Free Forever</div></div>
+    <!-- Streak Dashboard -->
+    <div class="streak-dash">
+      <div class="sd-card sd-streak">
+        <div class="sd-icon"><span class="streak-fire" id="streakFire">⭐</span></div>
+        <div class="sd-val" id="streakVal">0</div>
+        <div class="sd-lbl">Day Streak</div>
       </div>
-
-      <!-- ═══ SSC CGL SPECIALIZATION HIGHLIGHT ═══ -->
-      <div class="section" id="sscCglFeature" style="background:linear-gradient(135deg,rgba(15,40,120,.06),rgba(10,25,80,.03));border-top:1px solid rgba(59,130,246,.1);border-bottom:1px solid rgba(59,130,246,.08)">
-        <div class="section-hdr">
-          <div>
-            <div class="section-tag" style="color:var(--cyan)">🏆 Most Complete</div>
-            <div class="section-title">SSC CGL <span style="color:var(--gold)">Operating System</span></div>
-            <div style="font-family:var(--mono);font-size:10.5px;color:var(--txt3);line-height:1.8;margin-top:4px;max-width:560px">
-              India ka sabse systematic SSC CGL prep system. 60+10 din ka complete roadmap, daily PDF + Mock + Video — bilkul free.
-            </div>
-          </div>
-          <button class="nav-btn btn-gold" onclick="showView('sscCgl')" style="align-self:flex-start;white-space:nowrap">Enter CGL OS →</button>
-        </div>
-
-        <!-- What we offer -->
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:18px">
-          <div class="feat-card" style="--accent:var(--gold);border-color:rgba(200,170,110,.15)">
-            <div class="feat-card-accent"></div>
-            <div class="feat-icon">📅</div>
-            <div class="feat-title">70-Day Roadmap</div>
-            <div class="feat-sub">Day-by-day syllabus plan. Week 1–9 topic-wise + D61–70 Full Length Tests. Zero confusion.</div>
-            <span class="feat-badge fb-gold">60+10 Plan</span>
-          </div>
-          <div class="feat-card" style="--accent:var(--cyan);border-color:rgba(122,184,212,.12)">
-            <div class="feat-card-accent"></div>
-            <div class="feat-icon">🧪</div>
-            <div class="feat-title">Daily 15-Min Mock</div>
-            <div class="feat-sub">25 questions, 15 minutes — roz. Real CGL pattern. Instant results with Hinglish explanation.</div>
-            <span class="feat-badge" style="background:rgba(122,184,212,.1);color:var(--cyan);border:1px solid rgba(122,184,212,.2)">25 Qs · 15 Min</span>
-          </div>
-          <div class="feat-card" style="--accent:var(--em);border-color:rgba(109,191,158,.12)">
-            <div class="feat-card-accent"></div>
-            <div class="feat-icon">⚡</div>
-            <div class="feat-title">XP + Streak System</div>
-            <div class="feat-sub">PDF padho +25 XP, Mock do +75 XP, Video dekho +25 XP. Streak banao, rank badao!</div>
-            <span class="feat-badge fb-em">Gamified</span>
-          </div>
-          <div class="feat-card" style="--accent:var(--red);border-color:rgba(201,112,112,.12)">
-            <div class="feat-card-accent"></div>
-            <div class="feat-icon">🔥</div>
-            <div class="feat-title">30 Hard Shifts</div>
-            <div class="feat-sub">SSC CGL 2021–2025 ke 30 Hardest exam shifts. Practice karo — real exam easy lagega!</div>
-            <span class="feat-badge fb-red">PYQ Based</span>
-          </div>
-          <div class="feat-card" style="--accent:var(--violet);border-color:rgba(157,142,203,.12)">
-            <div class="feat-card-accent"></div>
-            <div class="feat-icon">📄</div>
-            <div class="feat-title">Daily PDF Notes</div>
-            <div class="feat-sub">Roz ek topic ka shortcut-packed PDF. Quant, Reasoning, English, GA — sab covered.</div>
-            <span class="feat-badge" style="background:rgba(157,142,203,.1);color:var(--violet);border:1px solid rgba(157,142,203,.2)">Topic-wise</span>
-          </div>
-          <div class="feat-card" style="--accent:var(--amb,#c8aa6e);border-color:rgba(200,170,110,.12)" onclick="showView('sscCgl')">
-            <div class="feat-card-accent"></div>
-            <div class="feat-icon">🗺️</div>
-            <div class="feat-title">Today's Mission</div>
-            <div class="feat-sub">Aaj ka topic, aaj ka shortcut trick, aaj ka mock — ek dashboard pe. Roz aao, roz seekho.</div>
-            <span class="feat-badge fb-gold">Start Today →</span>
-          </div>
-        </div>
-
-        <!-- CTA strip -->
-        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:14px 0;border-top:1px solid rgba(200,170,110,.07)">
-          <div style="font-size:10px;font-family:var(--mono);color:var(--txt3);letter-spacing:.04em;flex:1;min-width:180px">
-            🎯 Start Date: <strong style="color:var(--gold)">8 June 2026</strong> &nbsp;·&nbsp; 
-            📋 Syllabus: <strong style="color:var(--cyan)">Quant + Reasoning + English + GA</strong> &nbsp;·&nbsp; 
-            💸 Cost: <strong style="color:var(--em)">FREE</strong>
-          </div>
-          <button class="nav-btn btn-gold" onclick="showView('sscCgl')" style="font-size:11px;padding:8px 18px">🚀 Open CGL OS →</button>
-          <a href="https://youtube.com/@rankupexam" target="_blank" class="nav-btn btn-yt" style="font-size:11px;padding:8px 18px">▶ YouTube</a>
-          <a href="https://t.me/rankupexam" target="_blank" class="nav-btn btn-tg" style="font-size:11px;padding:8px 18px">📢 Telegram</a>
-        </div>
+      <div class="sd-card sd-xp">
+        <div class="sd-icon">⚡</div>
+        <div class="sd-val" id="xpVal">0</div>
+        <div class="sd-lbl">Total XP</div>
       </div>
-
-      <!-- EXAM CATEGORIES -->
-      <div class="section">
-        <div class="section-hdr">
-          <div>
-            <div class="section-tag">All Exams</div>
-            <div class="section-title">Apna exam choose karo.</div>
-          </div>
-        </div>
-        <div class="cat-grid">
-          <div class="cat-card" onclick="toggleSub('ssc-sub',null);document.getElementById('ssc-sub').classList.add('open')">
-            <div class="cat-icon">🏆</div>
-            <div class="cat-name">SSC</div>
-            <div class="cat-count">CGL · CHSL · MTS · GD · CPO · JE</div>
-            <div class="cat-arrow">↗</div>
-          </div>
-          <div class="cat-card" onclick="toggleSub('rly-sub',null);document.getElementById('rly-sub').classList.add('open')">
-            <div class="cat-icon">🚂</div>
-            <div class="cat-name">Railway</div>
-            <div class="cat-count">NTPC · Group D · ALP · RPF · JE</div>
-            <div class="cat-arrow">↗</div>
-          </div>
-          <div class="cat-card" onclick="toggleSub('bank-sub',null);document.getElementById('bank-sub').classList.add('open')">
-            <div class="cat-icon">🏦</div>
-            <div class="cat-name">Banking</div>
-            <div class="cat-count">SBI PO · IBPS · RBI · Clerk</div>
-            <div class="cat-arrow">↗</div>
-          </div>
-          <div class="cat-card" onclick="toggleSub('up-sub',null);document.getElementById('up-sub').classList.add('open')">
-            <div class="cat-icon">🌾</div>
-            <div class="cat-name">UP Exams</div>
-            <div class="cat-count">PET · Police · Lekhpal · RO ARO</div>
-            <div class="cat-arrow">↗</div>
-          </div>
-          <div class="cat-card" onclick="toggleSub('bih-sub',null);document.getElementById('bih-sub').classList.add('open')">
-            <div class="cat-icon">🏛️</div>
-            <div class="cat-name">Bihar Exams</div>
-            <div class="cat-count">BPSC · Police · CSBC · AEDO</div>
-            <div class="cat-arrow">↗</div>
-          </div>
-          <div class="cat-card" onclick="toggleSub('pol-sub',null);document.getElementById('pol-sub').classList.add('open')">
-            <div class="cat-icon">👮</div>
-            <div class="cat-name">Police</div>
-            <div class="cat-count">UP · Bihar · Delhi · MP</div>
-            <div class="cat-arrow">↗</div>
-          </div>
-          <div class="cat-card" onclick="showView('typing')">
-            <div class="cat-icon">⌨️</div>
-            <div class="cat-name">Typing Test</div>
-            <div class="cat-count">Hindi · English · WPM Test</div>
-            <div class="cat-arrow">↗</div>
-          </div>
-          <div class="cat-card" onclick="showView('ca')">
-            <div class="cat-icon">📰</div>
-            <div class="cat-name">Current Affairs</div>
-            <div class="cat-count">Daily · Weekly · Monthly Quiz</div>
-            <div class="cat-arrow">↗</div>
-          </div>
-          <div class="cat-card" onclick="showView('mock')">
-            <div class="cat-icon">📝</div>
-            <div class="cat-name">Mock Tests</div>
-            <div class="cat-count">Full length · Topic-wise · PYQ</div>
-            <div class="cat-arrow">↗</div>
-          </div>
-          <div class="cat-card" onclick="showView('gk')">
-            <div class="cat-icon">🧠</div>
-            <div class="cat-name">GK / Computer Quiz</div>
-            <div class="cat-count">Static GK · Computer · Science</div>
-            <div class="cat-arrow">↗</div>
-          </div>
-          <div class="cat-card" onclick="showExam('CCC')">
-            <div class="cat-icon">💻</div>
-            <div class="cat-name">CCC</div>
-            <div class="cat-count">Computer Course Certificate</div>
-            <div class="cat-arrow">↗</div>
-          </div>
-          <div class="cat-card" onclick="showView('pdf')">
-            <div class="cat-icon">📄</div>
-            <div class="cat-name">Free PDFs</div>
-            <div class="cat-count">Notes · PYQ · Answer Keys</div>
-            <div class="cat-arrow">↗</div>
-          </div>
-        </div>
+      <div class="sd-card sd-done">
+        <div class="sd-icon">✅</div>
+        <div class="sd-val" id="daysCompleted">0</div>
+        <div class="sd-lbl">Days Done</div>
       </div>
-
-      <!-- GOLDMINE FEATURES -->
-      <div class="section" style="background:rgba(255,255,255,.01);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
-        <div class="section-hdr">
-          <div>
-            <div class="section-tag">Daily Use Tools</div>
-            <div class="section-title">Roz aao. Roz seekho.</div>
-          </div>
-        </div>
-        <div class="feature-row">
-          <div class="feat-card" onclick="showView('typing')" style="--accent:var(--cyan)">
-            <div class="feat-card-accent"></div>
-            <div class="feat-icon">⌨️</div>
-            <div class="feat-title">Typing Test</div>
-            <div class="feat-sub">Hindi & English. WPM check karo. SSC/Railway typing exam ke liye practice.</div>
-            <span class="feat-badge fb-cyan">Hindi + English</span>
-          </div>
-          <div class="feat-card" onclick="showView('ca')" style="--accent:var(--em)">
-            <div class="feat-card-accent"></div>
-            <div class="feat-icon">📰</div>
-            <div class="feat-title">Daily Current Affairs</div>
-            <div class="feat-sub">Aaj ka news quiz. Roz update hota hai. GK ka sabse fast revision.</div>
-            <span class="feat-badge fb-em">Daily Updated</span>
-          </div>
-          <div class="feat-card" onclick="showView('mock')" style="--accent:var(--gold)">
-            <div class="feat-card-accent"></div>
-            <div class="feat-icon">📝</div>
-            <div class="feat-title">Mock Tests</div>
-            <div class="feat-sub">SSC, Railway, Banking — real exam pattern. Instant results with explanation.</div>
-            <span class="feat-badge fb-gold">Explanation Sahit</span>
-          </div>
-          <div class="feat-card" onclick="alert('Quiz Battle coming soon! 🔥')" style="--accent:var(--red)">
-            <div class="feat-card-accent"></div>
-            <div class="feat-icon">⚔️</div>
-            <div class="feat-title">Quiz Battle</div>
-            <div class="feat-sub">Live 1v1 quiz challenge. Doosron ke saath compete karo. Leaderboard mein naam aao.</div>
-            <span class="feat-badge fb-red">Coming Soon</span>
-          </div>
-          <div class="feat-card" onclick="showView('gk')" style="--accent:var(--violet)">
-            <div class="feat-card-accent"></div>
-            <div class="feat-icon">🧠</div>
-            <div class="feat-title">GK Quiz</div>
-            <div class="feat-sub">Static GK, Computer awareness, Science — topic-wise quick quiz sets.</div>
-            <span class="feat-badge" style="background:rgba(157,142,203,.1);color:var(--violet);border:1px solid rgba(157,142,203,.2)">Topic-wise</span>
-          </div>
-          <div class="feat-card" onclick="showView('pdf')" style="--accent:var(--amb)">
-            <div class="feat-card-accent"></div>
-            <div class="feat-icon">📄</div>
-            <div class="feat-title">Free PDFs</div>
-            <div class="feat-sub">PYQ papers, notes, answer keys, shortcuts — sab free download.</div>
-            <span class="feat-badge fb-gold">100% Free</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- TOP MOCKS PREVIEW -->
-      <div class="section">
-        <div class="section-hdr">
-          <div>
-            <div class="section-tag">Popular Mock Tests</div>
-            <div class="section-title">Abhi shuru karo.</div>
-          </div>
-          <button class="see-all" onclick="showView('mock')">See All Tests →</button>
-        </div>
-        <div class="mock-grid">
-          <div class="mock-card">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">SSC CGL</span></div>
-            <div class="mc-title">SSC CGL Tier-1 Full Mock — Set 1</div>
-            <div class="mc-meta"><span>⏱ 60 min</span><span>📝 25 Qs</span><span>⭐ Mixed</span></div>
-            <button class="btn-mock" onclick="window.open('/mock/?id=flt-01','_self')">Start Test →</button>
-          </div>
-          <div class="mock-card">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">RRB JE</span></div>
-            <div class="mc-title">RRB JE General Awareness — 50 Qs</div>
-            <div class="mc-meta"><span>⏱ 30 min</span><span>📝 4 Qs</span><span>⭐ Medium</span></div>
-            <button class="btn-mock" onclick="window.open('/mock/?id=reasoning-01','_self')">Start Test →</button>
-          </div>
-          <div class="mock-card">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">BPSC AEDO</span></div>
-            <div class="mc-title">BPSC AEDO Full Syllabus Mock — Set 1</div>
-            <div class="mc-meta"><span>⏱ 45 min</span><span>📝 4 Qs</span><span>⭐ Medium</span></div>
-            <button class="btn-mock" onclick="window.open('/mock/?id=english-01','_self')">Start Test →</button>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /homeView -->
-
-    <!-- ═══ MOCK VIEW ═══ -->
-    <div class="view" id="mockView">
-      <div class="hero">
-        <div class="hero-eyebrow"><div class="hero-dot"></div>Mock Tests</div>
-        <h1 class="hero-title">Practice. Analyse. <span class="hl">Rank Up.</span></h1>
-        <p class="hero-sub">Real exam pattern. Instant feedback. Explanation ke saath. Sab free.</p>
-      </div>
-      <div class="section">
-        <div class="exam-tags-row">
-          <span class="exam-tag active" onclick="filterMock('all',this)">All</span>
-          <span class="exam-tag" onclick="filterMock('SSC CGL',this)">SSC CGL</span>
-          <span class="exam-tag" onclick="filterMock('RRB JE',this)">RRB JE</span>
-          <span class="exam-tag" onclick="filterMock('BPSC AEDO',this)">BPSC AEDO</span>
-          <span class="exam-tag" onclick="filterMock('GK',this)">GK</span>
-        </div>
-        <div class="mock-grid" id="mockGrid">
-          <div class="mock-card" data-exam="SSC CGL">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">SSC CGL</span></div>
-            <div class="mc-title">SSC CGL Tier-1 Full Mock — Set 1</div>
-            <div class="mc-meta"><span>⏱ 60 min</span><span>📝 25 Qs</span><span>⭐ Mixed</span></div>
-            <button class="btn-mock" onclick="window.open('/mock/?id=flt-01','_self')">Start Test →</button>
-          </div>
-          <div class="mock-card" data-exam="SSC CGL">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">SSC CGL</span></div>
-            <div class="mc-title">SSC CGL GK Quick Fire — 20 Questions</div>
-            <div class="mc-meta"><span>⏱ 10 min</span><span>📝 25 Qs</span><span>⭐ Easy-Med</span></div>
-            <button class="btn-mock" onclick="window.open('/mock/?id=gk-01','_self')">Start Test →</button>
-          </div>
-          <div class="mock-card" data-exam="RRB JE">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">RRB JE</span></div>
-            <div class="mc-title">RRB JE General Awareness — 50 Questions</div>
-            <div class="mc-meta"><span>⏱ 30 min</span><span>📝 25 Qs</span><span>⭐ Medium</span></div>
-            <button class="btn-mock" onclick="window.open('/mock/?id=reasoning-01','_self')">Start Test →</button>
-          </div>
-          <div class="mock-card" data-exam="RRB JE">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">RRB JE</span></div>
-            <div class="mc-title">RRB JE Electrical Engineering — Technical Set</div>
-            <div class="mc-meta"><span>⏱ 30 min</span><span>📝 25 Qs</span><span>⭐ Hard</span></div>
-            <button class="btn-mock" onclick="window.open('/mock/?id=math-01','_self')">Start Test →</button>
-          </div>
-          <div class="mock-card" data-exam="BPSC AEDO">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">BPSC AEDO</span></div>
-            <div class="mc-title">BPSC AEDO Full Syllabus Mock — Set 1</div>
-            <div class="mc-meta"><span>⏱ 45 min</span><span>📝 25 Qs</span><span>⭐ Medium</span></div>
-            <button class="btn-mock" onclick="window.open('/mock/?id=english-01','_self')">Start Test →</button>
-          </div>
-          <div class="mock-card" data-exam="GK">
-            <div class="mc-top"><span class="mc-badge mc-b-soon">Coming Soon</span><span class="mc-exam">GK</span></div>
-            <div class="mc-title">Static GK Marathon — 100 Questions</div>
-            <div class="mc-meta"><span>⏱ 50 min</span><span>📝 100 Qs</span><span>⭐ Mixed</span></div>
-            <button class="btn-mock" disabled>Coming Soon</button>
-          </div>
-        </div>
+      <div class="sd-card sd-rank">
+        <div class="sd-icon">🏆</div>
+        <div class="sd-val" id="rankBadge">—</div>
+        <div class="sd-lbl">Rank Badge</div>
       </div>
     </div>
 
-    <!-- ═══ PDF VIEW ═══ -->
-    <div class="view" id="pdfView">
-      <div class="hero">
-        <div class="hero-eyebrow"><div class="hero-dot"></div>Free PDFs</div>
-        <h1 class="hero-title">Download. Study. <span class="hl">Crack.</span></h1>
-        <p class="hero-sub">Notes, PYQ papers, answer keys, shortcuts — sab free download karo.</p>
+    <!-- XP Bar -->
+    <div class="xp-bar-wrap">
+      <div class="xp-bar-top">
+        <div class="xp-title">⚡ XP Progress <span class="xp-level" id="xpLevelBadge">Beginner</span></div>
+        <div class="xp-count" id="xpCountDisplay">0 / 500 XP to next level</div>
       </div>
-      <div class="section">
-        <div class="exam-tags-row">
-          <span class="exam-tag active" onclick="filterPDF2('all',this)">All</span>
-          <span class="exam-tag" onclick="filterPDF2('ssc',this)">SSC CGL</span>
-          <span class="exam-tag" onclick="filterPDF2('rrb',this)">RRB JE</span>
-          <span class="exam-tag" onclick="filterPDF2('bpsc',this)">BPSC AEDO</span>
-        </div>
-        <div class="mock-grid" id="pdfGrid2">
-          <div class="mock-card" data-exam="ssc">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">SSC CGL</span></div>
-            <div class="mc-title">150 Hard Questions — Topic-wise Shortcuts</div>
-            <div class="mc-meta"><span>📄 45 Pages</span><span>Sept 2025 Shifts</span></div>
-            <button class="btn-mock" onclick="alert('PDF link coming soon!')">Download Free ⬇</button>
-          </div>
-          <div class="mock-card" data-exam="rrb">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">RRB JE</span></div>
-            <div class="mc-title">GA Master Sheet — 308 Questions Hinglish</div>
-            <div class="mc-meta"><span>📄 Full GA</span><span>Tier-2 Follow-ups</span></div>
-            <button class="btn-mock" onclick="alert('PDF link coming soon!')">Download Free ⬇</button>
-          </div>
-          <div class="mock-card" data-exam="bpsc">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">BPSC AEDO</span></div>
-            <div class="mc-title">Daily 50-Question Mock PDFs — Set 1–10</div>
-            <div class="mc-meta"><span>📄 500 Qs</span><span>Hindi Medium</span></div>
-            <button class="btn-mock" onclick="alert('PDF link coming soon!')">Download Free ⬇</button>
-          </div>
-          <div class="mock-card" data-exam="ssc">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">SSC CGL</span></div>
-            <div class="mc-title">1000 Questions Math Bank — 10 Parts</div>
-            <div class="mc-meta"><span>📄 Complete Quant</span><span>Tricks Included</span></div>
-            <button class="btn-mock" onclick="alert('PDF link coming soon!')">Download Free ⬇</button>
-          </div>
-        </div>
+      <div class="xp-bar-track">
+        <div class="xp-bar-fill" id="xpBarFill" style="width:0%"></div>
+      </div>
+      <div class="xp-milestones">
+        <span class="xp-ms">0</span>
+        <span class="xp-ms">Intermediate (500)</span>
+        <span class="xp-ms">Expert (1500)</span>
+        <span class="xp-ms">Master (3000)</span>
       </div>
     </div>
 
-    <!-- ═══ TYPING VIEW ═══ -->
-    <div class="view" id="typingView">
-      <div class="hero">
-        <div class="hero-eyebrow"><div class="hero-dot"></div>Typing Test</div>
-        <h1 class="hero-title">Speed. Accuracy. <span class="hl">WPM.</span></h1>
-        <p class="hero-sub">SSC CHSL, Court Clerk, Data Entry — typing test practice karo. Hindi & English dono.</p>
+    <!-- Today Mission -->
+    <div class="today-mission">
+      <div class="tm-header">
+        <div class="tm-title">🎯 Today's Mission <span class="tm-badge" id="todayMissionBadge">Day —</span></div>
+        <div style="font-size:9px;font-family:var(--mono);color:var(--txt3)">Complete all 3 → +150 XP</div>
       </div>
-      <div class="section">
-        <div class="typing-hero">
-          <div class="typing-stats">
-            <div class="ts-item"><div class="ts-val" id="wpmVal">0</div><div class="ts-lbl">WPM</div></div>
-            <div class="ts-item"><div class="ts-val" id="accVal">100%</div><div class="ts-lbl">Accuracy</div></div>
-            <div class="ts-item"><div class="ts-val" id="timeVal">60</div><div class="ts-lbl">Seconds Left</div></div>
-            <div class="ts-item"><div class="ts-val" id="errVal">0</div><div class="ts-lbl">Errors</div></div>
-          </div>
-          <div class="typing-controls">
-            <button class="t-mode-btn active" onclick="setTypingMode(60,this)">1 Min</button>
-            <button class="t-mode-btn" onclick="setTypingMode(120,this)">2 Min</button>
-            <button class="t-mode-btn" onclick="setTypingMode(300,this)">5 Min</button>
-            <button class="t-mode-btn" onclick="setTypingMode(600,this)">10 Min</button>
-            <button class="t-mode-btn" onclick="resetTyping()">↺ Reset</button>
-          </div>
-        </div>
-        <div class="typing-passage" id="typingPassage"></div>
-        <textarea class="typing-input" id="typingInput" placeholder="Yahan type karo... (start karte hi timer shuru ho jaega)" rows="3" oninput="onType()" onfocus="startTypingTimer()"></textarea>
+      <div class="tm-shortcut" id="todayShortcut">
+        <strong>⚡ Shortcut:</strong> Loading…
+      </div>
+      <div class="tm-actions">
+        <a href="#" id="todayPdfBtn" class="tm-btn tm-lock">
+          <span class="tm-btn-icon">📄</span>
+          <span class="tm-btn-label">PDF Notes</span>
+          <span class="tm-btn-sub">+25 XP</span>
+        </a>
+        <a href="#" id="todayMockBtn" class="tm-btn tm-lock">
+          <span class="tm-btn-icon">🧪</span>
+          <span class="tm-btn-label">Attempt Mock</span>
+          <span class="tm-btn-sub">25Q · 15Min · +75 XP</span>
+        </a>
+        <a href="#" id="todayYtBtn" class="tm-btn tm-lock">
+          <span class="tm-btn-icon">▶</span>
+          <span class="tm-btn-label">Watch Video</span>
+          <span class="tm-btn-sub">+25 XP</span>
+        </a>
+        <a href="#" id="todayYtAnalysisBtn" class="tm-btn tm-lock">
+          <span class="tm-btn-icon">🎬</span>
+          <span class="tm-btn-label">PDF Analysis</span>
+          <span class="tm-btn-sub">Lecture +15 XP</span>
+        </a>
       </div>
     </div>
 
-    <!-- ═══ CURRENT AFFAIRS VIEW ═══ -->
-    <div class="view" id="caView">
-      <div class="hero">
-        <div class="hero-eyebrow"><div class="hero-dot"></div>Current Affairs</div>
-        <h1 class="hero-title">Aaj ka <span class="hl">GK.</span></h1>
-        <p class="hero-sub">Daily current affairs quiz — exam mein sabse zyada puche jaane wale topics.</p>
+    <!-- Topic Checklist — rendered dynamically -->
+    <div class="topic-checklist">
+      <div class="tcl-header">
+        <div class="tcl-title">📚 Today's Topics</div>
+        <div class="tcl-progress" id="checkProgress">0 / 0 done</div>
       </div>
-      <div class="section">
-        <div class="exam-tags-row">
-          <span class="exam-tag active">June 2026</span>
-          <span class="exam-tag">May 2026</span>
-          <span class="exam-tag">April 2026</span>
-          <span class="exam-tag" onclick="startQuiz('ca1')">Quiz Start →</span>
+      <div class="tcl-items" id="checklistItems"></div>
+    </div>
+
+    <!-- Complete Day Button -->
+    <button class="complete-btn locked" id="completeDayBtn" onclick="completeDay()">
+      🔒 Complete all topics to unlock Day Complete
+    </button>
+
+    <!-- Heatmap -->
+    <div class="week-heatmap">
+      <div class="wh-title">📊 Your 70-Day Journey</div>
+      <div class="wh-grid" id="heatmapGrid"></div>
+      <div class="wh-legend">
+        <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(109,191,158,.25)"></div>Completed</div>
+        <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(200,170,110,.2)"></div>Today</div>
+        <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(59,130,246,.12)"></div>Available</div>
+        <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(255,255,255,.04)"></div>Locked</div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="quick-stats">
+      <div class="qs-card">
+        <div class="qs-val" style="color:var(--amb)" id="qs1">—</div>
+        <div class="qs-lbl">Days Left</div>
+      </div>
+      <div class="qs-card">
+        <div class="qs-val" style="color:var(--em)" id="qs2">—%</div>
+        <div class="qs-lbl">Completed</div>
+      </div>
+      <div class="qs-card">
+        <div class="qs-val" style="color:var(--cyan)" id="qs3">—</div>
+        <div class="qs-lbl">Current Week</div>
+      </div>
+    </div>
+
+    <!-- Telegram CTA -->
+    <div class="tg-cta">
+      <div class="tg-cta-icon">📢</div>
+      <div class="tg-cta-content">
+        <div class="tg-cta-title" data-tg-cta-title>Daily Tricks on Telegram — RankUpExam</div>
+        <div class="tg-cta-sub"   data-tg-cta-sub>Join 1000+ aspirants for daily shortcut tricks and motivation.</div>
+      </div>
+      <a href="#" class="tg-cta-btn" data-tg-href target="_blank">Join Now →</a>
+    </div>
+
+  </div><!-- /todayView -->
+
+  <!-- ══ ROADMAP VIEW ══════════════════════════════════ -->
+  <div id="roadmapView" style="display:none">
+    <div class="hero">
+      <div class="h-badge"><div class="h-badge-dot"></div>SSC CGL 2026 — Master Preparation Plan</div>
+      <h1 class="h-title"><span class="d60">60+10</span> Days<br><span class="cgl">SSC CGL Complete System</span></h1>
+      <p class="h-sub">60 din mein poora syllabus + weekly mix tests. Last 10 din — sirf Full Length Tests. Roz PDF notes, 15-min mock (25 Qs), aur YouTube video solution.</p>
+      <div class="h-pills">
+        <a href="#" target="_blank" class="h-pill hp-yt" data-yt-href>▶ YouTube</a>
+        <a href="#" target="_blank" class="h-pill hp-tg" data-tg-href>📢 Telegram</a>
+        <span class="h-pill hp-g">📄 Daily PDF + 🧪 Mock + ▶ Video</span>
+      </div>
+    </div>
+
+    <div class="milestone-bar">
+      <div class="mb-top">
+        <div class="mb-title">📊 70-Day Master Timeline</div>
+        <div class="mb-meta" id="mbMeta">Loading…</div>
+      </div>
+      <div class="mb-track"><div class="mb-fill" id="mbFill" style="width:0%"></div></div>
+      <div class="mb-ticks">
+        <div class="mbt done"><div class="mbd"></div>D1<br>Start</div>
+        <div class="mbt"><div class="mbd"></div>D10<br>Quant-1</div>
+        <div class="mbt"><div class="mbd"></div>D20<br>Quant-2</div>
+        <div class="mbt"><div class="mbd"></div>D30<br>Eng+Rea</div>
+        <div class="mbt"><div class="mbd"></div>D40<br>GA+Mix</div>
+        <div class="mbt"><div class="mbd"></div>D50<br>Revision</div>
+        <div class="mbt"><div class="mbd"></div>D60<br>Syllabus✓</div>
+        <div class="mbt test-z"><div class="mbd"></div>D61-70<br>FLT Zone</div>
+      </div>
+    </div>
+
+    <div class="main-layout">
+      <div class="left-panel">
+        <div class="week-scroll" id="weekTabs">
+          <button class="wt active" onclick="fw(0,this)">All (70)</button>
+          <button class="wt" onclick="fw(1,this)">W1: D1–7</button>
+          <button class="wt" onclick="fw(2,this)">W2: D8–14</button>
+          <button class="wt" onclick="fw(3,this)">W3: D15–21</button>
+          <button class="wt" onclick="fw(4,this)">W4: D22–28</button>
+          <button class="wt" onclick="fw(5,this)">W5: D29–35</button>
+          <button class="wt" onclick="fw(6,this)">W6: D36–42</button>
+          <button class="wt" onclick="fw(7,this)">W7: D43–49</button>
+          <button class="wt" onclick="fw(8,this)">W8: D50–56</button>
+          <button class="wt" onclick="fw(9,this)">W9: D57–60</button>
+          <button class="wt test-wk" onclick="fw(10,this)">🏆 D61–70 FLT</button>
         </div>
-        <div class="ca-grid">
-          <div class="ca-card">
-            <div class="ca-date">Jun 06</div>
-            <div class="ca-content">
-              <div class="ca-title">India ne Space Docking Experiment (SpaDeX) successfully complete kiya</div>
-              <div class="ca-sub">ISRO ne do spacecraft ko orbit mein dock karaya — space docking technology mein India teesra desh bana.</div>
-              <span class="ca-tag cat-science">Science & Tech</span>
-            </div>
+        <div class="tbl-hdr">
+          <div class="th">Day</div>
+          <div class="th">Topic</div>
+          <div class="th" style="text-align:center">📄</div>
+          <div class="th" style="text-align:center">🧪</div>
+          <div class="th" style="text-align:center">▶</div>
+          <div class="th" style="text-align:center">🎬</div>
+          <div class="th" style="text-align:center">Status</div>
+        </div>
+        <div class="days-wrap" id="daysList"></div>
+      </div>
+
+      <div class="right-panel">
+        <div class="rp-card">
+          <div class="rp-hdr">
+            <div class="rp-hdr-badge"><div class="rp-hdr-dot"></div><span class="rp-hdr-lbl">⚡ Hard Shift Series</span></div>
+            <div class="rp-hdr-title">30 Hardest CGL Shifts</div>
+            <div class="rp-hdr-sub">2021–2025 ke Top Hard Shifts. Crack kiya toh real exam easy lagega!</div>
           </div>
-          <div class="ca-card">
-            <div class="ca-date">Jun 05</div>
-            <div class="ca-content">
-              <div class="ca-title">World Environment Day 2026 — Theme: "Land Restoration"</div>
-              <div class="ca-sub">5 June ko World Environment Day manaya gaya. Is saal ki theme land restoration, desertification aur drought resilience hai.</div>
-              <span class="ca-tag cat-politics">Environment</span>
-            </div>
+          <div class="rp-year-tabs">
+            <button class="ryt active" onclick="setYear('all',this)">All</button>
+            <button class="ryt" onclick="setYear('2021',this)">2021</button>
+            <button class="ryt" onclick="setYear('2022',this)">2022</button>
+            <button class="ryt" onclick="setYear('2023',this)">2023</button>
+            <button class="ryt" onclick="setYear('2024',this)">2024</button>
+            <button class="ryt" onclick="setYear('2025',this)">2025</button>
           </div>
-          <div class="ca-card">
-            <div class="ca-date">Jun 04</div>
-            <div class="ca-content">
-              <div class="ca-title">RBI ne Repo Rate 6.0% par stable rakha</div>
-              <div class="ca-sub">Reserve Bank of India MPC meeting mein repo rate unchanged raha. Inflation control aur growth balance pe focus.</div>
-              <span class="ca-tag cat-economy">Economy</span>
+          <div class="rp-shifts" id="shiftList"></div>
+          <div class="rp-footer">
+            <div class="rpf-stat">
+              <span class="rpf-l">Total Hard Shifts</span>
+              <span class="rpf-v" id="shiftCount">30 Shifts</span>
             </div>
-          </div>
-          <div class="ca-card">
-            <div class="ca-date">Jun 03</div>
-            <div class="ca-content">
-              <div class="ca-title">India ne ICC Champions Trophy 2025 jeeta</div>
-              <div class="ca-sub">Rohit Sharma ki captaincy mein Team India ne final mein Pakistan ko harakar Champions Trophy jeeti.</div>
-              <span class="ca-tag cat-sports">Sports</span>
-            </div>
-          </div>
-          <div class="ca-card">
-            <div class="ca-date">Jun 02</div>
-            <div class="ca-content">
-              <div class="ca-title">PM Modi ne "Viksit Bharat 2047" roadmap launch kiya</div>
-              <div class="ca-sub">2047 tak India ko developed nation banana — economy, infrastructure, education aur health pe focus.</div>
-              <span class="ca-tag cat-politics">National</span>
-            </div>
-          </div>
-          <div class="ca-card">
-            <div class="ca-date">Jun 01</div>
-            <div class="ca-content">
-              <div class="ca-title">Oscars 2025 — Best Film: "Anora" (USA)</div>
-              <div class="ca-sub">97th Academy Awards mein Sean Baker ki film "Anora" ne Best Picture award jeeta.</div>
-              <span class="ca-tag cat-awards">Awards</span>
+            <div style="margin-top:8px">
+              <a href="#" data-yt-href target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;background:rgba(255,68,68,.07);border:1px solid rgba(255,68,68,.18);border-radius:8px;color:#ff6b6b;font-size:10px;font-family:var(--mono);text-decoration:none;font-weight:700">▶ Solutions on YouTube</a>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div><!-- /roadmapView -->
 
-    <!-- ═══ GK VIEW ═══ -->
-    <div class="view" id="gkView">
-      <div class="hero">
-        <div class="hero-eyebrow"><div class="hero-dot"></div>GK Quiz</div>
-        <h1 class="hero-title">Static GK. <span class="hl">Computer. Science.</span></h1>
-        <p class="hero-sub">Topic-wise quick quiz — GK, Computer Awareness, General Science.</p>
-      </div>
-      <div class="section">
-        <div class="mock-grid">
-          <div class="mock-card">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">Static GK</span></div>
-            <div class="mc-title">India — Geography, History, Polity Quick Fire</div>
-            <div class="mc-meta"><span>📝 20 Qs</span><span>⭐ Mixed</span></div>
-            <button class="btn-mock" onclick="window.open('/mock/?id=gk-01','_self')">Start Quiz →</button>
-          </div>
-          <div class="mock-card">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">Computer</span></div>
-            <div class="mc-title">Computer Awareness — SSC/Banking Pattern</div>
-            <div class="mc-meta"><span>📝 25 Qs</span><span>⭐ Easy-Med</span></div>
-            <button class="btn-mock" onclick="startQuiz('comp1')">Start Quiz →</button>
-          </div>
-          <div class="mock-card">
-            <div class="mc-top"><span class="mc-badge mc-b-soon">Coming Soon</span><span class="mc-exam">Science</span></div>
-            <div class="mc-title">General Science — Physics, Chemistry, Biology</div>
-            <div class="mc-meta"><span>📝 50 Qs</span><span>⭐ Medium</span></div>
-            <button class="btn-mock" disabled>Coming Soon</button>
-          </div>
-        </div>
+  <!-- ══ HARD SHIFTS VIEW ══════════════════════════════ -->
+  <div id="shiftsView" style="display:none">
+    <div class="today-hero" style="margin-bottom:16px">
+      <div class="th-greeting">⚡ CHALLENGE MODE</div>
+      <div class="th-topic" style="font-size:clamp(18px,3vw,32px);font-family:var(--serif);font-weight:300">30 Hardest CGL Shifts</div>
+      <div class="th-sub">2021–2025 · Crack kiya toh real exam easy lagega!</div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="shiftYearTabs">
+      <button class="ryt active" onclick="setYearS('all',this)">All Shifts</button>
+      <button class="ryt" onclick="setYearS('2021',this)">CGL 2021</button>
+      <button class="ryt" onclick="setYearS('2022',this)">CGL 2022</button>
+      <button class="ryt" onclick="setYearS('2023',this)">CGL 2023</button>
+      <button class="ryt" onclick="setYearS('2024',this)">CGL 2024</button>
+      <button class="ryt" onclick="setYearS('2025',this)">CGL 2025</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px" id="shiftListFull"></div>
+  </div>
+
+  <!-- ══ ABOUT / INFO VIEW ════════════════════════════ -->
+  <div id="aboutView" class="about-view" style="display:none">
+
+    <div class="about-section">
+      <h2 class="about-h2">About RankUpExam</h2>
+      <p class="about-p">RankUpExam ek systematic 70-day SSC CGL preparation operating system hai. Founder <strong style="color:var(--gold)">Guru</strong> ne khud SSC CGL ki taiyari ki aur is platform ko build kiya un aspirants ke liye jo Hindi-medium se clear karna chahte hain.</p>
+      <p class="about-p">Roz ek PDF, ek mock test (25 Qs, 15 min), aur ek YouTube video solution milta hai — ek structured system mein, bina kisi confusion ke.</p>
+    </div>
+
+    <div class="about-section">
+      <h2 class="about-h2">Contact</h2>
+      <div class="about-contact-grid">
+        <a href="mailto:rankupexam@gmail.com" class="contact-card">
+          <div class="cc-icon">✉️</div>
+          <div class="cc-label">Email</div>
+          <div class="cc-value" data-email>rankupexam@gmail.com</div>
+        </a>
+        <a href="#" target="_blank" class="contact-card" data-tg-href>
+          <div class="cc-icon">📢</div>
+          <div class="cc-label">Telegram</div>
+          <div class="cc-value">t.me/rankupexam</div>
+        </a>
+        <a href="#" target="_blank" class="contact-card" data-yt-href>
+          <div class="cc-icon">▶</div>
+          <div class="cc-label">YouTube</div>
+          <div class="cc-value">@rankupexam</div>
+        </a>
+        <a href="https://instagram.com/rankupexam" target="_blank" class="contact-card">
+          <div class="cc-icon">📸</div>
+          <div class="cc-label">Instagram</div>
+          <div class="cc-value">@rankupexam</div>
+        </a>
       </div>
     </div>
 
-    <!-- ═══ SSC CGL OS VIEW ═══ -->
-    <div class="view" id="sscCglView">
-      <!-- ══ STICKY HEADER (SSC CGL specific) ════════════ -->
-      <div class="cgl-sticky-hdr" id="cglStickyHdr">
-        <div class="sh-inner">
-          <div class="sh-brand">
-            <div class="sh-brand-txt">SSC CGL OS</div>
-          </div>
-          <div class="sh-prog-wrap">
-            <span class="sh-prog-lbl">Progress</span>
-            <div class="sh-prog-track"><div class="sh-prog-fill" id="shProgFill" style="width:0%"></div></div>
-            <span class="sh-day-count" id="shDayCount">Day — / 70</span>
-          </div>
-          <div class="timer-pod">
-            <span class="tp-label">Timer</span>
-            <span class="tp-display" id="timerDisp">00:00:00</span>
-            <div class="tp-controls">
-              <select class="tp-select" id="timerHrs" title="Hours">
-                <option value="0">0h</option><option value="1">1h</option><option value="2">2h</option><option value="3">3h</option>
-              </select>
-              <select class="tp-select" id="timerMins" title="Minutes">
-                <option value="0">0m</option><option value="15">15m</option><option value="25">25m</option>
-                <option value="30">30m</option><option value="45">45m</option><option value="50">50m</option><option value="55">55m</option>
-              </select>
-              <button class="tp-btn" id="timerStartBtn" onclick="timerToggle()" title="Start/Pause">▶</button>
-              <button class="tp-btn stop" onclick="timerReset()" title="Reset">↺</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- VIEW SWITCHER -->
-      <div class="page cgl-page">
-        <div class="view-switcher">
-          <button class="vs-btn active" id="vsToday"   onclick="switchView('today')">Today</button>
-          <button class="vs-btn"        id="vsRoadmap" onclick="switchView('roadmap')">Roadmap</button>
-          <button class="vs-btn"        id="vsShifts"  onclick="switchView('shifts')">Hard Shifts</button>
-          <button class="vs-btn"        id="vsAbout"   onclick="switchView('about')">About</button>
-        </div>
-
-        <!-- ══ TODAY VIEW ═══ -->
-        <div id="todayView">
-          <div class="today-hero">
-            <div class="th-greeting">Your Study Dashboard — RankUpExam</div>
-            <div>
-              <span class="th-daynum" id="thDayNum">Day —</span>
-              <span class="th-topic"  id="thTopic">Loading…</span>
-            </div>
-            <div class="th-sub" id="thSub"></div>
-          </div>
-          <div class="streak-dash">
-            <div class="sd-card sd-streak"><div class="sd-icon"><span class="streak-fire" id="streakFire">⭐</span></div><div class="sd-val" id="streakVal">0</div><div class="sd-lbl">Day Streak</div></div>
-            <div class="sd-card sd-xp"><div class="sd-icon">⚡</div><div class="sd-val" id="xpVal">0</div><div class="sd-lbl">Total XP</div></div>
-            <div class="sd-card sd-done"><div class="sd-icon">✅</div><div class="sd-val" id="daysCompleted">0</div><div class="sd-lbl">Days Done</div></div>
-            <div class="sd-card sd-rank"><div class="sd-icon">🏆</div><div class="sd-val" id="rankBadge">—</div><div class="sd-lbl">Rank Badge</div></div>
-          </div>
-          <div class="xp-bar-wrap">
-            <div class="xp-bar-top">
-              <div class="xp-title">⚡ XP Progress <span class="xp-level" id="xpLevelBadge">Beginner</span></div>
-              <div class="xp-count" id="xpCountDisplay">0 / 500 XP to next level</div>
-            </div>
-            <div class="xp-bar-track"><div class="xp-bar-fill" id="xpBarFill" style="width:0%"></div></div>
-            <div class="xp-milestones">
-              <span class="xp-ms">0</span>
-              <span class="xp-ms">Intermediate (500)</span>
-              <span class="xp-ms">Expert (1500)</span>
-              <span class="xp-ms">Master (3000)</span>
-            </div>
-          </div>
-          <div class="today-mission">
-            <div class="tm-header">
-              <div class="tm-title">🎯 Today's Mission <span class="tm-badge" id="todayMissionBadge">Day —</span></div>
-              <div style="font-size:9px;font-family:var(--mono);color:var(--txt3)">Complete all 3 → +150 XP</div>
-            </div>
-            <div class="tm-shortcut" id="todayShortcut"><strong>⚡ Shortcut:</strong> Loading…</div>
-            <div class="tm-actions">
-              <a href="#" id="todayPdfBtn" class="tm-btn tm-lock"><span class="tm-btn-icon">📄</span><span class="tm-btn-label">PDF Notes</span><span class="tm-btn-sub">+25 XP</span></a>
-              <a href="#" id="todayMockBtn" class="tm-btn tm-lock"><span class="tm-btn-icon">🧪</span><span class="tm-btn-label">Attempt Mock</span><span class="tm-btn-sub">25Q · 15Min · +75 XP</span></a>
-              <a href="#" id="todayYtBtn" class="tm-btn tm-lock"><span class="tm-btn-icon">▶</span><span class="tm-btn-label">Watch Video</span><span class="tm-btn-sub">+25 XP</span></a>
-              <a href="#" id="todayYtAnalysisBtn" class="tm-btn tm-lock"><span class="tm-btn-icon">🎬</span><span class="tm-btn-label">PDF Analysis</span><span class="tm-btn-sub">Lecture +15 XP</span></a>
-            </div>
-          </div>
-          <div class="topic-checklist">
-            <div class="tcl-header">
-              <div class="tcl-title">📚 Today's Topics</div>
-              <div class="tcl-progress" id="checkProgress">0 / 0 done</div>
-            </div>
-            <div class="tcl-items" id="checklistItems"></div>
-          </div>
-          <button class="complete-btn locked" id="completeDayBtn" onclick="completeDay()">🔒 Complete all topics to unlock Day Complete</button>
-          <div class="week-heatmap">
-            <div class="wh-title">📊 Your 70-Day Journey</div>
-            <div class="wh-grid" id="heatmapGrid"></div>
-            <div class="wh-legend">
-              <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(109,191,158,.25)"></div>Completed</div>
-              <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(200,170,110,.2)"></div>Today</div>
-              <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(59,130,246,.12)"></div>Available</div>
-              <div class="wh-leg-item"><div class="wh-leg-dot" style="background:rgba(255,255,255,.04)"></div>Locked</div>
-            </div>
-          </div>
-          <div class="quick-stats">
-            <div class="qs-card"><div class="qs-val" style="color:var(--amb)" id="qs1">—</div><div class="qs-lbl">Days Left</div></div>
-            <div class="qs-card"><div class="qs-val" style="color:var(--em)" id="qs2">—%</div><div class="qs-lbl">Completed</div></div>
-            <div class="qs-card"><div class="qs-val" style="color:var(--cyan)" id="qs3">—</div><div class="qs-lbl">Current Week</div></div>
-          </div>
-          <div class="tg-cta">
-            <div class="tg-cta-icon">📢</div>
-            <div class="tg-cta-content">
-              <div class="tg-cta-title" data-tg-cta-title>Daily Tricks on Telegram — RankUpExam</div>
-              <div class="tg-cta-sub" data-tg-cta-sub>Join 1000+ aspirants for daily shortcut tricks and motivation.</div>
-            </div>
-            <a href="https://t.me/rankupexam" class="tg-cta-btn" target="_blank">Join Now →</a>
-          </div>
-        </div><!-- /todayView -->
-
-        <!-- ══ ROADMAP VIEW ═══ -->
-        <div id="roadmapView" style="display:none">
-          <div class="hero" style="text-align:center;padding:20px 0 28px;border-bottom:1px solid rgba(200,170,110,.07);margin-bottom:20px">
-            <div class="h-badge"><div class="h-badge-dot"></div>SSC CGL 2026 — Master Preparation Plan</div>
-            <h1 class="h-title"><span class="d60">60+10</span> Days<br><span class="cgl">SSC CGL Complete System</span></h1>
-            <p class="h-sub">60 din mein poora syllabus + weekly mix tests. Last 10 din — sirf Full Length Tests. Roz PDF notes, 15-min mock (25 Qs), aur YouTube video solution.</p>
-            <div class="h-pills">
-              <a href="https://youtube.com/@rankupexam" target="_blank" class="h-pill hp-yt">▶ YouTube</a>
-              <a href="https://t.me/rankupexam" target="_blank" class="h-pill hp-tg">📢 Telegram</a>
-              <span class="h-pill hp-g">📄 Daily PDF + 🧪 Mock + ▶ Video</span>
-            </div>
-          </div>
-          <div class="milestone-bar">
-            <div class="mb-top">
-              <div class="mb-title">📊 70-Day Master Timeline</div>
-              <div class="mb-meta" id="mbMeta">Loading…</div>
-            </div>
-            <div class="mb-track"><div class="mb-fill" id="mbFill" style="width:0%"></div></div>
-            <div class="mb-ticks">
-              <div class="mbt done"><div class="mbd"></div>D1<br>Start</div>
-              <div class="mbt"><div class="mbd"></div>D10<br>Quant-1</div>
-              <div class="mbt"><div class="mbd"></div>D20<br>Quant-2</div>
-              <div class="mbt"><div class="mbd"></div>D30<br>Eng+Rea</div>
-              <div class="mbt"><div class="mbd"></div>D40<br>GA+Mix</div>
-              <div class="mbt"><div class="mbd"></div>D50<br>Revision</div>
-              <div class="mbt"><div class="mbd"></div>D60<br>Syllabus✓</div>
-              <div class="mbt test-z"><div class="mbd"></div>D61-70<br>FLT Zone</div>
-            </div>
-          </div>
-          <div class="roadmap-view">
-            <div class="main-layout">
-              <div class="left-panel">
-                <div class="week-scroll" id="weekTabs">
-                  <button class="wt active" onclick="fw(0,this)">All (70)</button>
-                  <button class="wt" onclick="fw(1,this)">W1: D1–7</button>
-                  <button class="wt" onclick="fw(2,this)">W2: D8–14</button>
-                  <button class="wt" onclick="fw(3,this)">W3: D15–21</button>
-                  <button class="wt" onclick="fw(4,this)">W4: D22–28</button>
-                  <button class="wt" onclick="fw(5,this)">W5: D29–35</button>
-                  <button class="wt" onclick="fw(6,this)">W6: D36–42</button>
-                  <button class="wt" onclick="fw(7,this)">W7: D43–49</button>
-                  <button class="wt" onclick="fw(8,this)">W8: D50–56</button>
-                  <button class="wt" onclick="fw(9,this)">W9: D57–60</button>
-                  <button class="wt test-wk" onclick="fw(10,this)">🏆 D61–70 FLT</button>
-                </div>
-                <div class="tbl-hdr">
-                  <div class="th">Day</div><div class="th">Topic</div>
-                  <div class="th" style="text-align:center">📄</div>
-                  <div class="th" style="text-align:center">🧪</div>
-                  <div class="th" style="text-align:center">▶</div>
-                  <div class="th" style="text-align:center">🎬</div>
-                  <div class="th" style="text-align:center">Status</div>
-                </div>
-                <div class="days-wrap" id="daysList"></div>
-              </div>
-              <div class="right-panel">
-                <div class="rp-card">
-                  <div class="rp-hdr">
-                    <div class="rp-hdr-badge"><div class="rp-hdr-dot"></div><span class="rp-hdr-lbl">⚡ Hard Shift Series</span></div>
-                    <div class="rp-hdr-title">30 Hardest CGL Shifts</div>
-                    <div class="rp-hdr-sub">2021–2025 ke Top Hard Shifts. Crack kiya toh real exam easy lagega!</div>
-                  </div>
-                  <div class="rp-year-tabs">
-                    <button class="ryt active" onclick="setYear('all',this)">All</button>
-                    <button class="ryt" onclick="setYear('2021',this)">2021</button>
-                    <button class="ryt" onclick="setYear('2022',this)">2022</button>
-                    <button class="ryt" onclick="setYear('2023',this)">2023</button>
-                    <button class="ryt" onclick="setYear('2024',this)">2024</button>
-                    <button class="ryt" onclick="setYear('2025',this)">2025</button>
-                  </div>
-                  <div class="rp-shifts" id="shiftList"></div>
-                  <div class="rp-footer">
-                    <div class="rpf-stat">
-                      <span class="rpf-l">Total Hard Shifts</span>
-                      <span class="rpf-v" id="shiftCount">30 Shifts</span>
-                    </div>
-                    <div style="margin-top:8px">
-                      <a href="https://youtube.com/@rankupexam" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;background:rgba(255,68,68,.07);border:1px solid rgba(255,68,68,.18);border-radius:8px;color:#ff6b6b;font-size:10px;font-family:var(--mono);text-decoration:none;font-weight:700">▶ Solutions on YouTube</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div><!-- /roadmapView -->
-
-        <!-- ══ HARD SHIFTS VIEW ═══ -->
-        <div id="shiftsView" style="display:none">
-          <div class="today-hero" style="margin-bottom:16px">
-            <div class="th-greeting">⚡ CHALLENGE MODE</div>
-            <div class="th-topic" style="font-size:clamp(18px,3vw,32px);font-family:var(--serif);font-weight:300">30 Hardest CGL Shifts</div>
-            <div class="th-sub">2021–2025 · Crack kiya toh real exam easy lagega!</div>
-          </div>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="shiftYearTabs">
-            <button class="ryt active" onclick="setYearS('all',this)">All Shifts</button>
-            <button class="ryt" onclick="setYearS('2021',this)">CGL 2021</button>
-            <button class="ryt" onclick="setYearS('2022',this)">CGL 2022</button>
-            <button class="ryt" onclick="setYearS('2023',this)">CGL 2023</button>
-            <button class="ryt" onclick="setYearS('2024',this)">CGL 2024</button>
-            <button class="ryt" onclick="setYearS('2025',this)">CGL 2025</button>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px" id="shiftListFull"></div>
-        </div>
-
-        <!-- ══ ABOUT VIEW ═══ -->
-        <div id="aboutView" class="about-view" style="display:none">
-          <div class="about-section">
-            <h2 class="about-h2">About RankUpExam</h2>
-            <p class="about-p">RankUpExam ek systematic 70-day SSC CGL preparation operating system hai. Founder <strong style="color:var(--gold)">Guru</strong> ne khud SSC CGL ki taiyari ki aur is platform ko build kiya un aspirants ke liye jo Hindi-medium se clear karna chahte hain.</p>
-            <p class="about-p">Roz ek PDF, ek mock test (25 Qs, 15 min), aur ek YouTube video solution milta hai — ek structured system mein, bina kisi confusion ke.</p>
-          </div>
-          <div class="about-section">
-            <h2 class="about-h2">Contact</h2>
-            <div class="about-contact-grid">
-              <a href="mailto:rankupexam@gmail.com" class="contact-card"><div class="cc-icon">✉️</div><div class="cc-label">Email</div><div class="cc-value">rankupexam@gmail.com</div></a>
-              <a href="https://t.me/rankupexam" target="_blank" class="contact-card"><div class="cc-icon">📢</div><div class="cc-label">Telegram</div><div class="cc-value">t.me/rankupexam</div></a>
-              <a href="https://youtube.com/@rankupexam" target="_blank" class="contact-card"><div class="cc-icon">▶</div><div class="cc-label">YouTube</div><div class="cc-value">@rankupexam</div></a>
-              <a href="https://instagram.com/rankupexam" target="_blank" class="contact-card"><div class="cc-icon">📸</div><div class="cc-label">Instagram</div><div class="cc-value">@rankupexam</div></a>
-            </div>
-          </div>
-          <div class="about-section">
-            <h2 class="about-h2">Privacy Policy</h2>
-            <p class="about-p">RankUpExam koi personal data third-party ke saath share nahi karta. Study progress sirf aapke browser ke localStorage mein save hota hai.</p>
-            <ul class="about-list">
-              <li>Study progress: localStorage mein sirf aapke device pe</li>
-              <li>Koi third-party analytics nahi</li>
-              <li>Data kabhi bhi delete kiya ja sakta hai browser storage clear karke</li>
-            </ul>
-          </div>
-          <div class="about-section">
-            <h2 class="about-h2">Disclaimer</h2>
-            <p class="about-p">RankUpExam SSC CGL preparation ke liye ek supplementary resource hai. Yeh platform SSC ya kisi government body se affiliated nahi hai. Exam dates, patterns, aur syllabus official SSC notification se verify karein.</p>
-          </div>
-        </div>
-
-      </div><!-- /cgl-page -->
-
-      <!-- Completion overlay -->
-      <div class="completion-overlay" id="completionOverlay">
-        <div class="completion-modal">
-          <span class="cm-emoji" id="cmEmoji">🎉</span>
-          <div class="cm-title" id="cmTitle">Day Complete!</div>
-          <div class="cm-xp" id="cmXp">+100 XP</div>
-          <button class="cm-next" onclick="closeCompletion()">Continue →</button>
-        </div>
-      </div>
-
-      <!-- Auth modal -->
-      <div class="auth-modal-overlay" id="authModalOverlay" onclick="handleOverlayClick(event)">
-        <div class="auth-modal" style="position:relative">
-          <button class="am-close" onclick="closeAuthModal()">✕</button>
-          <div class="am-logo"><div class="ld" style="width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)"></div>RankUpExam</div>
-          <div class="am-title">Sign in to track progress</div>
-          <div class="am-sub">Google se sign in karo — aapka XP, streak, aur completed days sync ho jayenge. Free hai.</div>
-          <div class="am-divider"><span class="am-divider-txt">Continue with</span></div>
-          <button class="am-google-btn" onclick="alert('Sign in available on GitHub Pages deployment. Abhi preview mode!')">
-            <span class="am-google-icon">G</span>Continue with Google
-          </button>
-          <div class="am-note">Sign in karne se aap Privacy Policy aur Terms se agree karte hain. Koi spam nahi.</div>
-        </div>
-      </div>
-    </div><!-- /sscCglView -->
-
-    <!-- ═══ EXAM VIEW ═══ -->
-    <div class="view" id="examView">
-      <div class="hero">
-        <div class="hero-eyebrow"><div class="hero-dot"></div><span id="examViewTag">Exam</span></div>
-        <h1 class="hero-title" id="examViewTitle">Exam Name</h1>
-        <p class="hero-sub">Mock tests, PDF notes, PYQ papers — sab free.</p>
-      </div>
-      <div class="section">
-        <div class="mock-grid">
-          <div class="mock-card">
-            <div class="mc-top"><span class="mc-badge mc-b-free">Free</span></div>
-            <div class="mc-title" id="examMock1">Mock Test Set 1</div>
-            <div class="mc-meta"><span>📝 Preview</span><span>⭐ Mixed</span></div>
-            <button class="btn-mock" onclick="window.open('/mock/?id=flt-01','_self')">Start Test →</button>
-          </div>
-          <div class="mock-card">
-            <div class="mc-top"><span class="mc-badge mc-b-soon">Coming Soon</span></div>
-            <div class="mc-title">More Sets Coming...</div>
-            <div class="mc-meta"><span>Stay tuned</span></div>
-            <button class="btn-mock" disabled>Coming Soon</button>
-          </div>
-        </div>
-      </div>
+    <div class="about-section">
+      <h2 class="about-h2">Privacy Policy</h2>
+      <p class="about-p">RankUpExam koi personal data third-party ke saath share nahi karta. Google Sign-In sirf aapka naam aur email store karta hai — aapke progress ko personalize karne ke liye. Aapka data sirf aapke browser ke localStorage mein save hota hai.</p>
+      <ul class="about-list">
+        <li>Google Sign-In data: naam, email, profile photo</li>
+        <li>Study progress: localStorage mein sirf aapke device pe</li>
+        <li>Koi third-party analytics nahi</li>
+        <li>Data kabhi bhi delete kiya ja sakta hai browser storage clear karke</li>
+      </ul>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-grid">
-        <div>
-          <div class="fc-title">RankUpExam</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--txt3);line-height:1.8;letter-spacing:.02em">India's Free Practice Hub<br>SSC · Railway · Banking<br>UP · Bihar · Police</div>
-        </div>
-        <div>
-          <div class="fc-title">SSC</div>
-          <div class="fc-links">
-            <span class="fc-link" onclick="showExam('SSC CGL')">SSC CGL</span>
-            <span class="fc-link" onclick="showExam('SSC CHSL')">SSC CHSL</span>
-            <span class="fc-link" onclick="showExam('SSC MTS')">SSC MTS</span>
-            <span class="fc-link" onclick="showExam('SSC GD')">SSC GD</span>
-          </div>
-        </div>
-        <div>
-          <div class="fc-title">Railway</div>
-          <div class="fc-links">
-            <span class="fc-link" onclick="showExam('RRB NTPC')">RRB NTPC</span>
-            <span class="fc-link" onclick="showExam('RRB Group D')">Group D</span>
-            <span class="fc-link" onclick="showExam('RRB JE')">RRB JE</span>
-            <span class="fc-link" onclick="showExam('RPF')">RPF</span>
-          </div>
-        </div>
-        <div>
-          <div class="fc-title">Banking</div>
-          <div class="fc-links">
-            <span class="fc-link" onclick="showExam('SBI PO')">SBI PO</span>
-            <span class="fc-link" onclick="showExam('IBPS PO')">IBPS PO</span>
-            <span class="fc-link" onclick="showExam('SBI Clerk')">SBI Clerk</span>
-            <span class="fc-link" onclick="showExam('RBI Assistant')">RBI Assistant</span>
-          </div>
-        </div>
-        <div>
-          <div class="fc-title">UP / Bihar</div>
-          <div class="fc-links">
-            <span class="fc-link" onclick="showExam('UPSSSC PET')">UPSSSC PET</span>
-            <span class="fc-link" onclick="showExam('UP Police')">UP Police</span>
-            <span class="fc-link" onclick="showExam('BPSC')">BPSC</span>
-            <span class="fc-link" onclick="showExam('BPSC AEDO')">BPSC AEDO</span>
-          </div>
-        </div>
-        <div>
-          <div class="fc-title">Tools</div>
-          <div class="fc-links">
-            <span class="fc-link" onclick="showView('typing')">Typing Test</span>
-            <span class="fc-link" onclick="showView('ca')">Current Affairs</span>
-            <span class="fc-link" onclick="showView('mock')">Mock Tests</span>
-            <span class="fc-link" onclick="showView('pdf')">Free PDFs</span>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="footer-copy">© 2026 RankUpExam.in · 100% Free · No Paywall · Hamesha</div>
-        <div style="font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.06em">Made with ❤️ for Aspirants of India</div>
-      </div>
-    </footer>
-
-  </div><!-- /main-content -->
-</div><!-- /layout -->
-
-<!-- QUIZ MODAL -->
-<div class="quiz-overlay" id="quizOverlay">
-  <div class="quiz-modal">
-    <div class="qm-top">
-      <div class="qm-title" id="qTitle">Mock Test</div>
-      <button class="qm-close" onclick="closeQuiz()">✕ Close</button>
+    <div class="about-section">
+      <h2 class="about-h2">Terms &amp; Conditions</h2>
+      <ul class="about-list">
+        <li>Yeh platform free hai aur educational purpose ke liye hai.</li>
+        <li>Mock test links aur PDF links kabhi bhi update ho sakte hain.</li>
+        <li>Content accuracy maintain karne ki koshish ki jaati hai, par errors ke liye hum liable nahi hain.</li>
+        <li>Paid content ke liye alag terms apply honge — Telegram par details milenge.</li>
+        <li>Is platform ka content copy ya resell karna prohibited hai.</li>
+      </ul>
     </div>
-    <div class="qprog-wrap"><div class="qprog-fill" id="qProg" style="width:0%"></div></div>
-    <div id="qBody"></div>
+
+    <div class="about-section">
+      <h2 class="about-h2">Disclaimer</h2>
+      <p class="about-p">RankUpExam SSC CGL preparation ke liye ek supplementary resource hai. Yeh platform SSC ya kisi government body se affiliated nahi hai. Exam dates, patterns, aur syllabus official SSC notification se verify karein. Study content based on past patterns hai aur future exams guarantee nahi karta.</p>
+    </div>
+
+  </div><!-- /aboutView -->
+
+</main><!-- /page -->
+
+<!-- ══ FOOTER ════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-col-title">RankUpExam</div>
+      <div class="footer-links">
+        <span class="footer-link" style="color:var(--txt2)">70-Day SSC CGL OS</span>
+        <span class="footer-link" style="color:var(--txt3)">Founder: Guru</span>
+        <a href="mailto:rankupexam@gmail.com" class="footer-link" data-email>rankupexam@gmail.com</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <div class="footer-links">
+        <a href="#" class="footer-link" onclick="switchView('today');return false">Today</a>
+        <a href="#" class="footer-link" onclick="switchView('roadmap');return false">Roadmap</a>
+        <a href="#" class="footer-link" onclick="switchView('shifts');return false">Hard Shifts</a>
+        <a href="#" class="footer-link" onclick="switchView('about');return false">About</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <div class="footer-links">
+        <a href="#" target="_blank" class="footer-link" data-yt-href>▶ YouTube</a>
+        <a href="#" target="_blank" class="footer-link" data-tg-href>📢 Telegram</a>
+        <a href="https://instagram.com/rankupexam" target="_blank" class="footer-link">📸 Instagram</a>
+        <a href="mailto:rankupexam@gmail.com" class="footer-link">✉ Email Us</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <div class="footer-links">
+        <a href="#" class="footer-link" onclick="switchView('about');return false">Privacy Policy</a>
+        <a href="#" class="footer-link" onclick="switchView('about');return false">Terms &amp; Conditions</a>
+        <a href="#" class="footer-link" onclick="switchView('about');return false">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy" data-footer-note>© 2026 RankUpExam. Designed for SSC CGL aspirants.</div>
+    <div class="footer-trust">
+      <div class="footer-trust-item">🔒 No Ads</div>
+      <div class="footer-trust-item">📱 Mobile-First</div>
+      <div class="footer-trust-item">⚡ Free to Use</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ COMPLETION OVERLAY ════════════════════════════════ -->
+<div class="completion-overlay" id="completionOverlay">
+  <div class="completion-modal">
+    <span class="cm-emoji" id="cmEmoji">🎉</span>
+    <div class="cm-title" id="cmTitle">Day Complete!</div>
+    <div class="cm-xp"   id="cmXp">+100 XP</div>
+    <button class="cm-next" onclick="closeCompletion()">Continue →</button>
   </div>
 </div>
-<!-- ═══ SSC CGL OS SCRIPTS ═══ -->
 
-<!-- Scripts — load order matters -->
+<!-- ══ AUTH MODAL ════════════════════════════════════════ -->
+<div class="auth-modal-overlay" id="authModalOverlay" onclick="handleOverlayClick(event)">
+  <div class="auth-modal" style="position:relative">
+    <button class="am-close" onclick="closeAuthModal()">✕</button>
+    <div class="am-logo"><div class="ld"></div>RankUpExam</div>
+    <div class="am-title">Sign in to track progress</div>
+    <div class="am-sub">Google se sign in karo — aapka XP, streak, aur completed days sync ho jayenge. Free hai.</div>
+    <div class="am-divider"><span class="am-divider-txt">Continue with</span></div>
+    <button class="am-google-btn" id="authGoogleBtn" onclick="signInWithGoogle()">
+      <span class="am-google-icon">G</span>
+      <span id="googleBtnText">Continue with Google</span>
+    </button>
+    <div class="am-note">Sign in karne se aap Privacy Policy aur Terms se agree karte hain. Koi spam nahi.</div>
+  </div>
+</div>
+
+<!-- Background audio (optional) -->
+<audio id="bgAudio" loop preload="none">
+  <!-- Add an audio file URL here if desired -->
+  <!-- <source src="ambient.mp3" type="audio/mpeg"> -->
+</audio>
+<button class="audio-btn" id="audioBtnEl" onclick="toggleAudio()" title="Toggle ambient sound">🔇</button>
+
+<!-- ══ SCRIPTS (order matters) ══════════════════════════ -->
 <script src="config.js"></script>
 <script src="data.js"></script>
-<script src="auth.js"></script>
-<script src="ui.js"></script>
-<script src="quiz.js"></script>
 <script src="app.js"></script>
 
-<!-- Auth state: update nav sign-in pill -->
-<script type="module">
-import { auth } from "/config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+<!-- Firebase auth (ES module) -->
+<script type="module" src="auth.js"></script>
 
-onAuthStateChanged(auth, (user) => {
-  const pill = document.getElementById("nav-signin-btn");
-  if (!pill) return;
-  if (user) {
-    pill.classList.add("signed-in");
-    pill.innerHTML = user.photoURL
-      ? \`<img src="\${user.photoURL}" class="nsp-avatar" alt=""> <span class="nsp-txt">\${user.displayName.split(' ')[0]}</span>\`
-      : \`<span class="nsp-icon">✅</span><span class="nsp-txt">\${user.displayName.split(' ')[0]}</span>\`;
-    pill.href = "/signin.html";
-    pill.title = "Signed in as " + user.email;
-  } else {
-    pill.classList.remove("signed-in");
-    pill.innerHTML = '<span class="nsp-icon">👤</span><span class="nsp-txt">Sign In</span>';
-    pill.href = "/signin.html";
+<!-- VFX Canvas -->
+<script>
+(function(){
+  const canvas = document.getElementById('vfx-canvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H;
+  const NPART = 55;
+  const particles = [];
+
+  function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Particle {
+    constructor(){ this.reset(); }
+    reset(){
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      this.vx = (Math.random() - .5) * .18;
+      this.vy = (Math.random() - .5) * .18;
+      this.r  = Math.random() * 1.2 + .2;
+      this.a  = Math.random() * .22 + .04;
+      this.c  = Math.random() > .7 ? [200,170,110] : Math.random() > .5 ? [20,60,140] : [122,184,212];
+    }
+    update(){ this.x += this.vx; this.y += this.vy; if(this.x<0||this.x>W||this.y<0||this.y>H) this.reset(); }
+    draw(){
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${this.c.join(',')},${this.a})`;
+      ctx.fill();
+    }
   }
-});
+
+  for(let i = 0; i < NPART; i++) particles.push(new Particle());
+
+  const ORBS = [
+    {x:.65,y:.4,r:250,c:'10,30,100',a:.05},
+    {x:.15,y:.7,r:180,c:'15,50,120',a:.04},
+    {x:.5, y:.5,r:120,c:'20,40,80', a:.03}
+  ];
+  let frame = 0;
+
+  (function animate(){
+    ctx.clearRect(0, 0, W, H);
+    ORBS.forEach(o => {
+      const gx = o.x*W + Math.sin(frame*.0005+o.r)*20;
+      const gy = o.y*H + Math.cos(frame*.0004+o.r)*15;
+      const g  = ctx.createRadialGradient(gx,gy,0,gx,gy,o.r);
+      g.addColorStop(0, `rgba(${o.c},${o.a})`);
+      g.addColorStop(1, 'transparent');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    });
+    particles.forEach(p => { p.update(); p.draw(); });
+    frame++;
+    requestAnimationFrame(animate);
+  })();
+})();
+</script>
+
+<!-- Audio toggle -->
+<script>
+(function(){
+  const audio = document.getElementById('bgAudio');
+  const btn   = document.getElementById('audioBtnEl');
+  if(!audio || !audio.src) return;
+  let muted = true;
+  audio.volume = 0.15;
+  audio.addEventListener('timeupdate', () => { if(audio.currentTime >= 9) audio.currentTime = 0; });
+  window.toggleAudio = function(){
+    muted = !muted;
+    if(muted){ audio.pause(); btn.textContent = '🔇'; btn.classList.remove('playing'); }
+    else { audio.play().catch(()=>{}); btn.textContent = '🎵'; btn.classList.add('playing'); }
+  };
+})();
 </script>
 
 </body>
