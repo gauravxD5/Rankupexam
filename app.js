@@ -621,6 +621,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTodayView();
   renderHeatmap();
   renderShifts('all', 'shiftList');
+  renderDays(0);
 });
 
 
@@ -653,36 +654,6 @@ window.showView = function(id) {
   }
 };
 
-// ── TIMER (SSC CGL OS) ──
-let timerLeft = 0, timerRunning = false, timerInterval = null;
-window.timerToggle = function () {
-  if (!timerRunning) {
-    const h = parseInt(document.getElementById('timerHrs').value)  || 0;
-    const m = parseInt(document.getElementById('timerMins').value) || 0;
-    if (!timerLeft) timerLeft = h * 3600 + m * 60;
-    if (!timerLeft) return;
-    timerRunning = true;
-    document.getElementById('timerStartBtn').textContent = '⏸';
-    document.getElementById('timerDisp').classList.add('running');
-    timerInterval = setInterval(() => {
-      if (timerLeft <= 0) { timerDone(); return; }
-      timerLeft--;
-      updateTimerDisplay();
-    }, 1000);
-  } else {
-    timerRunning = false;
-    clearInterval(timerInterval);
-    document.getElementById('timerStartBtn').textContent = '▶';
-    document.getElementById('timerDisp').classList.remove('running');
-  }
-};
-window.timerReset = function () {
-  timerRunning = false; timerLeft = 0;
-  clearInterval(timerInterval);
-  document.getElementById('timerStartBtn').textContent  = '▶';
-  document.getElementById('timerDisp').textContent      = '00:00:00';
-  document.getElementById('timerDisp').classList.remove('running');
-};
 function timerDone() {
   timerRunning = false; clearInterval(timerInterval);
   const disp = document.getElementById('timerDisp');
