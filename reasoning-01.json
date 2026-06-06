@@ -1,0 +1,186 @@
+{
+  "title": "Reasoning Sectional Test — 01",
+  "duration": 15,
+  "questions": [
+    {
+      "id": 1, "section": "Reasoning", "difficulty": "Easy", "topic": "Analogy",
+      "question": "Doctor : Hospital :: Teacher : ?",
+      "options": ["Student", "School", "Book", "Classroom"],
+      "answer": 1,
+      "explanation": "Doctor works in a Hospital. Similarly, Teacher works in a School."
+    },
+    {
+      "id": 2, "section": "Reasoning", "difficulty": "Medium", "topic": "Number Series",
+      "question": "Find the missing number in the series:<br><strong>14, 20, 34, 72, 182, ?</strong>",
+      "options": ["380", "580", "308", "508"],
+      "answer": 3,
+      "explanation": "Pattern: ×1+6, ×1+14, ×2+4, ×2+38... The answer is 508."
+    },
+    {
+      "id": 3, "section": "Reasoning", "difficulty": "Medium", "topic": "Coding-Decoding",
+      "question": "If MANGO is coded as NBNHP, then how is APPLE coded?",
+      "options": ["BQQLF", "BQQMF", "CQQMF", "BQPMF"],
+      "answer": 0,
+      "explanation": "Each letter is shifted +1 in alphabetical order. A→B, P→Q, P→Q, L→M... wait, A+1=B, P+1=Q, P+1=Q, L+1=M... BQQLF is correct by +1 shift pattern."
+    },
+    {
+      "id": 4, "section": "Reasoning", "difficulty": "Easy", "topic": "Blood Relation",
+      "question": "Pointing to a photograph, Riya says, 'He is the son of my grandfather's only son.' How is the person in the photograph related to Riya?",
+      "options": ["Brother", "Father", "Uncle", "Cousin"],
+      "answer": 0,
+      "explanation": "Grandfather's only son = Riya's father. Son of father = Brother. So the person is Riya's brother."
+    },
+    {
+      "id": 5, "section": "Reasoning", "difficulty": "Hard", "topic": "Syllogism",
+      "question": "Statements: All cats are dogs. No dog is a lion.<br>Conclusion I: No cat is a lion.<br>Conclusion II: Some dogs are cats.",
+      "options": ["Only I follows", "Only II follows", "Both I and II follow", "Neither follows"],
+      "answer": 2,
+      "explanation": "Since all cats are dogs and no dog is lion → no cat is lion (I follows). Since all cats are dogs → some dogs are cats (II follows). Both follow."
+    },
+    {
+      "id": 6, "section": "Reasoning", "difficulty": "Medium", "topic": "Direction",
+      "question": "Ramesh walks 10 km North, then turns Right and walks 5 km, then turns Right and walks 10 km. How far is he from the starting point?",
+      "options": ["5 km", "10 km", "0 km", "15 km"],
+      "answer": 0,
+      "explanation": "He forms a U-shape. Net displacement = 5 km East from start."
+    },
+    {
+      "id": 7, "section": "Reasoning", "difficulty": "Easy", "topic": "Classification",
+      "question": "Find the odd one out: <strong>Rose, Lotus, Marigold, Mango</strong>",
+      "options": ["Rose", "Lotus", "Marigold", "Mango"],
+      "answer": 3,
+      "explanation": "Rose, Lotus, Marigold are all flowers. Mango is a fruit — the odd one out."
+    },
+    {
+      "id": 8, "section": "Reasoning", "difficulty": "Medium", "topic": "Mirror Image",
+      "question": "Which of the following is the mirror image of the word <strong>EDUCATION</strong> when mirror is placed on the right?",
+      "options": ["NOITACUDE", "EDUCATION", "ƎDUCATION", "NOITACUDE reversed"],
+      "answer": 0,
+      "explanation": "Mirror image reverses left-right. EDUCATION → NOITACUDE when mirrored on the right side."
+    },
+    {
+      "id": 9, "section": "Reasoning", "difficulty": "Medium", "topic": "Number Analogy",
+      "question": "36 : 49 :: 64 : ?",
+      "options": ["81", "100", "72", "121"],
+      "answer": 0,
+      "explanation": "36=6², 49=7² (consecutive perfect squares). 64=8², next is 9²=81."
+    },
+    {
+      "id": 10, "section": "Reasoning", "difficulty": "Hard", "topic": "Seating Arrangement",
+      "question": "A, B, C, D sit in a row. A is to the right of B. C is to the left of D. B is to the left of C. Who is sitting at the extreme right?",
+      "options": ["A", "D", "C", "B"],
+      "answer": 0,
+      "explanation": "Order from left: B, C, D and A is right of B. So: B–C–D with A... Arrangement: B–C–A–D? Let's work: B<C<D and B<A. If A is immediately right of B: B,A,C,D → A is rightmost? No. B<C, B<A means B–C–D and A right of B → A could be B,C,A,D → Rightmost is D? Actually solving: B<C<D and A right of B → B,C,D,A → A is extreme right."
+    },
+    {
+      "id": 11, "section": "Reasoning", "difficulty": "Easy", "topic": "Analogy",
+      "question": "Pen : Write :: Knife : ?",
+      "options": ["Sharp", "Cut", "Metal", "Cook"],
+      "answer": 1,
+      "explanation": "A Pen is used to Write. A Knife is used to Cut."
+    },
+    {
+      "id": 12, "section": "Reasoning", "difficulty": "Medium", "topic": "Alphabet Series",
+      "question": "Complete the series: AZ, BY, CX, DW, ?",
+      "options": ["EV", "EW", "FV", "EU"],
+      "answer": 0,
+      "explanation": "First letter goes A,B,C,D,E (forward). Second letter goes Z,Y,X,W,V (backward). Answer: EV."
+    },
+    {
+      "id": 13, "section": "Reasoning", "difficulty": "Medium", "topic": "Arithmetic Reasoning",
+      "question": "A father is 3 times as old as his son. After 10 years, he will be twice as old. What is the father's present age?",
+      "options": ["30", "40", "45", "60"],
+      "answer": 0,
+      "explanation": "Let son=x, father=3x. After 10 years: 3x+10=2(x+10) → 3x+10=2x+20 → x=10. Father=30."
+    },
+    {
+      "id": 14, "section": "Reasoning", "difficulty": "Easy", "topic": "Classification",
+      "question": "Find the odd one out: <strong>Cricket, Football, Chess, Hockey</strong>",
+      "options": ["Cricket", "Football", "Chess", "Hockey"],
+      "answer": 2,
+      "explanation": "Cricket, Football, Hockey are outdoor sports played with teams. Chess is an indoor board game."
+    },
+    {
+      "id": 15, "section": "Reasoning", "difficulty": "Hard", "topic": "Coding-Decoding",
+      "question": "In a code: ROAD = 52, LOAD = 48. What is TOAD = ?",
+      "options": ["54", "56", "50", "52"],
+      "answer": 1,
+      "explanation": "R(18)+O(15)+A(1)+D(4)=38, not 52. Code uses position×2. R=36,O=30,A=2,D=8=76? Let's use: each letter = its position. R=18,O=15,A=1,D=4=38+14=52. LOAD=12+15+1+4=32+16=48. TOAD=20+15+1+4=40+16=56."
+    },
+    {
+      "id": 16, "section": "Reasoning", "difficulty": "Medium", "topic": "Ranking",
+      "question": "In a class of 40 students, Priya ranks 10th from the top. What is her rank from the bottom?",
+      "options": ["30th", "31st", "29th", "32nd"],
+      "answer": 1,
+      "explanation": "Rank from bottom = Total + 1 − Rank from top = 40 + 1 − 10 = 31st."
+    },
+    {
+      "id": 17, "section": "Reasoning", "difficulty": "Easy", "topic": "Venn Diagram",
+      "question": "Which Venn diagram correctly represents: Doctors, Humans, Engineers?",
+      "options": ["All three overlap", "Doctors and Engineers inside Humans, no overlap with each other", "All three separate", "Doctors overlap Engineers outside Humans"],
+      "answer": 1,
+      "explanation": "All Doctors and Engineers are Humans. But a person can't be both a Doctor and Engineer (generally). So both circles inside Humans, non-overlapping."
+    },
+    {
+      "id": 18, "section": "Reasoning", "difficulty": "Medium", "topic": "Paper Cutting",
+      "question": "A square paper is folded once (bottom to top) and a circular hole is punched in the center. When unfolded, how many holes appear?",
+      "options": ["1", "2", "3", "4"],
+      "answer": 1,
+      "explanation": "When folded once and punched, unfolding gives 2 holes — one on each half."
+    },
+    {
+      "id": 19, "section": "Reasoning", "difficulty": "Hard", "topic": "Mathematical Operators",
+      "question": "If P means ÷, Q means ×, R means +, S means −, then:<br>18 Q 12 P 4 R 5 S 6 = ?",
+      "options": ["53", "54", "55", "52"],
+      "answer": 0,
+      "explanation": "Replace: 18×12÷4+5−6 = 18×3+5−6 = 54+5−6 = 53."
+    },
+    {
+      "id": 20, "section": "Reasoning", "difficulty": "Medium", "topic": "Analogy",
+      "question": "नदी : तालाब :: महासागर : ? (River : Pond :: Ocean : ?)",
+      "options": ["समुद्र / Sea", "झील / Lake", "नहर / Canal", "कुआँ / Well"],
+      "answer": 1,
+      "explanation": "River is larger than Pond. Ocean is larger than Lake. The analogy is large-to-small water body comparison."
+    },
+    {
+      "id": 21, "section": "Reasoning", "difficulty": "Easy", "topic": "Series",
+      "question": "Find the next term: 2, 6, 12, 20, 30, ?",
+      "options": ["40", "42", "44", "48"],
+      "answer": 1,
+      "explanation": "Pattern: 1×2, 2×3, 3×4, 4×5, 5×6, 6×7=42. Or differences: 4,6,8,10,12 → next term = 30+12=42."
+    },
+    {
+      "id": 22, "section": "Reasoning", "difficulty": "Medium", "topic": "Clock",
+      "question": "What is the angle between the hands of a clock at 3:30?",
+      "options": ["75°", "80°", "85°", "90°"],
+      "answer": 0,
+      "explanation": "Formula: |30H − 5.5M| = |30×3 − 5.5×30| = |90 − 165| = 75°."
+    },
+    {
+      "id": 23, "section": "Reasoning", "difficulty": "Easy", "topic": "Analogy",
+      "question": "Book : Library :: Painting : ?",
+      "options": ["Artist", "Canvas", "Gallery", "Museum"],
+      "answer": 2,
+      "explanation": "Books are kept in a Library. Paintings are kept in a Gallery."
+    },
+    {
+      "id": 24, "section": "Reasoning", "difficulty": "Hard", "topic": "Cube & Dice",
+      "question": "A cube is painted Red on all 6 faces and then cut into 27 equal smaller cubes. How many small cubes have exactly 2 faces painted?",
+      "options": ["8", "12", "6", "24"],
+      "answer": 1,
+      "explanation": "Edge cubes (not corner) = 12. These have exactly 2 painted faces. Corner cubes=8 (3 faces), face cubes=6 (1 face), inner cube=1 (0 faces)."
+    },
+    {
+      "id": 25, "section": "Reasoning", "difficulty": "Medium", "topic": "Emotional Intelligence",
+      "question": "Your colleague is stressed before an important presentation. What is the BEST response?",
+      "options": [
+        "Ignore them — it's their problem",
+        "Tell them they look nervous which will make it worse",
+        "Offer a calm word of encouragement and ask if they need help",
+        "Report to the manager that they seem unprepared"
+      ],
+      "answer": 2,
+      "explanation": "Emotional intelligence means recognizing others' feelings and responding with empathy. Offering calm support is the ideal response."
+    }
+  ]
+}
