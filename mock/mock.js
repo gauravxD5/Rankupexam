@@ -52,7 +52,7 @@ async function loadTest(id) {
                : id.startsWith('gk')        ? 'gk'
                : 'flt';
 
-  const path = `/data/${folder}/${id}.json`;
+  const path = `../data/${folder}/${id}.json`;
 
   try {
     const res = await fetch(path);
