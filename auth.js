@@ -1,88 +1,50 @@
 /**
- * ═══════════════════════════════════════════════════
- *  RankUpExam — auth.js
- *  Google Sign-in / Sign-out / Auth State
- * ═══════════════════════════════════════════════════
+ * RankUpExam — auth.js
+ * Firebase Auth — Google Sign-in
+ * Plain script version (no ES module export issues)
  */
 
-import { auth } from "./config.js";
-
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const provider = new GoogleAuthProvider();
-
-const loginBtn  = document.getElementById("google-login");
-const logoutBtn = document.getElementById("logout-btn");
-const userBox   = document.getElementById("user-box");
-
-// ── Sign In ──
-if (loginBtn) {
-  loginBtn.addEventListener("click", async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user   = result.user;
-
-      localStorage.setItem("rankup-user", JSON.stringify({
-        name:  user.displayName,
-        email: user.email,
-        photo: user.photoURL,
-        uid:   user.uid
-      }));
-
-      window.location.reload();
-
-    } catch (error) {
-      alert("Sign-in failed: " + error.message);
-      console.error(error);
-    }
-  });
-}
-
-// ── Sign Out ──
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", async () => {
-    await signOut(auth);
-    localStorage.removeItem("rankup-user");
-    window.location.reload();
-  });
-}
-
-// ── Auth State Listener ──
-onAuthStateChanged(auth, (user) => {
-  if (user && userBox) {
-    userBox.innerHTML = `
-      <div class="user-profile">
-        <img src="${user.photoURL}" alt="${user.displayName}" class="user-avatar">
-        <div class="user-info">
-          <h3 class="user-name">${user.displayName}</h3>
-          <p class="user-email">${user.email}</p>
-        </div>
-      </div>
-    `;
-  }
-
-  // Update nav sign-in button across site
-  const navSignInBtn = document.getElementById("nav-signin-btn");
-  if (navSignInBtn) {
+// Auth functions exposed globally for nav pill + signin page
+window.rankupAuth = {
+  user: null,
+  
+  init: async function() {
+    // Only run if Firebase is available
+    if (typeof firebase === 'undefined') return;
+    
+    const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
+    const { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } 
+      = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js');
+    
+    const app  = initializeApp(CONFIG.firebase, 'rankupexam');
+    const auth = getAuth(app);
+    const prov = new GoogleAuthProvider();
+    
+    onAuthStateChanged(auth, (user) => {
+      window.rankupAuth.user = user;
+      window.rankupAuth.updateNavPill(user);
+    });
+    
+    window.rankupAuth._auth = auth;
+    window.rankupAuth._prov = prov;
+    window.rankupAuth._signOut = () => signOut(auth);
+    window.rankupAuth._signIn  = () => signInWithPopup(auth, prov);
+  },
+  
+  updateNavPill: function(user) {
+    const pill = document.getElementById('nav-signin-btn');
+    if (!pill) return;
     if (user) {
-      navSignInBtn.innerHTML = `<img src="${user.photoURL}" style="width:22px;height:22px;border-radius:50%;object-fit:cover;border:1px solid var(--gold)"> ${user.displayName.split(' ')[0]}`;
-      navSignInBtn.onclick = () => window.location.href = '/signin.html';
+      pill.classList.add('signed-in');
+      pill.innerHTML = user.photoURL
+        ? `<img src="${user.photoURL}" class="nsp-avatar" alt=""> <span class="nsp-txt">${user.displayName.split(' ')[0]}</span>`
+        : `<span class="nsp-icon">✅</span><span class="nsp-txt">${user.displayName.split(' ')[0]}</span>`;
     } else {
-      navSignInBtn.textContent = 'Sign In';
-      navSignInBtn.onclick = () => window.location.href = '/signin.html';
+      pill.classList.remove('signed-in');
+      pill.innerHTML = '<span class="nsp-icon">👤</span><span class="nsp-txt">Sign In</span>';
     }
   }
-});
+};
 
-// ── Helper: get current user from localStorage (sync) ──
-export function getCurrentUser() {
-  try {
-    const raw = localStorage.getItem("rankup-user");
-    return raw ? JSON.parse(raw) : null;
-  } catch { return null; }
-}
+// Try init (will silently fail if Firebase SDK not loaded)
+try { window.rankupAuth.init(); } catch(e) {}
