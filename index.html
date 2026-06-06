@@ -938,6 +938,14 @@
             <h2 class="about-h2">Disclaimer</h2>
             <p class="about-p">RankUpExam SSC CGL preparation ke liye ek supplementary resource hai. Yeh platform SSC ya kisi government body se affiliated nahi hai. Exam dates, patterns, aur syllabus official SSC notification se verify karein.</p>
           </div>
+          <div class="about-section" style="border-bottom:none">
+            <h2 class="about-h2">Legal</h2>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <a href="/privacy-policy.html" target="_blank" class="contact-card" style="flex:1;min-width:120px"><div class="cc-icon">🔒</div><div class="cc-label">Privacy Policy</div></a>
+              <a href="/terms.html"          target="_blank" class="contact-card" style="flex:1;min-width:120px"><div class="cc-icon">📋</div><div class="cc-label">Terms & Conditions</div></a>
+              <a href="/disclaimer.html"     target="_blank" class="contact-card" style="flex:1;min-width:120px"><div class="cc-icon">⚠️</div><div class="cc-label">Disclaimer</div></a>
+            </div>
+          </div>
         </div>
 
       </div><!-- /cgl-page -->
@@ -1048,7 +1056,12 @@
       </div>
       <div class="footer-bottom">
         <div class="footer-copy">© 2026 RankUpExam.in · 100% Free · No Paywall · Hamesha</div>
-        <div style="font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.06em">Made with ❤️ for Aspirants of India</div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+          <a href="/privacy-policy.html" style="font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.04em;text-decoration:none" target="_blank">Privacy Policy</a>
+          <a href="/terms.html"          style="font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.04em;text-decoration:none" target="_blank">Terms</a>
+          <a href="/disclaimer.html"     style="font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.04em;text-decoration:none" target="_blank">Disclaimer</a>
+          <span style="font-family:var(--mono);font-size:9px;color:var(--txt3)">Made with ❤️ for Aspirants of India</span>
+        </div>
       </div>
     </footer>
 
@@ -1077,27 +1090,7 @@
 <script src="app.js"></script>
 
 <!-- Auth state: update nav sign-in pill -->
-<script type="module">
-import { auth } from "/config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-onAuthStateChanged(auth, (user) => {
-  const pill = document.getElementById("nav-signin-btn");
-  if (!pill) return;
-  if (user) {
-    pill.classList.add("signed-in");
-    pill.innerHTML = user.photoURL
-      ? \`<img src="\${user.photoURL}" class="nsp-avatar" alt=""> <span class="nsp-txt">\${user.displayName.split(' ')[0]}</span>\`
-      : \`<span class="nsp-icon">✅</span><span class="nsp-txt">\${user.displayName.split(' ')[0]}</span>\`;
-    pill.href = "/signin.html";
-    pill.title = "Signed in as " + user.email;
-  } else {
-    pill.classList.remove("signed-in");
-    pill.innerHTML = '<span class="nsp-icon">👤</span><span class="nsp-txt">Sign In</span>';
-    pill.href = "/signin.html";
-  }
-});
-</script>
 
 </body>
 </html>
