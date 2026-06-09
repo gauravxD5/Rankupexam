@@ -56,7 +56,6 @@
   </div>
 
   <div class="nav-right">
-    <a class="nav-btn btn-yt" href="https://youtube.com/@RankUpExam" target="_blank">▶ YouTube</a>
     <a class="nav-btn btn-tg" href="https://t.me/rankupexam" target="_blank">✈ Telegram</a>
     <button class="nav-btn" style="background:linear-gradient(135deg,#1e3d80,#2a54ab);color:#fff;border:none;padding:6px 12px;border-radius:3px;font-family:var(--mono);font-size:10px;font-weight:700;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;" onclick="showView('sscCgl')">🏆 CGL OS</button>
     <button class="nav-btn btn-gold" onclick="showView('mock')">Free Mock Test</button>
@@ -183,9 +182,9 @@
     <div class="sb-section-title">Tools</div>
     <div class="sb-item" onclick="showView('typing')"><div class="sb-item-left"><span class="sb-icon">⌨️</span><span class="sb-label">Typing Test</span></div><span class="sb-badge hot">HOT</span></div>
     <div class="sb-item" onclick="showView('ca')"><div class="sb-item-left"><span class="sb-icon">📰</span><span class="sb-label">Current Affairs Quiz</span></div></div>
-    <div class="sb-item" onclick="alert('Coming soon!')"><div class="sb-item-left"><span class="sb-icon">⚔️</span><span class="sb-label">Quiz Battle</span></div><span class="sb-badge new">SOON</span></div>
-    <div class="sb-item" onclick="alert('Coming soon!')"><div class="sb-item-left"><span class="sb-icon">🗓️</span><span class="sb-label">Exam Calendar</span></div></div>
-    <div class="sb-item" onclick="alert('Coming soon!')"><div class="sb-item-left"><span class="sb-icon">🏅</span><span class="sb-label">Live Leaderboard</span></div></div>
+    <div class="sb-item" onclick="return false" style="opacity:.55;cursor:default"><div class="sb-item-left"><span class="sb-icon">⚔️</span><span class="sb-label">Quiz Battle</span></div><span class="sb-badge new">SOON</span></div>
+    <div class="sb-item" onclick="return false" style="opacity:.55;cursor:default"><div class="sb-item-left"><span class="sb-icon">🗓️</span><span class="sb-label">Exam Calendar</span></div></div>
+    <div class="sb-item" onclick="return false" style="opacity:.55;cursor:default"><div class="sb-item-left"><span class="sb-icon">🏅</span><span class="sb-label">Live Leaderboard</span></div></div>
   </div>
 
 </div>
@@ -216,7 +215,7 @@
 
       <!-- STATS -->
       <div class="stats-strip">
-        <div class="stat-cell"><div class="stat-n">50K+</div><div class="stat-l">Students</div></div>
+        <div class="stat-cell"><div class="stat-n">100%</div><div class="stat-l">Free Always</div></div>
         <div class="stat-cell"><div class="stat-n">1000+</div><div class="stat-l">Questions</div></div>
         <div class="stat-cell"><div class="stat-n">13</div><div class="stat-l">Exam Categories</div></div>
         <div class="stat-cell"><div class="stat-n">100%</div><div class="stat-l">Free Forever</div></div>
@@ -289,7 +288,6 @@
             💸 Cost: <strong style="color:var(--em)">FREE</strong>
           </div>
           <button class="nav-btn btn-gold" onclick="showView('sscCgl')" style="font-size:11px;padding:8px 18px">🚀 Open CGL OS →</button>
-          <a href="https://youtube.com/@rankupexam" target="_blank" class="nav-btn btn-yt" style="font-size:11px;padding:8px 18px">▶ YouTube</a>
           <a href="https://t.me/rankupexam" target="_blank" class="nav-btn btn-tg" style="font-size:11px;padding:8px 18px">📢 Telegram</a>
         </div>
       </div>
@@ -408,7 +406,7 @@
             <div class="feat-sub">SSC, Railway, Banking — real exam pattern. Instant results with explanation.</div>
             <span class="feat-badge fb-gold">Explanation Sahit</span>
           </div>
-          <div class="feat-card" onclick="alert('Quiz Battle coming soon! 🔥')" style="--accent:var(--red)">
+          <div class="feat-card" style="cursor:default;opacity:.7" style="--accent:var(--red)">
             <div class="feat-card-accent"></div>
             <div class="feat-icon">⚔️</div>
             <div class="feat-title">Quiz Battle</div>
@@ -450,14 +448,14 @@
           </div>
           <div class="mock-card">
             <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">RRB JE</span></div>
-            <div class="mc-title">RRB JE General Awareness — 50 Qs</div>
-            <div class="mc-meta"><span>⏱ 30 min</span><span>📝 4 Qs</span><span>⭐ Medium</span></div>
+            <div class="mc-title">RRB JE General Awareness — Set 1</div>
+            <div class="mc-meta"><span>⏱ 15 min</span><span>📝 25 Qs</span><span>⭐ Medium</span></div>
             <button class="btn-mock" onclick="window.open('/mock/?id=reasoning-01','_self')">Start Test →</button>
           </div>
           <div class="mock-card">
             <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">BPSC AEDO</span></div>
             <div class="mc-title">BPSC AEDO Full Syllabus Mock — Set 1</div>
-            <div class="mc-meta"><span>⏱ 45 min</span><span>📝 4 Qs</span><span>⭐ Medium</span></div>
+            <div class="mc-meta"><span>⏱ 25 min</span><span>📝 25 Qs</span><span>⭐ Medium</span></div>
             <button class="btn-mock" onclick="window.open('/mock/?id=english-01','_self')">Start Test →</button>
           </div>
         </div>
@@ -489,7 +487,7 @@
           </div>
           <div class="mock-card" data-exam="SSC CGL">
             <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">SSC CGL</span></div>
-            <div class="mc-title">SSC CGL GK Quick Fire — 20 Questions</div>
+            <div class="mc-title">SSC CGL GK Quick Fire — Set 1</div>
             <div class="mc-meta"><span>⏱ 10 min</span><span>📝 25 Qs</span><span>⭐ Easy-Med</span></div>
             <button class="btn-mock" onclick="window.open('/mock/?id=gk-01','_self')">Start Test →</button>
           </div>
@@ -501,7 +499,7 @@
           </div>
           <div class="mock-card" data-exam="RRB JE">
             <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">RRB JE</span></div>
-            <div class="mc-title">RRB JE Electrical Engineering — Technical Set</div>
+            <div class="mc-title">SSC CGL Mathematics — Set 1</div>
             <div class="mc-meta"><span>⏱ 30 min</span><span>📝 25 Qs</span><span>⭐ Hard</span></div>
             <button class="btn-mock" onclick="window.open('/mock/?id=math-01','_self')">Start Test →</button>
           </div>
@@ -540,25 +538,25 @@
             <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">SSC CGL</span></div>
             <div class="mc-title">150 Hard Questions — Topic-wise Shortcuts</div>
             <div class="mc-meta"><span>📄 45 Pages</span><span>Sept 2025 Shifts</span></div>
-            <button class="btn-mock" onclick="alert('PDF link coming soon!')">Download Free ⬇</button>
+            <button class="btn-mock" onclick="window.open('https://t.me/rankupexam','_blank')">Download Free ⬇</button>
           </div>
           <div class="mock-card" data-exam="rrb">
             <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">RRB JE</span></div>
             <div class="mc-title">GA Master Sheet — 308 Questions Hinglish</div>
             <div class="mc-meta"><span>📄 Full GA</span><span>Tier-2 Follow-ups</span></div>
-            <button class="btn-mock" onclick="alert('PDF link coming soon!')">Download Free ⬇</button>
+            <button class="btn-mock" onclick="window.open('https://t.me/rankupexam','_blank')">Download Free ⬇</button>
           </div>
           <div class="mock-card" data-exam="bpsc">
             <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">BPSC AEDO</span></div>
             <div class="mc-title">Daily 50-Question Mock PDFs — Set 1–10</div>
             <div class="mc-meta"><span>📄 500 Qs</span><span>Hindi Medium</span></div>
-            <button class="btn-mock" onclick="alert('PDF link coming soon!')">Download Free ⬇</button>
+            <button class="btn-mock" onclick="window.open('https://t.me/rankupexam','_blank')">Download Free ⬇</button>
           </div>
           <div class="mock-card" data-exam="ssc">
             <div class="mc-top"><span class="mc-badge mc-b-free">Free</span><span class="mc-exam">SSC CGL</span></div>
             <div class="mc-title">1000 Questions Math Bank — 10 Parts</div>
             <div class="mc-meta"><span>📄 Complete Quant</span><span>Tricks Included</span></div>
-            <button class="btn-mock" onclick="alert('PDF link coming soon!')">Download Free ⬇</button>
+            <button class="btn-mock" onclick="window.open('https://t.me/rankupexam','_blank')">Download Free ⬇</button>
           </div>
         </div>
       </div>
@@ -799,7 +797,7 @@
             <div class="tg-cta-icon">📢</div>
             <div class="tg-cta-content">
               <div class="tg-cta-title" data-tg-cta-title>Daily Tricks on Telegram — RankUpExam</div>
-              <div class="tg-cta-sub" data-tg-cta-sub>Join 1000+ aspirants for daily shortcut tricks and motivation.</div>
+              <div class="tg-cta-sub" data-tg-cta-sub>Daily shortcut tricks aur motivation — bilkul free. Join karo!</div>
             </div>
             <a href="https://t.me/rankupexam" class="tg-cta-btn" target="_blank">Join Now →</a>
           </div>
@@ -812,9 +810,8 @@
             <h1 class="h-title"><span class="d60">60+10</span> Days<br><span class="cgl">SSC CGL Complete System</span></h1>
             <p class="h-sub">60 din mein poora syllabus + weekly mix tests. Last 10 din — sirf Full Length Tests. Roz PDF notes, 15-min mock (25 Qs), aur YouTube video solution.</p>
             <div class="h-pills">
-              <a href="https://youtube.com/@rankupexam" target="_blank" class="h-pill hp-yt">▶ YouTube</a>
               <a href="https://t.me/rankupexam" target="_blank" class="h-pill hp-tg">📢 Telegram</a>
-              <span class="h-pill hp-g">📄 Daily PDF + 🧪 Mock + ▶ Video</span>
+              <span class="h-pill hp-g">📄 Daily PDF + 🧪 Mock + 📊 Analysis</span>
             </div>
           </div>
           <div class="milestone-bar">
@@ -882,7 +879,6 @@
                       <span class="rpf-v" id="shiftCount">30 Shifts</span>
                     </div>
                     <div style="margin-top:8px">
-                      <a href="https://youtube.com/@rankupexam" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;background:rgba(255,68,68,.07);border:1px solid rgba(255,68,68,.18);border-radius:8px;color:#ff6b6b;font-size:10px;font-family:var(--mono);text-decoration:none;font-weight:700">▶ Solutions on YouTube</a>
                     </div>
                   </div>
                 </div>
@@ -921,7 +917,6 @@
             <div class="about-contact-grid">
               <a href="mailto:rankupexam@gmail.com" class="contact-card"><div class="cc-icon">✉️</div><div class="cc-label">Email</div><div class="cc-value">rankupexam@gmail.com</div></a>
               <a href="https://t.me/rankupexam" target="_blank" class="contact-card"><div class="cc-icon">📢</div><div class="cc-label">Telegram</div><div class="cc-value">t.me/rankupexam</div></a>
-              <a href="https://youtube.com/@rankupexam" target="_blank" class="contact-card"><div class="cc-icon">▶</div><div class="cc-label">YouTube</div><div class="cc-value">@rankupexam</div></a>
               <a href="https://instagram.com/rankupexam" target="_blank" class="contact-card"><div class="cc-icon">📸</div><div class="cc-label">Instagram</div><div class="cc-value">@rankupexam</div></a>
             </div>
           </div>
@@ -937,14 +932,6 @@
           <div class="about-section">
             <h2 class="about-h2">Disclaimer</h2>
             <p class="about-p">RankUpExam SSC CGL preparation ke liye ek supplementary resource hai. Yeh platform SSC ya kisi government body se affiliated nahi hai. Exam dates, patterns, aur syllabus official SSC notification se verify karein.</p>
-          </div>
-          <div class="about-section" style="border-bottom:none">
-            <h2 class="about-h2">Legal</h2>
-            <div style="display:flex;gap:10px;flex-wrap:wrap">
-              <a href="/privacy-policy.html" target="_blank" class="contact-card" style="flex:1;min-width:120px"><div class="cc-icon">🔒</div><div class="cc-label">Privacy Policy</div></a>
-              <a href="/terms.html"          target="_blank" class="contact-card" style="flex:1;min-width:120px"><div class="cc-icon">📋</div><div class="cc-label">Terms & Conditions</div></a>
-              <a href="/disclaimer.html"     target="_blank" class="contact-card" style="flex:1;min-width:120px"><div class="cc-icon">⚠️</div><div class="cc-label">Disclaimer</div></a>
-            </div>
           </div>
         </div>
 
@@ -968,7 +955,7 @@
           <div class="am-title">Sign in to track progress</div>
           <div class="am-sub">Google se sign in karo — aapka XP, streak, aur completed days sync ho jayenge. Free hai.</div>
           <div class="am-divider"><span class="am-divider-txt">Continue with</span></div>
-          <button class="am-google-btn" onclick="alert('Sign in available on GitHub Pages deployment. Abhi preview mode!')">
+          <button class="am-google-btn" onclick="window.location.href='/signin.html'">
             <span class="am-google-icon">G</span>Continue with Google
           </button>
           <div class="am-note">Sign in karne se aap Privacy Policy aur Terms se agree karte hain. Koi spam nahi.</div>
@@ -1056,12 +1043,7 @@
       </div>
       <div class="footer-bottom">
         <div class="footer-copy">© 2026 RankUpExam.in · 100% Free · No Paywall · Hamesha</div>
-        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
-          <a href="/privacy-policy.html" style="font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.04em;text-decoration:none" target="_blank">Privacy Policy</a>
-          <a href="/terms.html"          style="font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.04em;text-decoration:none" target="_blank">Terms</a>
-          <a href="/disclaimer.html"     style="font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.04em;text-decoration:none" target="_blank">Disclaimer</a>
-          <span style="font-family:var(--mono);font-size:9px;color:var(--txt3)">Made with ❤️ for Aspirants of India</span>
-        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.06em">Made with ❤️ for Aspirants of India</div>
       </div>
     </footer>
 
@@ -1090,7 +1072,27 @@
 <script src="app.js"></script>
 
 <!-- Auth state: update nav sign-in pill -->
+<script type="module">
+import { auth } from "/config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+onAuthStateChanged(auth, (user) => {
+  const pill = document.getElementById("nav-signin-btn");
+  if (!pill) return;
+  if (user) {
+    pill.classList.add("signed-in");
+    pill.innerHTML = user.photoURL
+      ? \`<img src="\${user.photoURL}" class="nsp-avatar" alt=""> <span class="nsp-txt">\${user.displayName.split(' ')[0]}</span>\`
+      : \`<span class="nsp-icon">✅</span><span class="nsp-txt">\${user.displayName.split(' ')[0]}</span>\`;
+    pill.href = "/signin.html";
+    pill.title = "Signed in as " + user.email;
+  } else {
+    pill.classList.remove("signed-in");
+    pill.innerHTML = '<span class="nsp-icon">👤</span><span class="nsp-txt">Sign In</span>';
+    pill.href = "/signin.html";
+  }
+});
+</script>
 
 </body>
 </html>
